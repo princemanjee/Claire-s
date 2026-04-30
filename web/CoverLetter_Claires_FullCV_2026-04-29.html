@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>P. R. Manjee - Cover Letter (Full CV Companion) - Claire's CTO</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #1f3a5f;
+            --primary-deep: #14283f;
+            --accent: #c8a14a;
+            --accent-deep: #a37418;
+            --link: #0a66c2;
+            --link-hover: #084a8e;
+            --text: #1a1a1a;
+            --muted: #555;
+            --quiet: #777;
+            --rule: #d8d8d8;
+            --rule-light: #ececec;
+            --bg-page: #ffffff;
+            --bg-1: #dde4ee;
+            --bg-2: #c4d2e2;
+        }
+
+        body {
+            font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(ellipse 800px 500px at 18% 0%, rgba(31, 58, 95, 0.16) 0%, transparent 60%),
+                radial-gradient(ellipse 600px 500px at 88% 100%, rgba(200, 161, 74, 0.18) 0%, transparent 55%),
+                linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+            background-attachment: fixed;
+            line-height: 1.6;
+            font-size: 11.5pt;
+            min-height: 100vh;
+            padding: 32px 16px;
+            position: relative;
+            letter-spacing: -0.005em;
+        }
+
+        .page {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.75in 0.9in;
+            background: var(--bg-page);
+            box-shadow:
+                0 28px 70px -18px rgba(20, 40, 63, 0.32),
+                0 8px 24px -10px rgba(20, 40, 63, 0.18),
+                0 0 0 1px rgba(31, 58, 95, 0.05),
+                0 1px 0 rgba(255, 255, 255, 0.85) inset;
+            border-radius: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 60%, var(--primary) 100%);
+            border-radius: 8px 8px 0 0;
+        }
+
+        .header-block {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 14px;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 18pt;
+            color: var(--primary);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.012em;
+        }
+
+        .headline {
+            color: var(--accent-deep);
+            font-size: 11pt;
+            font-weight: 600;
+            margin-top: 5px;
+            letter-spacing: -0.005em;
+        }
+
+        .audience-tag {
+            font-size: 9.5pt;
+            color: var(--muted);
+            font-style: italic;
+            margin-top: 4px;
+        }
+
+        .contact {
+            font-size: 9.5pt;
+            color: var(--muted);
+            margin-top: 8px;
+        }
+        .contact a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            font-weight: 500;
+            transition: color 0.18s ease;
+        }
+        .contact a:hover { color: var(--link-hover); }
+
+        .date-line {
+            font-size: 11pt;
+            color: var(--muted);
+            margin-bottom: 22px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .recipient {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 18px;
+            letter-spacing: -0.005em;
+        }
+
+        p {
+            margin-bottom: 14px;
+            color: var(--text);
+        }
+
+        /* Bold-italic emphasis for scannable keywords */
+        strong, b {
+            font-weight: 600;
+            font-style: italic;
+            color: var(--primary);
+        }
+
+        a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            transition: color 0.18s ease;
+        }
+        a:hover { color: var(--link-hover); }
+
+        ol { margin-left: 24px; margin-bottom: 14px; }
+        ol li { margin-bottom: 9px; line-height: 1.6; }
+        ul { margin-left: 24px; margin-bottom: 14px; }
+        ul li { margin-bottom: 9px; line-height: 1.6; }
+        li::marker { color: var(--accent-deep); }
+
+        .signature { margin-top: 26px; }
+        .signature-name {
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.005em;
+        }
+        .signature-contact {
+            font-size: 10pt;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                padding: 0.6in 0.8in;
+                max-width: 100%;
+                border-radius: 0;
+            }
+            .page::before { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 14px 8px; font-size: 12pt; }
+            .page { padding: 32px 22px; }
+            h1 { font-size: 17pt; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header-block">
+            <h1>P. R. Manjee, EE, MIS</h1>
+            <div class="headline">Chief Technology Officer · Digital Transformation &amp; Omnichannel Modernization</div>
+            <div class="audience-tag">Full CV companion - complete narrative for thorough background review</div>
+            <div class="contact">Chicago, IL · <a href="tel:3122969067">312.296.9067</a> · <a href="mailto:princemanjee@gmail.com">princemanjee@gmail.com</a> · <a href="https://www.linkedin.com/in/princemanjee">linkedin.com/in/princemanjee</a></div>
+        </div>
+
+        <div class="date-line">April 29, 2026</div>
+        <div class="recipient">To the Claire's Hiring Team</div>
+
+        <p>The full CV that accompanies this letter spans thirty years of operational and strategic technology work. The narrative behind it is shorter than it looks: I have spent that time building, running, modernizing, and securing the systems organizations actually depend on. The Claire's CTO role is the convergence of all of that experience into a single mandate, and that is why I am writing.</p>
+
+        <p>The arc began in heavy manufacturing - high-voltage diagnostics, PLC programming, automation engineering at <strong>ARM-S Electric</strong> - where I learned that the gap between <em>how a system is supposed to work</em> and <em>how it actually works under load</em> is where reputations are made or lost. That perspective never left. It shaped how I built LAMP ERPs and ETL pipelines at PriceHonest, how I architected data center infrastructure at WiredTree, how I led 500-user IT operations at Kehoe Designs and a national-expansion technology stack at Rockit Ranch.</p>
+
+        <p>The middle of the arc - <strong>Kaufman Hall, Tahoe Partners, MICAH Legal Services, DTIG</strong> - is where strategic responsibility caught up to operational depth. Multi-year platform modernizations, $1.2M annual IT spend reductions, healthcare-critical zero-downtime migrations, board-level digital-transformation advisory. By the time I served on Soundscape VR's Board of Advisors, the practitioner-to-executive transition was complete: I could lead at the strategy level <em>because</em> I had executed at the operational level.</p>
+
+        <p>The current chapter - <strong>AI Adoption Program lead at MMR, ransomware-recovery lead for a confidential client</strong> - is recent, deliberate, and directly relevant to retail's near future. AI in retail is not chatbots; it is decision-making in inventory, demand forecasting, and assortment. Cyber resilience is not a bolt-on; it is structural. Both are what I have been building this past year.</p>
+
+        <p>What I bring to Claire's is therefore not a single specialty but a complete operational stack: strategy, modernization, data, AI, security, vendor management, financial discipline, and the experience to know which of those to put first in any given quarter. The aggregate IT savings I have delivered across that arc total roughly <strong>$322M</strong>, with an <strong>80% personal ROI rate</strong> against an industry transformation failure rate of approximately 80%. The 18-month plan I would bring to Claire's translates that record into three integrated pillars - <em>HubSpot-centered technology spine</em>, <em>Generations and Princesses brand and loyalty</em>, <em>store modernization with real omnichannel</em> - sequenced across a <strong>$105-165M investment envelope against $500-800M of annualized recovery</strong>, EBITDA from -$500M to break-even or positive by Month 18, at a 60-70% probability of disciplined execution. I would welcome the opportunity to discuss the plan, the team I would build to deliver it, and how the technology organization supports the brand's reset.</p>
+
+        <p>Respectfully,</p>
+
+        <div class="signature">
+            <div class="signature-name">P. R. Manjee, EE, MIS</div>
+            <div class="signature-contact">princemanjee@gmail.com · <a href="tel:3122969067">312.296.9067</a> · <a href="https://www.linkedin.com/in/princemanjee">linkedin.com/in/princemanjee</a></div>
+        </div>
+    </div>
+</body>
+</html>

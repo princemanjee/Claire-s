@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Claire's Decision-Making AI: Implementation Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #1f3a5f;
+            --primary-deep: #14283f;
+            --accent: #c8a14a;
+            --accent-deep: #a37418;
+            --link: #0a66c2;
+            --link-hover: #084a8e;
+            --oxblood: #6b1b2c;
+            --green: #2f7d4f;
+            --green-tint: #e8f3eb;
+            --text: #1a1a1a;
+            --muted: #555;
+            --quiet: #777;
+            --rule: #d8d8d8;
+            --rule-light: #ececec;
+            --bg-page: #ffffff;
+            --bg-1: #dde4ee;
+            --bg-2: #c4d2e2;
+            --tint-warm: #fdf7e8;
+            --tint-cool: #eef3fa;
+            --code-bg: #1a2a40;
+            --code-text: #e8edf2;
+        }
+
+        body {
+            font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(ellipse 800px 500px at 18% 0%, rgba(31, 58, 95, 0.16) 0%, transparent 60%),
+                radial-gradient(ellipse 600px 500px at 88% 100%, rgba(200, 161, 74, 0.18) 0%, transparent 55%),
+                linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+            background-attachment: fixed;
+            line-height: 1.62;
+            font-size: 11.5pt;
+            min-height: 100vh;
+            padding: 32px 16px;
+            letter-spacing: -0.005em;
+        }
+
+        .top-nav {
+            max-width: 9.5in;
+            margin: 0 auto 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10pt;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .top-nav a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(31, 58, 95, 0.12);
+            transition: all 0.18s ease;
+        }
+        .top-nav a:hover { background: rgba(255, 255, 255, 0.85); }
+
+        .page {
+            max-width: 9.5in;
+            margin: 0 auto;
+            background: var(--bg-page);
+            box-shadow:
+                0 28px 70px -18px rgba(20, 40, 63, 0.32),
+                0 8px 24px -10px rgba(20, 40, 63, 0.18),
+                0 0 0 1px rgba(31, 58, 95, 0.05),
+                0 1px 0 rgba(255, 255, 255, 0.85) inset;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 50%, var(--primary) 100%);
+        }
+
+        .page-header {
+            padding: 48px 64px 28px;
+            border-bottom: 1px solid var(--rule-light);
+        }
+        .page-header .doc-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8.5pt;
+            color: var(--accent-deep);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .page-header h1 {
+            font-size: 26pt;
+            color: var(--primary);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+        }
+        .page-header .lede {
+            color: var(--accent-deep);
+            font-size: 13pt;
+            font-weight: 600;
+            letter-spacing: -0.005em;
+            margin-bottom: 14px;
+        }
+        .page-header .meta {
+            font-size: 10pt;
+            color: var(--muted);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+        .page-header .meta span { display: inline-flex; align-items: center; gap: 6px; }
+        .page-header .meta b {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            font-weight: 500;
+            color: var(--primary);
+            font-style: normal;
+        }
+
+        .body-content { padding: 36px 64px 48px; counter-reset: sec; }
+
+        h2 {
+            font-size: 17pt;
+            color: var(--primary);
+            font-weight: 800;
+            letter-spacing: -0.012em;
+            margin: 36px 0 14px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary);
+            position: relative;
+            line-height: 1.15;
+        }
+        h2::before {
+            content: counter(sec, decimal-leading-zero);
+            counter-increment: sec;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            color: var(--accent-deep);
+            position: absolute;
+            left: 0;
+            top: -14px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+        }
+
+        h3 {
+            font-size: 12.5pt;
+            color: var(--primary);
+            font-weight: 700;
+            margin: 20px 0 10px;
+            letter-spacing: -0.005em;
+        }
+        h4 {
+            font-size: 11pt;
+            color: var(--primary-deep);
+            font-weight: 700;
+            margin: 14px 0 6px;
+            letter-spacing: -0.003em;
+        }
+
+        p { margin-bottom: 12px; color: var(--text); }
+        strong, b {
+            font-weight: 600;
+            font-style: italic;
+            color: var(--primary);
+        }
+        a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        a:hover { color: var(--link-hover); }
+        ul, ol { margin: 10px 0 14px 22px; }
+        li { margin-bottom: 6px; line-height: 1.55; }
+        li::marker { color: var(--accent-deep); }
+
+        .thesis {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-deep) 100%);
+            color: #f5f8fc;
+            padding: 24px 28px;
+            border-radius: 10px;
+            margin: 0 0 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .thesis::after {
+            content: "";
+            position: absolute;
+            right: -50px; top: -50px;
+            width: 200px; height: 200px;
+            background: radial-gradient(circle, rgba(200, 161, 74, 0.2) 0%, transparent 70%);
+        }
+        .thesis .label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .thesis p { margin: 0 0 10px; color: #f5f8fc; font-size: 11.5pt; line-height: 1.6; }
+        .thesis p:last-child { margin: 0; }
+        .thesis strong { color: var(--accent); font-style: normal; }
+
+        .opportunity-box {
+            background: linear-gradient(135deg, var(--green-tint) 0%, #fff 100%);
+            border-left: 4px solid var(--green);
+            padding: 14px 18px;
+            border-radius: 0 6px 6px 0;
+            margin: 14px 0 18px;
+        }
+        .opportunity-box strong { color: var(--green); }
+
+        .data-field {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9.5pt;
+            line-height: 1.6;
+            margin: 10px 0;
+            border-left: 3px solid var(--accent);
+        }
+        .data-field strong {
+            color: var(--accent);
+            font-style: normal;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 8.5pt;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-weight: 600;
+        }
+
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 14px 0 18px;
+        }
+        .matrix-cell {
+            background: linear-gradient(180deg, #ffffff 0%, var(--tint-cool) 100%);
+            border: 1px solid rgba(31, 58, 95, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 14px 16px;
+            border-radius: 0 6px 6px 0;
+        }
+        .matrix-cell .label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            color: var(--accent-deep);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .matrix-cell p {
+            font-size: 10pt;
+            color: var(--text);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .phase-block {
+            margin: 16px 0;
+            padding: 18px 20px;
+            background: linear-gradient(180deg, #fafbfd 0%, #ffffff 80%);
+            border: 1px solid rgba(31, 58, 95, 0.1);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+        .phase-block h4 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0 0 10px;
+            font-size: 12.5pt;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: -0.005em;
+        }
+        .phase-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11pt;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 0;
+        }
+
+        .example-box {
+            background: var(--tint-warm);
+            border-left: 3px solid var(--accent);
+            padding: 12px 14px;
+            border-radius: 0 6px 6px 0;
+            margin: 10px 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9.5pt;
+            line-height: 1.65;
+            color: var(--primary-deep);
+        }
+        .example-box strong {
+            color: var(--accent-deep);
+            font-style: normal;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 8.5pt;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .example-box br + strong { margin-top: 4px; }
+
+        .metric-box {
+            background: linear-gradient(135deg, #ffffff 0%, var(--green-tint) 100%);
+            border: 1px solid rgba(47, 125, 79, 0.25);
+            border-left: 3px solid var(--green);
+            padding: 14px 16px;
+            border-radius: 0 6px 6px 0;
+            margin: 12px 0;
+            font-size: 10pt;
+            line-height: 1.7;
+        }
+        .metric-box strong { color: var(--green); }
+
+        .timeline {
+            border-left: 2px solid var(--accent);
+            padding-left: 22px;
+            margin: 16px 0 16px 8px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 16px;
+            padding-bottom: 4px;
+        }
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -28px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+        .timeline-label {
+            font-size: 11pt;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .timeline-item p {
+            font-size: 10pt;
+            color: var(--text);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .risk-box {
+            background: #fff;
+            border: 1px solid var(--rule-light);
+            border-left: 3px solid var(--oxblood);
+            padding: 12px 16px;
+            border-radius: 0 6px 6px 0;
+            margin: 10px 0;
+            font-size: 10pt;
+            line-height: 1.55;
+        }
+        .risk-box strong { color: var(--oxblood); }
+        .risk-box strong + br + strong { color: var(--primary); }
+
+        .success-box {
+            background: linear-gradient(135deg, var(--tint-cool) 0%, #fff 100%);
+            border: 1px solid rgba(31, 58, 95, 0.12);
+            border-left: 3px solid var(--accent);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 12px 0;
+        }
+        .success-box h4 {
+            color: var(--primary);
+            font-size: 11.5pt;
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+        .success-box ul { margin: 6px 0 0 22px; }
+        .success-box .check {
+            color: var(--green);
+            font-weight: 700;
+            margin-right: 6px;
+        }
+
+        .closing {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-deep) 100%);
+            color: #f5f8fc;
+            padding: 24px 28px;
+            border-radius: 10px;
+            margin: 32px 0 0;
+            font-size: 12pt;
+            line-height: 1.6;
+            position: relative;
+            overflow: hidden;
+        }
+        .closing::after {
+            content: "";
+            position: absolute;
+            right: -50px; top: -50px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(200, 161, 74, 0.2) 0%, transparent 70%);
+        }
+        .closing strong { color: var(--accent); font-style: normal; }
+        .closing p { margin: 0 0 10px; color: #f5f8fc; }
+        .closing p:last-child { margin: 0; }
+
+        @media print {
+            body { background: white; padding: 0; font-size: 10pt; }
+            .top-nav { display: none; }
+            .page { box-shadow: none; max-width: 100%; border-radius: 0; }
+            .page::before { display: none; }
+            .phase-block, .closing, .thesis, .timeline, .success-box, .risk-box { page-break-inside: avoid; }
+            h2, h3 { page-break-after: avoid; }
+        }
+
+        @media (max-width: 900px) {
+            .body-content, .page-header { padding-left: 32px; padding-right: 32px; }
+            .matrix-grid { grid-template-columns: 1fr; }
+            .page-header h1 { font-size: 22pt; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+        <a href="index.html">&larr; Portfolio</a>
+        <a href="Claire's_Executive_Summary_1Page.html">Executive Summary</a>
+        <a href="Claire's_90Day_Tactical_Plan.html">90-Day Plan</a>
+        <a href="Claire's_Comprehensive_Strategic_Intelligence_Report.html">Full Report</a>
+    </div>
+
+    <article class="page">
+        <header class="page-header">
+            <div class="doc-tag">Implementation Guide &middot; Decision-Making AI</div>
+            <h1>Claire's Decision-Making AI</h1>
+            <div class="lede">AI for buying and inventory decisions, not chatbots. Forecast, optimize, propose, human review, execute, learn.</div>
+            <div class="meta">
+                <span>For <b>CTO peers, EVP Merchandising, Data Leadership</b></span>
+                <span>By <b>P. R. Manjee, CTO/CIO Candidate</b></span>
+                <span>Pilot <b>Earrings, Midwest, Teen self-purchase</b></span>
+            </div>
+        </header>
+
+        <div class="body-content">
+
+            <div class="thesis">
+                <div class="label">The Strategic Thesis</div>
+                <p><strong>Most retailers waste cycles on customer-facing generative AI</strong> (chatbots, recommendation widgets) while ignoring the AI that directly impacts margin and cash: demand forecasting and inventory optimization.</p>
+                <p>For Claire's, decision-making AI is <strong>operational AI under merchant governance</strong>. The output is purchase orders and allocations. The discipline is sequence: AI for operational decisions first, generative AI second, and generative AI only after the data spine has earned the right to scale it.</p>
+            </div>
+
+            <div class="opportunity-box">
+                <strong>The Opportunity:</strong> If forecast error drops from 25-30% to below 15%, overstock falls 20%, sell-through lifts 5-10%, and margin lifts 1-2 points, the aggregate is <strong>$20-30M of annual margin and $30-50M of working-capital release</strong> in addition to the $10-15M of Salesforce decommission savings already in the model.
+            </div>
+
+            <h3>The Sequence</h3>
+            <ol>
+                <li><strong>Months 1-6:</strong> Demand forecasting + optimization for one category (earrings) and region (Midwest), teen self-purchase segment.</li>
+                <li><strong>Months 7-12:</strong> Scale to 60% of assortment with human-in-loop workflow. Necklaces and a second region by Month 6, all categories by Month 10.</li>
+                <li><strong>Months 13-18:</strong> 90% of core assortment under AI buying. Allocation moves from regional to store-level. Generative custom-product pilot launches against the same data spine.</li>
+            </ol>
+
+            <h2>Data Requirements</h2>
+
+            <h3>1. Transaction Data (HubSpot + Azure Warehouse)</h3>
+            <p><strong>Source:</strong> all e-commerce and POS orders, in one combined transaction table.</p>
+            <div class="data-field">
+                <strong>Required Fields</strong>
+                Date and time &middot; Product SKU and category &middot; Quantity sold &middot; Price &middot; Discount/promotion &middot; Customer segment &middot; Store ID &middot; Region
+            </div>
+            <ul>
+                <li><strong>Granularity:</strong> individual transaction level</li>
+                <li><strong>Lookback:</strong> 24+ months of history</li>
+                <li><strong>Freshness:</strong> daily updates, with a 4-hour pipeline target</li>
+            </ul>
+
+            <h3>2. Inventory Data (OMS / ERP)</h3>
+            <div class="data-field">
+                <strong>Required Fields</strong>
+                Current inventory levels by SKU and location &middot; Inventory age and turns &middot; Damaged/defective counts &middot; Return rates
+            </div>
+
+            <h3>3. Vendor and Supply Chain Data</h3>
+            <div class="data-field">
+                <strong>Required Fields</strong>
+                Lead time by vendor &middot; Minimum order quantities (MOQ) &middot; Cost per unit &middot; Vendor reliability &middot; Capacity constraints
+            </div>
+
+            <h3>4. Product Master Data</h3>
+            <div class="data-field">
+                <strong>Required Fields</strong>
+                SKU &middot; Product name &middot; Category &middot; Wholesale cost &middot; Retail price &middot; Gross margin % &middot; Trend / season classification
+            </div>
+
+            <h3>5. Marketing and Promotional Calendar</h3>
+            <div class="data-field">
+                <strong>Required Fields</strong>
+                Planned promotions by date / product / region &middot; Discount depth and duration &middot; Expected promotional lift &middot; External events
+            </div>
+
+            <h2>Segmentation Framework</h2>
+            <p>Demand and inventory decisions vary significantly by context. Models operate at the intersection of these dimensions:</p>
+
+            <div class="matrix-grid">
+                <div class="matrix-cell">
+                    <div class="label">Market Segment</div>
+                    <p>Tween, Teen, Young Adult, Parent &middot; Self-purchase, Gifting, Piercing</p>
+                </div>
+                <div class="matrix-cell">
+                    <div class="label">Product Category</div>
+                    <p>Earrings, Necklaces, Hair, Body Jewelry, Custom</p>
+                </div>
+                <div class="matrix-cell">
+                    <div class="label">Geography</div>
+                    <p>Region, Climate Band, Urban Tier</p>
+                </div>
+                <div class="matrix-cell">
+                    <div class="label">Channel</div>
+                    <p>E-commerce, In-Store, Concession, Wholesale (capped)</p>
+                </div>
+            </div>
+
+            <p><strong>Why it matters:</strong> Fast-moving earrings need different models than slow-moving necklaces. Back-to-school spikes differ by region. Piercing missions only happen in-store. Models must be segment-aware.</p>
+
+            <h2>The Decision Workflow: Six-Phase Loop</h2>
+
+            <div class="phase-block">
+                <h4><span class="phase-num">1</span>Forecast</h4>
+                <p><strong>What happens:</strong> for each (SKU &times; Segment &times; Region &times; Week), predict expected demand in units.</p>
+                <div class="example-box">
+                    <strong>Example forecast</strong>
+                    SKU-001 (Silver Hoop Earrings) &times; Teen &times; Midwest &times; Week of Aug 15<br>
+                    Historical demand: 120 units/week<br>
+                    Seasonality adjustment: +30% (back-to-school)<br>
+                    Trend: +10% YoY<br>
+                    Promotional adjustment: +15% lift<br>
+                    Forecast: <strong style="display: inline; color: var(--accent-deep);">162 units for the week</strong>
+                </div>
+                <p><strong>Inputs:</strong> 24+ months transaction history, product attributes and trend, promotional calendar, price elasticity model. <strong>Output:</strong> forecasted units by week for next 8-12 weeks with confidence intervals.</p>
+            </div>
+
+            <div class="phase-block">
+                <h4><span class="phase-num">2</span>Optimize</h4>
+                <p><strong>What happens:</strong> convert demand forecasts into inventory targets, PO quantities, and allocations. Linear programming over weekly budget, safety stock, lead times, vendor MOQs, DC capacity.</p>
+                <div class="example-box">
+                    <strong>Example optimization</strong>
+                    SKU-001 forecast: 162 units/week &times; 8 weeks<br>
+                    Vendor MOQ: 500 units &middot; Lead time: 4 weeks<br>
+                    Safety stock: 2 weeks (280 units) &middot; Current inventory: 500<br>
+                    <strong style="display: inline; color: var(--accent-deep);">Order 1,000 units in week 1</strong> (covers weeks 5-8 + safety)<br>
+                    Allocate 160 to Midwest, 80 to other regions
+                </div>
+            </div>
+
+            <div class="phase-block">
+                <h4><span class="phase-num">3</span>Propose</h4>
+                <p><strong>What happens:</strong> AI generates ranked recommendations grouped by vendor, with explanation. Each carries quantity, expected sell-through, overstock risk, margin impact, and rationale.</p>
+                <div class="example-box">
+                    <strong>Recommended POs &middot; Week of Aug 15</strong>
+                    Vendor: Global Jewelry Co.<br>
+                    Total spend: $8,500 (within budget)<br>
+                    1. SKU-001 (Silver Hoop Earrings) &middot; Quantity 1,000<br>
+                    &nbsp;&nbsp;Expected sell-through: 90% &middot; Margin impact: +$2,000<br>
+                    &nbsp;&nbsp;Rationale: back-to-school peak; trending up
+                </div>
+            </div>
+
+            <div class="phase-block">
+                <h4><span class="phase-num">4</span>Human Review and Override (the Gate)</h4>
+                <p><strong>What happens:</strong> merchants approve, modify, or reject in the OMS UI. Every modification or rejection requires a captured reason. Reasons feed model retraining.</p>
+                <p><strong>Why humans are essential:</strong> market knowledge, brand intent, strategic positioning, and constraint knowledge that the data does not capture. Decisions feed back into model training so the system learns the merchant's judgment, not just the data.</p>
+                <div class="example-box">
+                    <strong>Override example</strong>
+                    SKU-001 recommendation: 1,000 units<br>
+                    Modified to: 1,500 units<br>
+                    Reason: "Influencer collab week 5; expect 30%+ lift"<br>
+                    Expected margin: <strong style="display: inline; color: var(--accent-deep);">+$3,000 vs. +$2,000 recommended</strong>
+                </div>
+            </div>
+
+            <div class="phase-block">
+                <h4><span class="phase-num">5</span>Execute</h4>
+                <p><strong>What happens:</strong> approved POs transmit directly to vendors and DCs through the OMS API. <strong>No manual re-keying. That is a hard requirement.</strong></p>
+                <ul>
+                    <li>OMS converts approved recommendations into live POs</li>
+                    <li>Allocations sent to DCs and stores</li>
+                    <li>Status tracked through HubSpot workflows</li>
+                </ul>
+            </div>
+
+            <div class="phase-block">
+                <h4><span class="phase-num">6</span>Learn</h4>
+                <p><strong>What happens:</strong> as orders ship and inventory sells, the system measures performance versus forecast and adjusts.</p>
+                <div class="metric-box">
+                    <strong>Forecast accuracy:</strong> actual vs. forecasted demand &middot; target below 15% error<br>
+                    <strong>Sell-through rate:</strong> inventory sold vs. allocated &middot; target +5-10%<br>
+                    <strong>Inventory turns:</strong> velocity &middot; target +10-15%<br>
+                    <strong>Margin realization:</strong> actual vs. planned &middot; target within 1-2 points uplift
+                </div>
+                <h4>Feedback Loop</h4>
+                <ul>
+                    <li><strong>Weekly:</strong> compare actual vs. forecast; flag large variances</li>
+                    <li><strong>Monthly:</strong> aggregate performance by category, region, segment</li>
+                    <li><strong>Quarterly:</strong> retrain models with new data; adjust coefficients</li>
+                </ul>
+            </div>
+
+            <h2>Pilot Design: Earrings in the Midwest</h2>
+
+            <h3>Why this slice?</h3>
+            <ul>
+                <li><strong>Earrings:</strong> 35-40% of jewelry revenue, high velocity, clear seasonality, manageable SKU count.</li>
+                <li><strong>Midwest region:</strong> 200-300 stores, mix of urban / suburban / mall, moderate complexity.</li>
+                <li><strong>Teen self-purchase segment:</strong> highest volume, predictable patterns, clearest signals.</li>
+            </ul>
+
+            <h3>Pilot Objectives</h3>
+            <div class="metric-box">
+                <strong>Forecast error:</strong> below 15% (vs. 25-30% baseline)<br>
+                <strong>Sell-through:</strong> 90%+ (vs. ~85%)<br>
+                <strong>Overstock:</strong> -20% inventory required<br>
+                <strong>Margin uplift:</strong> +1-2 percentage points
+            </div>
+
+            <h3>Pilot Timeline (Months 1-6)</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-label">Months 1-2 &middot; Setup &amp; training data</div>
+                    <p>Extract 24 months of data, clean, calculate baseline metrics, train initial models. Wire OMS API for read-back.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-label">Month 3 &middot; Soft launch</div>
+                    <p>Generate recommendations for next four weeks; do not execute. Gather merchant feedback. Tune the explainability layer.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-label">Month 4 &middot; Live pilot</div>
+                    <p>Execute AI recommendations for real POs. Run parallel: AI vs. current process. Override rate tracked weekly.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-label">Months 5-6 &middot; Measure and adjust</div>
+                    <p>Analyze results. If pilot succeeds: plan rollout to necklaces and a second region. If it does not: debug, retrain, adjust override workflow.</p>
+                </div>
+            </div>
+
+            <h2>Scaling Plan (Months 7-18)</h2>
+            <p>If the pilot succeeds, the rollout is sequenced rather than parallel. Each expansion proves the model in a new dimension before adding the next.</p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-label">Months 7-9 &middot; Expand to necklaces (all regions)</div>
+                    <p>Retrain models for different seasonality and velocity. Similar accuracy and margin outcomes expected.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-label">Months 10-12 &middot; Expand to hair and remaining categories</div>
+                    <p>Models running on the majority of inventory. Decision AI becomes standard operating procedure for buyers, not a side experiment.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-label">Months 13-15 &middot; Add allocation optimization</div>
+                    <p>Not just "order X units" but "allocate X units to these specific stores." Real-time inventory across the 1,326-store fleet enables store-level optimization.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-label">Months 16-18 &middot; Generative custom product pilot</div>
+                    <p>AI identifies high-demand styles; constrained-design tools generate variations; 3D-printing supply chain produces made-to-order. Generative AI earns the right to ship now that the data spine and operational AI are proven.</p>
+                </div>
+            </div>
+
+            <h2>Technical Requirements</h2>
+
+            <h3>Data Infrastructure</h3>
+            <ul>
+                <li><strong>Warehouse:</strong> Azure Data Warehouse or Databricks</li>
+                <li><strong>ETL:</strong> Azure Data Factory or equivalent on a 4-hour micro-batch</li>
+                <li><strong>BI:</strong> Power BI</li>
+                <li><strong>Model serving:</strong> Azure ML, REST API for recommendations</li>
+            </ul>
+
+            <h3>Model Development</h3>
+            <ul>
+                <li><strong>Languages:</strong> Python (pandas, scikit-learn, Prophet)</li>
+                <li><strong>Demand forecasting:</strong> Prophet, ARIMA, or neural networks depending on category seasonality</li>
+                <li><strong>Optimization:</strong> PuLP or Gurobi for linear programming</li>
+                <li><strong>Explainability:</strong> SHAP for understanding model decisions</li>
+            </ul>
+
+            <h3>OMS Integration</h3>
+            <ul>
+                <li><strong>Requirement:</strong> OMS must have an API to consume recommendations.</li>
+                <li><strong>Flow:</strong> AI system &rarr; OMS API &rarr; Create PO (no manual re-keying).</li>
+                <li><strong>Feedback:</strong> OMS reports actual demand, receipts, and allocations back to the AI.</li>
+            </ul>
+
+            <h3>User Interface</h3>
+            <ul>
+                <li>Recommendation dashboard with rationale</li>
+                <li>Approval workflow (approve / modify / reject UI with captured reason)</li>
+                <li>Monitoring dashboard (forecast accuracy, margin, inventory turns, override rate)</li>
+                <li>Model explainability ("why this recommendation?")</li>
+            </ul>
+
+            <h2>Risk Mitigation</h2>
+
+            <div class="risk-box">
+                <strong>Risk 1 &middot; Data quality.</strong><br>
+                <strong>Problem:</strong> garbage in, garbage out. Salesforce data carries duplicates, inconsistent picklists, orphan records.<br>
+                <strong>Mitigation:</strong> data validation pipeline. Anomalies flagged. Reconcile with POS counts monthly. Pilot migration in Month 2 surfaces mapping bugs before full cutover.
+            </div>
+
+            <div class="risk-box">
+                <strong>Risk 2 &middot; Model drift.</strong><br>
+                <strong>Problem:</strong> model trained on past data; customer behavior changes (Gen Z trend velocity is faster than the model's retraining cadence).<br>
+                <strong>Mitigation:</strong> retrain monthly. Track forecast error week over week. If error exceeds 20%, investigate; model is treated as defective, not the AI as the failure.
+            </div>
+
+            <div class="risk-box">
+                <strong>Risk 3 &middot; Human overrides kill the model.</strong><br>
+                <strong>Problem:</strong> if merchants always override, the model never learns. The pilot becomes theater.<br>
+                <strong>Mitigation:</strong> track override rate; target below 20% steady-state. High rate signals missing inputs. Investigate and retrain rather than abandoning.
+            </div>
+
+            <div class="risk-box">
+                <strong>Risk 4 &middot; OMS cannot consume recommendations.</strong><br>
+                <strong>Problem:</strong> recommendations sit in dashboards while orders are still created manually. The AI never closes the loop.<br>
+                <strong>Mitigation:</strong> spec OMS integration during Phase 0. Build in parallel with HubSpot setup. Test with real POs in Month 5 of the pilot.
+            </div>
+
+            <h2>Success Looks Like</h2>
+
+            <div class="success-box">
+                <h4>Month 6 &middot; End of pilot</h4>
+                <ul>
+                    <li><span class="check">&check;</span> AI generating recommendations 5 days per week</li>
+                    <li><span class="check">&check;</span> Merchants approving roughly 80% of recommendations as-is</li>
+                    <li><span class="check">&check;</span> Forecast error below 15% (against the 25-30% baseline)</li>
+                    <li><span class="check">&check;</span> Overstock down 20%, sell-through up 5%</li>
+                    <li><span class="check">&check;</span> Margin per unit lifted +$0.75</li>
+                </ul>
+            </div>
+
+            <div class="success-box">
+                <h4>Month 12 &middot; End of Phase 2</h4>
+                <ul>
+                    <li><span class="check">&check;</span> AI driving decisions for 60% of assortment</li>
+                    <li><span class="check">&check;</span> Forecast error portfolio-wide trending to ~12%</li>
+                    <li><span class="check">&check;</span> Margin improvement: +1 to +1.5 points across portfolio</li>
+                    <li><span class="check">&check;</span> Inventory down 15-20%; working capital released</li>
+                </ul>
+            </div>
+
+            <div class="success-box">
+                <h4>Month 18 &middot; End of Phase 3</h4>
+                <ul>
+                    <li><span class="check">&check;</span> AI driving decisions for 90% of core assortment</li>
+                    <li><span class="check">&check;</span> Generative custom-piece pipeline launching</li>
+                    <li><span class="check">&check;</span> Forecast error: ~10% (best-in-class)</li>
+                    <li><span class="check">&check;</span> Margin improvement: +2 points across portfolio</li>
+                    <li><span class="check">&check;</span> Inventory turns up 15-20%</li>
+                </ul>
+            </div>
+
+            <div class="closing">
+                <p><strong>Decision-making AI is not chatbots or customer-facing creativity.</strong> It is making better inventory decisions faster, with less wasted cash and more margin.</p>
+                <p>For Claire's, this system is what converts the HubSpot revenue spine and the unified data layer into <strong>$20-30M of annual margin and $30-50M of working-capital release</strong>. It is the operational engine behind the 60-70% recovery probability and the EBITDA path from -$500M to break-even by Month 18.</p>
+            </div>
+        </div>
+    </article>
+</body>
+</html>

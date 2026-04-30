@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>P. R. Manjee - Cover Letter (Projects) - Claire's CTO</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #1f3a5f;
+            --primary-deep: #14283f;
+            --accent: #c8a14a;
+            --accent-deep: #a37418;
+            --link: #0a66c2;
+            --link-hover: #084a8e;
+            --text: #1a1a1a;
+            --muted: #555;
+            --quiet: #777;
+            --rule: #d8d8d8;
+            --rule-light: #ececec;
+            --bg-page: #ffffff;
+            --bg-1: #dde4ee;
+            --bg-2: #c4d2e2;
+        }
+
+        body {
+            font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(ellipse 800px 500px at 18% 0%, rgba(31, 58, 95, 0.16) 0%, transparent 60%),
+                radial-gradient(ellipse 600px 500px at 88% 100%, rgba(200, 161, 74, 0.18) 0%, transparent 55%),
+                linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+            background-attachment: fixed;
+            line-height: 1.6;
+            font-size: 11.5pt;
+            min-height: 100vh;
+            padding: 32px 16px;
+            position: relative;
+            letter-spacing: -0.005em;
+        }
+
+        .page {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.75in 0.9in;
+            background: var(--bg-page);
+            box-shadow:
+                0 28px 70px -18px rgba(20, 40, 63, 0.32),
+                0 8px 24px -10px rgba(20, 40, 63, 0.18),
+                0 0 0 1px rgba(31, 58, 95, 0.05),
+                0 1px 0 rgba(255, 255, 255, 0.85) inset;
+            border-radius: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 60%, var(--primary) 100%);
+            border-radius: 8px 8px 0 0;
+        }
+
+        .header-block {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 14px;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 18pt;
+            color: var(--primary);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.012em;
+        }
+
+        .headline {
+            color: var(--accent-deep);
+            font-size: 11pt;
+            font-weight: 600;
+            margin-top: 5px;
+            letter-spacing: -0.005em;
+        }
+
+        .audience-tag {
+            font-size: 9.5pt;
+            color: var(--muted);
+            font-style: italic;
+            margin-top: 4px;
+        }
+
+        .contact {
+            font-size: 9.5pt;
+            color: var(--muted);
+            margin-top: 8px;
+        }
+        .contact a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            font-weight: 500;
+            transition: color 0.18s ease;
+        }
+        .contact a:hover { color: var(--link-hover); }
+
+        .date-line {
+            font-size: 11pt;
+            color: var(--muted);
+            margin-bottom: 22px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .recipient {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 18px;
+            letter-spacing: -0.005em;
+        }
+
+        p {
+            margin-bottom: 14px;
+            color: var(--text);
+        }
+
+        /* Bold-italic emphasis for scannable keywords */
+        strong, b {
+            font-weight: 600;
+            font-style: italic;
+            color: var(--primary);
+        }
+
+        a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            transition: color 0.18s ease;
+        }
+        a:hover { color: var(--link-hover); }
+
+        ol { margin-left: 24px; margin-bottom: 14px; }
+        ol li { margin-bottom: 9px; line-height: 1.6; }
+        ul { margin-left: 24px; margin-bottom: 14px; }
+        ul li { margin-bottom: 9px; line-height: 1.6; }
+        li::marker { color: var(--accent-deep); }
+
+        .signature { margin-top: 26px; }
+        .signature-name {
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.005em;
+        }
+        .signature-contact {
+            font-size: 10pt;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                padding: 0.6in 0.8in;
+                max-width: 100%;
+                border-radius: 0;
+            }
+            .page::before { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 14px 8px; font-size: 12pt; }
+            .page { padding: 32px 22px; }
+            h1 { font-size: 17pt; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header-block">
+            <h1>P. R. Manjee, EE, MIS</h1>
+            <div class="headline">Chief Technology Officer · Digital Transformation &amp; Omnichannel Modernization</div>
+            <div class="audience-tag">Projects-Forward variant - written for transformation / consultancy review</div>
+            <div class="contact">Chicago, IL · <a href="tel:3122969067">312.296.9067</a> · <a href="mailto:princemanjee@gmail.com">princemanjee@gmail.com</a> · <a href="https://www.linkedin.com/in/princemanjee">linkedin.com/in/princemanjee</a></div>
+        </div>
+
+        <div class="date-line">April 29, 2026</div>
+        <div class="recipient">To the Claire's Transformation Leadership</div>
+
+        <p>Retail transformations fail less from missing technology and more from missing <em>sequencing</em>. Claire's has the brand equity, the customer base, and a defined window for radical change. The technology question is whether modernization is structured as a portfolio of measurable proof points or as a multi-year program with a board-deck end state. I prefer the former, and the projects below describe why.</p>
+
+        <p><strong>Ransomware Incident Response (FVK Solutions / Cognesense, 2025).</strong> Sixty days from initial breach to full operational recovery. I led on-site containment, threat-actor negotiation, forensic data analysis, and re-architecture into a hardened, segmented infrastructure. The takeaway for Claire's: business continuity, PCI posture, and disaster-recovery muscle are built before they are tested, not after. The same crisis-execution discipline transfers directly to the <em>90-day Salesforce cutover</em> and the holiday-season cutover protection that the 18-month plan requires.</p>
+
+        <p><strong>HIMSS Information Architecture Modernization (DTIG, 2020).</strong> Worked with healthcare's information-management governing body to redesign a logical single source of truth on SharePoint and Dataverse - and measured a <strong>28% improvement in knowledge-worker capacity</strong>. The relevance to Claire's: merchandising, store ops, and digital teams cannot make speed-to-market decisions without a shared data spine. I have built that spine in environments at least as complex as Claire's.</p>
+
+        <p><strong>University of Chicago Medicine Multi-Farm Migration (DTIG, 2020-2021).</strong> Five SharePoint server farms migrated with <strong>zero operational downtime</strong> in a healthcare-critical environment. Modernization in retail is similarly unforgiving - store hours do not pause for cutover. The Claire's parallel is the multi-system live migration that the architecture requires: <em>Salesforce CRM, Salesforce Commerce Cloud, fragmented store POS, and OMS replaced in sequence behind a HubSpot revenue spine</em>, with read-only parallel-run discipline and twice-weekly reconciliation reports for thirty days after each cutover. I have run that pattern and know what it costs and what it saves.</p>
+
+        <p><strong>AI Adoption Program (MMR, 2025).</strong> Embedded structured AI/ML adoption into a software-engineering organization, with KPIs linking AI usage to productivity and code-quality outcomes. The Claire's parallel is not chatbots; it is <em>decision-making AI for inventory, demand forecasting, and assortment</em>, starting with earrings in the Midwest at Day 90 and scaling to 60% of assortment by Month 12. That sequence converts the data spine into <strong>$20-30M of annual margin and $30-50M of working-capital release</strong>. That is where AI changes cash flow, not customer-facing copy.</p>
+
+        <p><strong>Kaufman Hall Information Architecture Consolidation (2015-2019).</strong> Reduced annual IT spending by <strong>$1.2M</strong> while improving the platform serving 5,000+ users. Vendor strategy, financial discipline, and ROI tracking are not abstractions for me; they are how I have actually managed budgets.</p>
+
+        <p>The 18-month plan I would bring is exactly this kind of portfolio: a <strong>HubSpot-centered technology spine</strong> that retires Salesforce, the <strong>Generations and Princesses brand and loyalty program</strong> that reactivates 20-30 years of dormant equity in mothers and grandmothers, and <strong>300+ store remodels with real omnichannel fulfillment</strong>, sequenced across <strong>$105-165M of investment against $500-800M of annualized revenue recovery</strong> at a 60-70% probability of disciplined execution. I would welcome the chance to walk through the dependency map and the proof points project by project.</p>
+
+        <p>Respectfully,</p>
+
+        <div class="signature">
+            <div class="signature-name">P. R. Manjee, EE, MIS</div>
+            <div class="signature-contact">princemanjee@gmail.com · <a href="tel:3122969067">312.296.9067</a> · <a href="https://www.linkedin.com/in/princemanjee">linkedin.com/in/princemanjee</a></div>
+        </div>
+    </div>
+</body>
+</html>

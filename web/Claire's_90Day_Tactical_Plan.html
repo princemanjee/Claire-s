@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Claire's CTO: 90-Day Priorities</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #1f3a5f;
+            --primary-deep: #14283f;
+            --accent: #c8a14a;
+            --accent-deep: #a37418;
+            --link: #0a66c2;
+            --link-hover: #084a8e;
+            --oxblood: #6b1b2c;
+            --text: #1a1a1a;
+            --muted: #555;
+            --quiet: #777;
+            --rule: #d8d8d8;
+            --rule-light: #ececec;
+            --bg-page: #ffffff;
+            --bg-1: #dde4ee;
+            --bg-2: #c4d2e2;
+            --tint-warm: #fdf7e8;
+            --tint-cool: #eef3fa;
+            --tint-rose: #f8eef0;
+            --green: #2f7d4f;
+        }
+
+        body {
+            font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(ellipse 800px 500px at 18% 0%, rgba(31, 58, 95, 0.16) 0%, transparent 60%),
+                radial-gradient(ellipse 600px 500px at 88% 100%, rgba(200, 161, 74, 0.18) 0%, transparent 55%),
+                linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+            background-attachment: fixed;
+            line-height: 1.62;
+            font-size: 11.5pt;
+            min-height: 100vh;
+            padding: 32px 16px;
+            letter-spacing: -0.005em;
+        }
+
+        .top-nav {
+            max-width: 9.5in;
+            margin: 0 auto 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10pt;
+        }
+        .top-nav a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(31, 58, 95, 0.12);
+            transition: all 0.18s ease;
+        }
+        .top-nav a:hover { background: rgba(255, 255, 255, 0.85); }
+
+        .page {
+            max-width: 9.5in;
+            margin: 0 auto;
+            background: var(--bg-page);
+            box-shadow:
+                0 28px 70px -18px rgba(20, 40, 63, 0.32),
+                0 8px 24px -10px rgba(20, 40, 63, 0.18),
+                0 0 0 1px rgba(31, 58, 95, 0.05),
+                0 1px 0 rgba(255, 255, 255, 0.85) inset;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 50%, var(--primary) 100%);
+        }
+
+        .page-header {
+            padding: 48px 64px 28px;
+            border-bottom: 1px solid var(--rule-light);
+        }
+        .page-header h1 {
+            font-size: 26pt;
+            color: var(--primary);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+        }
+        .page-header .lede {
+            color: var(--accent-deep);
+            font-size: 13pt;
+            font-weight: 600;
+            letter-spacing: -0.005em;
+            margin-bottom: 16px;
+        }
+        .page-header .meta {
+            font-size: 10pt;
+            color: var(--muted);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-bottom: 16px;
+        }
+        .page-header .meta span { display: inline-flex; align-items: center; gap: 6px; }
+        .page-header .meta b {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            font-weight: 500;
+            color: var(--primary);
+            font-style: normal;
+        }
+        .page-header .premise {
+            font-size: 11pt;
+            color: var(--text);
+            line-height: 1.6;
+            background: linear-gradient(135deg, var(--tint-warm) 0%, #fff 100%);
+            border-left: 4px solid var(--accent);
+            padding: 14px 18px;
+            border-radius: 0 6px 6px 0;
+        }
+        .page-header .premise strong { color: var(--primary); }
+
+        .body-content {
+            padding: 36px 64px 48px;
+            counter-reset: phase;
+        }
+
+        .phase-block {
+            margin: 36px 0;
+            padding: 24px 26px 22px;
+            background: linear-gradient(180deg, #fafbfd 0%, #ffffff 60%);
+            border: 1px solid rgba(31, 58, 95, 0.1);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            counter-increment: phase;
+        }
+        .phase-block::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+        }
+        .phase-head {
+            display: flex;
+            align-items: baseline;
+            gap: 18px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+        .phase-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10pt;
+            color: var(--accent-deep);
+            font-weight: 500;
+            letter-spacing: 0.08em;
+        }
+        .phase-block h2 {
+            font-size: 18pt;
+            color: var(--primary);
+            font-weight: 800;
+            letter-spacing: -0.015em;
+            line-height: 1.1;
+            margin: 0;
+        }
+        .phase-job {
+            font-size: 10.5pt;
+            color: var(--accent-deep);
+            font-weight: 600;
+            font-style: italic;
+            margin-bottom: 16px;
+            margin-top: 4px;
+        }
+
+        .week-track {
+            margin: 16px 0 8px;
+            padding: 14px 16px;
+            background: #ffffff;
+            border: 1px solid var(--rule-light);
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+        }
+        .week-track h3 {
+            font-size: 12pt;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.005em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .week-track h3 .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            color: var(--accent-deep);
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            padding: 3px 8px;
+            background: var(--tint-warm);
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+        .week-track ul { margin: 8px 0 8px 22px; }
+        .week-track li {
+            margin-bottom: 6px;
+            line-height: 1.55;
+            font-size: 10.5pt;
+        }
+        .week-track li::marker { color: var(--accent-deep); }
+        .week-track .deliv {
+            margin-top: 10px;
+            font-size: 10pt;
+            padding: 8px 12px;
+            background: var(--tint-cool);
+            border-radius: 5px;
+            color: var(--primary-deep);
+        }
+        .week-track .deliv .l {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8.5pt;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent-deep);
+            margin-right: 6px;
+        }
+
+        .proof-banner {
+            margin: 14px 0;
+            padding: 14px 18px;
+            background: linear-gradient(135deg, #18404f 0%, var(--primary-deep) 100%);
+            color: #f5f8fc;
+            border-radius: 8px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+        .proof-banner .ico {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 9pt;
+            letter-spacing: 0.08em;
+            white-space: nowrap;
+            padding-top: 2px;
+        }
+        .proof-banner p { margin: 0; font-size: 10.5pt; line-height: 1.55; color: #f5f8fc; }
+        .proof-banner strong { color: var(--accent); font-style: normal; }
+
+        h2.section-h {
+            font-size: 17pt;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: -0.012em;
+            margin: 38px 0 14px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        p { margin-bottom: 12px; color: var(--text); }
+        strong, b {
+            font-weight: 600;
+            font-style: italic;
+            color: var(--primary);
+        }
+        a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        a:hover { color: var(--link-hover); }
+        ul, ol { margin: 10px 0 14px 22px; }
+        li { margin-bottom: 6px; line-height: 1.55; }
+        li::marker { color: var(--accent-deep); }
+
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin: 14px 0;
+            counter-reset: proof;
+        }
+        .proof-card {
+            background: linear-gradient(180deg, #ffffff 0%, var(--tint-cool) 100%);
+            border: 1px solid rgba(31, 58, 95, 0.12);
+            padding: 18px 18px 16px;
+            border-radius: 8px;
+            position: relative;
+        }
+        .proof-card::before {
+            content: counter(proof, decimal-leading-zero);
+            counter-increment: proof;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 32pt;
+            font-weight: 700;
+            color: var(--accent);
+            opacity: 0.18;
+            position: absolute;
+            right: 14px;
+            top: 6px;
+            line-height: 1;
+        }
+        .proof-card h4 {
+            font-size: 11.5pt;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.005em;
+            position: relative;
+            z-index: 1;
+        }
+        .proof-card p {
+            font-size: 10pt;
+            line-height: 1.55;
+            margin-bottom: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .risk-row {
+            display: grid;
+            grid-template-columns: 130px 1fr 1.4fr;
+            gap: 14px;
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--rule);
+            align-items: start;
+        }
+        .risk-row:last-child { border-bottom: none; }
+        .risk-row .num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            color: var(--accent-deep);
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding-top: 2px;
+        }
+        .risk-row .name {
+            font-size: 10.5pt;
+            color: var(--primary);
+            font-weight: 700;
+            line-height: 1.35;
+        }
+        .risk-row .mitig {
+            font-size: 10pt;
+            color: var(--text);
+            line-height: 1.55;
+        }
+
+        .cadence-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 14px 0;
+        }
+        .cadence {
+            background: #ffffff;
+            border: 1px solid var(--rule-light);
+            border-left: 3px solid var(--accent);
+            padding: 12px 16px;
+            border-radius: 0 6px 6px 0;
+        }
+        .cadence .when {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            color: var(--accent-deep);
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        .cadence .what {
+            font-size: 10.5pt;
+            color: var(--text);
+            line-height: 1.5;
+        }
+        .cadence .what strong { color: var(--primary); }
+
+        .closing {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-deep) 100%);
+            color: #f5f8fc;
+            padding: 24px 28px;
+            border-radius: 10px;
+            margin: 32px 0 0;
+            font-size: 11.5pt;
+            line-height: 1.6;
+            position: relative;
+            overflow: hidden;
+        }
+        .closing::after {
+            content: "";
+            position: absolute;
+            right: -50px; top: -50px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(200, 161, 74, 0.2) 0%, transparent 70%);
+        }
+        .closing strong { color: var(--accent); font-style: normal; }
+        .closing p { margin-bottom: 0; color: #f5f8fc; }
+
+        @media print {
+            body { background: white; padding: 0; font-size: 10pt; }
+            .top-nav { display: none; }
+            .page { box-shadow: none; max-width: 100%; border-radius: 0; }
+            .page::before { display: none; }
+            .phase-block, .proof-grid, .closing, .week-track { page-break-inside: avoid; }
+            h2, h2.section-h { page-break-after: avoid; }
+        }
+
+        @media (max-width: 900px) {
+            .body-content, .page-header { padding-left: 32px; padding-right: 32px; }
+            .proof-grid, .cadence-grid { grid-template-columns: 1fr; }
+            .risk-row { grid-template-columns: 1fr; gap: 4px; }
+            .page-header h1 { font-size: 22pt; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+        <a href="index.html">&larr; Portfolio</a>
+        <a href="Claire's_Executive_Summary_1Page.html">Executive Summary</a>
+        <a href="Claire's_Comprehensive_Strategic_Intelligence_Report.html">Full Report &rarr;</a>
+    </div>
+
+    <article class="page">
+        <header class="page-header">
+            <h1>Claire's CTO: 90-Day Priorities</h1>
+            <div class="lede">By Day 90 the board sees Salesforce gone, HubSpot live, the first unified revenue dashboard in production, and decision-making AI generating actual buying recommendations.</div>
+            <div class="meta">
+                <span>For <b>CEO, CFO, EVP Operations, EVP Merchandising, Board</b></span>
+                <span>By <b>P. R. Manjee, CTO/CIO Candidate</b></span>
+            </div>
+            <div class="premise">
+                <strong>Premise.</strong> The first 90 days are the proof point. Everything else in the 18-month plan depends on this. The plan below is week-by-week with named decisions, deliverables, and the four board-ready proof points at Day 90. It assumes full CTO authority on CRM, e-commerce, POS, and data, and that the board has pre-aligned on the Salesforce-out, HubSpot-in direction.
+            </div>
+        </header>
+
+        <div class="body-content">
+
+            <div class="phase-block">
+                <div class="phase-head">
+                    <span class="phase-num">PHASE 01</span>
+                    <h2>Days 1-30 &middot; Freeze Salesforce, design the new spine</h2>
+                </div>
+                <p class="phase-job">One job: make every irreversible architecture decision before any spend or migration begins, and stop the bleeding of new investment into a stack that has to be removed.</p>
+
+                <div class="week-track">
+                    <h3>Week 1 <span class="tag">Authority, audit, alignment</span></h3>
+                    <ul>
+                        <li><strong>Day 1 all-hands directive:</strong> "Effective today, we are systematically removing Salesforce. No new Salesforce objects, automations, or integrations are being created. All new initiatives target HubSpot or platform-neutral components." Tone is decisive, not punitive. This is strategy, not blame.</li>
+                        <li><strong>Days 2-5, Salesforce audit.</strong> Inventory every standard and custom object, every workflow, every automation, every integration, every active user. Tag each artifact <em>Critical</em>, <em>Useful</em>, or <em>Junk</em>.</li>
+                        <li><strong>Days 5-7, stakeholder interviews.</strong> Sit with finance, supply chain, merchandising, store operations, and e-commerce. Document what they need, what they hate about Salesforce, and what data only lives in Salesforce today. Those are the migration risks.</li>
+                    </ul>
+                    <div class="deliv"><span class="l">Week 1</span>Salesforce system map, stakeholder requirements summary, board-ready "state of technology" slide.</div>
+                </div>
+
+                <div class="week-track">
+                    <h3>Week 2 <span class="tag">Lock technology decisions</span></h3>
+                    <ul>
+                        <li><strong>Days 8-10, lock the platform stack.</strong> CRM and revenue brain: <strong>HubSpot</strong>. E-commerce front end: <strong>Shopify or BigCommerce</strong>. POS: <strong>Lightspeed Retail</strong> (or equivalent cloud POS with a native or proven HubSpot connector). Data warehouse: <strong>Azure</strong>.</li>
+                        <li><strong>Days 10-12, draft and approve the one-page target architecture.</strong> HubSpot at the center; e-commerce, POS, OMS feeding into it; Azure receiving every transaction; Power BI dashboards and a decision-making AI layer on top.</li>
+                        <li><strong>Days 12-14, timeline and resourcing.</strong> 18-month roadmap with Phase 0 through Phase 3, named team requirements, $105-165M total investment envelope.</li>
+                    </ul>
+                    <div class="deliv"><span class="l">Week 2</span>Board-approved target architecture, technology selection document, 18-month roadmap, team and budget plan.</div>
+                </div>
+
+                <div class="week-track">
+                    <h3>Weeks 3-4 <span class="tag">Design and specification</span></h3>
+                    <ul>
+                        <li><strong>Days 15-21, HubSpot data model.</strong> Hubs in scope (Sales, Marketing, Service, Operations), deal pipelines by channel and region, lifecycle stages (tween, teen, young adult, parent; self-purchase, gifting, piercing), custom properties for segmentation and family-relationship modeling, permission model. <strong>Simplify, do not mirror Salesforce's complexity.</strong></li>
+                        <li><strong>Days 21-25, data mapping workbook.</strong> Field-by-field mapping from Salesforce to HubSpot. Explicit list of what will not be migrated. Migration order: companies, contacts, deals, tickets, activity history.</li>
+                        <li><strong>Days 25-28, dashboard specification.</strong> Minimum viable metrics: revenue, units, gross margin by channel, region, product category, segment, refreshed daily or near real-time. Store-manager view, merchant view, finance view. One page.</li>
+                    </ul>
+                    <div class="deliv"><span class="l">Day 30 board pack</span>Salesforce dependency map, target architecture, HubSpot design spec, data mapping workbook, dashboard requirements, 18-month roadmap, $105-165M investment envelope, named risks. <strong>Decisions locked. Phase 1 starts Day 31.</strong></div>
+                </div>
+            </div>
+
+            <div class="phase-block">
+                <div class="phase-head">
+                    <span class="phase-num">PHASE 02</span>
+                    <h2>Days 31-60 &middot; Stand up the spine, begin migration</h2>
+                </div>
+                <p class="phase-job">Phase 1 is execution. HubSpot moves into production. E-commerce flows in. POS flows in. Azure receives everything. The first dashboard goes live. Salesforce migration is piloted on a controlled slice. By Day 60, the new spine is real.</p>
+
+                <div class="week-track">
+                    <h3>Weeks 5-6 <span class="tag">HubSpot config + e-commerce integration</span></h3>
+                    <ul>
+                        <li><strong>Days 31-35, HubSpot production setup.</strong> Production environment, users and roles, pipelines, lifecycle stages, custom properties and objects. Validation gate: can a deal be created, moved through pipeline, and reported on cleanly?</li>
+                        <li><strong>Days 35-40, e-commerce integration.</strong> Choose connector (native HubSpot, Unific, or partner). Configure sync for customers, products, orders, abandoned carts. Validation: new online orders appear in HubSpot within 15 minutes; clean, no duplicates.</li>
+                    </ul>
+                </div>
+
+                <div class="proof-banner">
+                    <span class="ico">DAY 45 PROOF</span>
+                    <p><strong>Live e-commerce orders flowing into HubSpot.</strong> The CRM is no longer a sales-only tool. It is the revenue system.</p>
+                </div>
+
+                <div class="week-track">
+                    <h3>Weeks 7-8 <span class="tag">POS, warehouse, first dashboard</span></h3>
+                    <ul>
+                        <li><strong>Days 41-45, POS deployment.</strong> Lightspeed Retail (or equivalent) in pilot stores. Configure transaction sync: store, cashier, line items, customer, timestamp. In-store receipts in HubSpot within 15-30 minutes.</li>
+                        <li><strong>Days 45-50, Azure warehouse.</strong> Schema covering e-commerce and POS in one combined transaction table. Pipelines on hourly or 4-hour micro-batch. Every transaction in the warehouse within 4 hours.</li>
+                        <li><strong>Days 50-55, dashboard implementation.</strong> Power BI on the warehouse schema. Daily revenue, units, gross margin by channel, region, category. Store and merchant dashboards. Training to store ops, merchants, finance.</li>
+                    </ul>
+                </div>
+
+                <div class="proof-banner">
+                    <span class="ico">DAY 60 PROOF</span>
+                    <p><strong>The CEO opens the dashboard and sees live revenue, online plus in-store, by region and channel.</strong> No more reconciling spreadsheets across systems. Single accepted source of truth for performance reviews.</p>
+                </div>
+
+                <div class="week-track">
+                    <h3>Parallel track <span class="tag">Salesforce migration planning + pilot</span></h3>
+                    <ul>
+                        <li><strong>Days 31-40, data preparation.</strong> Export Salesforce data, identify quality issues (duplicates, inconsistent formats, orphan records), clean (standardize picklists, dedupe, fix emails), disable any Salesforce automations that modify records during export.</li>
+                        <li><strong>Days 41-50, pilot migration.</strong> One region (e.g., Midwest with 3-4 territories) or 5-10% of accounts. Migrate companies, then contacts, then deals into HubSpot. Reconcile. Capture and fix mapping bugs.</li>
+                        <li><strong>Days 50-60, full migration prep.</strong> Sign off the playbook with team leads. Phase the full migration. Secure leadership commitment that all new work goes into HubSpot starting Day 61.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="phase-block">
+                <div class="phase-head">
+                    <span class="phase-num">PHASE 03</span>
+                    <h2>Days 61-90 &middot; Cut over Salesforce, launch decision AI</h2>
+                </div>
+                <p class="phase-job">Two things in parallel: kill Salesforce, and prove decision-making AI works on a real category. Each is independently board-relevant; together they reframe what Claire's technology is.</p>
+
+                <div class="week-track">
+                    <h3>Weeks 9-10 <span class="tag">Salesforce cutover</span></h3>
+                    <ul>
+                        <li><strong>Days 61-65, full migration execution.</strong> Run the validated playbook: companies, contacts, deals, tickets in phased waves. Set Salesforce to read-only. <strong>No more changes in Salesforce, period.</strong></li>
+                        <li><strong>Days 65-70, cutover and stabilization.</strong> All new deals, contacts, activities go into HubSpot only. Train users on HubSpot workflows. Daily reconciliation. Fix operational breakdowns immediately.</li>
+                        <li><strong>Days 70-80, parallel run.</strong> Salesforce stays read-only for 30 days. All operational work in HubSpot. Reconciliation reports twice weekly.</li>
+                        <li><strong>Days 81-90, decommission planning.</strong> After 30 clean days, plan the Salesforce shutdown. Archive for compliance. Begin canceling licenses (recurring savings of $10-15M annually). Shut down Salesforce-to-ERP integrations.</li>
+                    </ul>
+                </div>
+
+                <div class="week-track">
+                    <h3>Weeks 10-12 <span class="tag">Decision-making AI pilot</span></h3>
+                    <p style="font-size: 10.5pt; margin-bottom: 8px;">Pilot deliberately narrow: <strong>earrings</strong> as the category (35%+ of jewelry revenue, high velocity, clear seasonality), <strong>Midwest</strong> as the region (200-300 stores, mixed urban/suburban/mall), <strong>teen self-purchase</strong> as the segment. Six-step loop: forecast, optimize, propose, human review, execute, learn.</p>
+                    <ul>
+                        <li><strong>Days 61-75, model development</strong> in parallel with Salesforce cutover. 24 months of earring transactions, current inventory, vendor lead times, MOQs, margin and seasonality data from Azure. Demand forecast model (time-series with promotional, price-elasticity, seasonality inputs). Optimization routine (linear programming over budget, safety stock, MOQs, DC capacity).</li>
+                        <li><strong>Days 76-85, deployment.</strong> Ranked, explained recommendations in the OMS UI. Each carries quantity, expected sell-through, overstock risk, margin impact, and rationale. Merchants see them daily.</li>
+                        <li><strong>Days 85-90, human-in-loop review.</strong> Merchants approve, modify, or reject. Every override carries a captured reason. Those reasons feed model retraining. Measurement: forecast accuracy (target <strong>below 15% error</strong> against 25-30% baseline), sell-through (+5-10%), overstock (-20%), margin (+1-2 points).</li>
+                    </ul>
+                </div>
+
+                <div class="proof-banner">
+                    <span class="ico">DAY 90 PROOF</span>
+                    <p><strong>Decision-making AI is generating weekly buying recommendations for earrings in the Midwest.</strong> Merchants are governing those recommendations. The system is learning from human decisions. <strong>Operational AI, not a chatbot.</strong></p>
+                </div>
+            </div>
+
+            <h2 class="section-h">Day 90 Board Proof Points</h2>
+            <p>The Day 90 board pack is short and concrete. Four claims, each with evidence.</p>
+
+            <div class="proof-grid">
+                <div class="proof-card">
+                    <h4>Salesforce is gone</h4>
+                    <p>HubSpot is the system of record for customers, deals, and revenue. Annual licensing run-rate reduced by <strong>$10-15M</strong>. Migration executed under a validated playbook with daily reconciliation; no operational breakdowns survived past 48 hours.</p>
+                </div>
+                <div class="proof-card">
+                    <h4>Omnichannel data is live</h4>
+                    <p>Every e-commerce and POS transaction lands in the Azure warehouse <strong>within four hours</strong> and surfaces in dashboards within 24. Finance, merchandising, and store operations all read from the same source. There is no longer a debate about what "revenue" means.</p>
+                </div>
+                <div class="proof-card">
+                    <h4>Decision-making AI is generating real buying decisions</h4>
+                    <p>For earrings in the Midwest, the system produces ranked, explained purchase order recommendations weekly. Merchants approve, modify, or reject with reasons captured. By Month 6, scales to necklaces and a second region. <strong>By Month 12, 60% of assortment.</strong></p>
+                </div>
+                <div class="proof-card">
+                    <h4>The 18-month plan is on track</h4>
+                    <p>Phase 0 complete. Phase 1 in execution. The path to <strong>25%+ e-commerce penetration, 300+ remodeled stores, EBITDA break-even</strong> by Month 18 is defended by operating evidence, not promises. <strong>$105-165M investment recovering against $500-800M annualized revenue at 60-70% probability.</strong></p>
+                </div>
+            </div>
+
+            <h2 class="section-h">Named Decisions Locked in 90 Days</h2>
+            <p>The 90 days are organized around a small number of irreversible decisions made early. Locking them is what allows everything downstream to move at the speed the plan requires.</p>
+            <ul>
+                <li><strong>CRM and revenue brain (Week 2):</strong> HubSpot, not Salesforce. TCO 50-60% lower at retail scale. Native integrations into chosen e-commerce and POS partners.</li>
+                <li><strong>E-commerce platform (Week 2):</strong> Shopify or BigCommerce. Both have proven HubSpot integrations and migrate faster than Salesforce Commerce Cloud allows.</li>
+                <li><strong>POS:</strong> Lightspeed Retail or equivalent cloud POS with a real HubSpot connector. Pilot stores by Day 60, rolling out from there.</li>
+                <li><strong>Data warehouse:</strong> Azure, consistent with existing cost-optimization work and current operating capability.</li>
+                <li><strong>Decision-making AI category and region:</strong> Earrings in the Midwest, teen self-purchase segment. Velocity, seasonality, and signal clarity make the pilot defensible.</li>
+            </ul>
+            <p>Each decision is a single sentence in the Day 30 board pack with reasoning documented and alternatives explicitly considered. <strong>The point of locking them early is to remove the litigation that otherwise consumes Phase 1.</strong></p>
+
+            <h2 class="section-h">Risk Register and Mitigation</h2>
+
+            <div class="risk-row">
+                <div class="num">RISK 01</div>
+                <div class="name">Data migration risk</div>
+                <div class="mitig">Salesforce data carries duplicates, inconsistent picklists, orphan records, automation-driven artifacts. <strong>Mitigation:</strong> Week 5-8 pilot migration on a controlled slice (one region or 5-10% of accounts) surfaces mapping bugs before the full cutover in Week 9. Reconciliation reports drive the playbook for the full migration.</div>
+            </div>
+            <div class="risk-row">
+                <div class="num">RISK 02</div>
+                <div class="name">Operational continuity during cutover</div>
+                <div class="mitig"><strong>Mitigation:</strong> Salesforce stays read-only for 30 days after Day 65. Reconciliation reports twice weekly. If anything breaks in HubSpot, the team can read prior state without rolling back. After 30 clean days, decommission proceeds.</div>
+            </div>
+            <div class="risk-row">
+                <div class="num">RISK 03</div>
+                <div class="name">Stakeholder resistance</div>
+                <div class="mitig">Particularly from teams that built workarounds inside Salesforce. <strong>Mitigation:</strong> Day 1 directive removes ambiguity about direction. Week 1 stakeholder interviews capture every dependency so the migration plan addresses them explicitly. Deepest dependencies become rebuild work in HubSpot, named and scoped.</div>
+            </div>
+            <div class="risk-row">
+                <div class="num">RISK 04</div>
+                <div class="name">Decision AI credibility risk</div>
+                <div class="mitig">If the pilot generates recommendations merchants override at high rates without good reasons, the model is no better than current process. <strong>Mitigation:</strong> Captured-reason override workflow. Every modification or rejection requires a documented reason. Reasons feed retraining. Override rate tracked weekly. <strong>High override rate is a model defect, not an AI failure.</strong></div>
+            </div>
+            <div class="risk-row">
+                <div class="num">RISK 05</div>
+                <div class="name">E-commerce replatform timeline</div>
+                <div class="mitig">Salesforce Commerce Cloud is rigid. <strong>Mitigation:</strong> Run e-commerce-to-HubSpot integration in Phase 1 against existing Commerce Cloud, then replatform the front end in Months 4-6. HubSpot has live e-commerce data by Day 45 regardless of where the storefront ultimately lives.</div>
+            </div>
+
+            <h2 class="section-h">Stakeholder Management Cadence</h2>
+            <div class="cadence-grid">
+                <div class="cadence">
+                    <div class="when">Daily</div>
+                    <div class="what">Standups with <strong>store operations and technology leads</strong> through Phase 1 to surface integration issues fast.</div>
+                </div>
+                <div class="cadence">
+                    <div class="when">Weekly</div>
+                    <div class="what">Executive review with <strong>CEO, CFO, EVP Operations, EVP Merchandising</strong>. Decisions made, decisions outstanding, risks open.</div>
+                </div>
+                <div class="cadence">
+                    <div class="when">Biweekly</div>
+                    <div class="what"><strong>Merchandising review</strong> on the AI pilot: how merchants use recommendations, what they override, whether reasons improve the model.</div>
+                </div>
+                <div class="cadence">
+                    <div class="when">Monthly</div>
+                    <div class="what"><strong>Board review</strong> hits major proof points. Day 30, 60, 90 board packs track dated milestones and financial-model variance.</div>
+                </div>
+            </div>
+
+            <h2 class="section-h">What Day 90 Sets Up</h2>
+            <p>After Day 90, Phase 1 continues for another three months. POS rolls to <strong>300+ stores</strong>. Decision-making AI extends to <strong>necklaces and a second region</strong>. The first 20-30 Gen Z store remodels go live in priority markets. The Generations program launches in 5-10 pilot stores, with the family-relationship CRM model captured and the first tea-house partnership signed. The Princesses brand expression, the first-piercing ritual, moves from pilot to standard. By Month 6 the e-commerce penetration target shifts from 12% to 15%, same-store sales decline narrows from -15% to -8%, and inventory turns improve 5%.</p>
+
+            <div class="closing">
+                <p>The 90 days are <strong>not the transformation</strong>. They are the proof that the transformation is real, repeatable, and on schedule. <strong>That proof is what unlocks the rest of the capital and the rest of the timeline.</strong></p>
+            </div>
+        </div>
+    </article>
+</body>
+</html>

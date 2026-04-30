@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>P. R. Manjee - CTO Resume (Skills-First 2-Page) - Claire's</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #1f3a5f;
+            --primary-deep: #14283f;
+            --accent: #c8a14a;
+            --accent-deep: #a37418;
+            --link: #0a66c2;
+            --link-hover: #084a8e;
+            --text: #1a1a1a;
+            --muted: #555;
+            --quiet: #777;
+            --rule: #d8d8d8;
+            --rule-light: #ececec;
+            --bg-page: #ffffff;
+            --bg-1: #dde4ee;
+            --bg-2: #c4d2e2;
+        }
+
+        body {
+            font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(ellipse 800px 500px at 18% 0%, rgba(31, 58, 95, 0.16) 0%, transparent 60%),
+                radial-gradient(ellipse 600px 500px at 88% 100%, rgba(200, 161, 74, 0.18) 0%, transparent 55%),
+                linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+            background-attachment: fixed;
+            line-height: 1.5;
+            font-size: 11pt;
+            min-height: 100vh;
+            padding: 32px 16px;
+            position: relative;
+            letter-spacing: -0.005em;
+        }
+
+        .page {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.6in 0.7in 0.55in;
+            background: var(--bg-page);
+            box-shadow:
+                0 28px 70px -18px rgba(20, 40, 63, 0.32),
+                0 8px 24px -10px rgba(20, 40, 63, 0.18),
+                0 0 0 1px rgba(31, 58, 95, 0.05),
+                0 1px 0 rgba(255, 255, 255, 0.85) inset;
+            border-radius: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 60%, var(--primary) 100%);
+            border-radius: 8px 8px 0 0;
+        }
+
+        header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 22pt;
+            color: var(--primary);
+            letter-spacing: -0.012em;
+            font-weight: 800;
+            line-height: 1.05;
+        }
+
+        .headline {
+            color: var(--accent-deep);
+            font-size: 11.5pt;
+            font-weight: 600;
+            margin-top: 5px;
+            margin-bottom: 7px;
+            letter-spacing: -0.005em;
+        }
+
+        .contact {
+            font-size: 9.5pt;
+            color: var(--muted);
+        }
+
+        .contact a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            font-weight: 500;
+            transition: color 0.18s ease;
+        }
+        .contact a:hover { color: var(--link-hover); }
+
+        h2 {
+            font-size: 11pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--rule);
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 10.5pt;
+            color: var(--primary);
+            margin-top: 10px;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+
+        h4 {
+            font-size: 10pt;
+            color: var(--primary);
+            margin-top: 12px;
+            margin-bottom: 4px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+        }
+
+        .summary {
+            font-size: 10.5pt;
+            color: var(--text);
+            margin-bottom: 6px;
+            line-height: 1.55;
+        }
+
+        /* Bold-italic emphasis for scannable keywords */
+        strong, b {
+            font-weight: 600;
+            font-style: italic;
+            color: var(--primary);
+        }
+
+        /* Body / generic links */
+        a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            transition: color 0.18s ease;
+        }
+        a:hover { color: var(--link-hover); }
+
+        .role { margin-bottom: 13px; }
+        .role-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 3px;
+            flex-wrap: wrap;
+            gap: 6px 12px;
+        }
+        .role-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 11pt;
+            letter-spacing: -0.005em;
+        }
+        .role-position {
+            font-style: italic;
+            color: var(--text);
+            font-size: 10.5pt;
+        }
+        .role-dates {
+            color: var(--muted);
+            font-size: 10pt;
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
+        }
+
+        ul { margin-left: 18px; margin-top: 5px; }
+        li {
+            font-size: 10.5pt;
+            line-height: 1.55;
+            margin-bottom: 4px;
+            color: var(--text);
+        }
+        li::marker { color: var(--accent-deep); }
+
+        .education-line {
+            font-size: 10.5pt;
+            margin-bottom: 5px;
+            line-height: 1.5;
+        }
+        .education-line strong {
+            color: var(--primary);
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .skills-block { margin-bottom: 6px; }
+        .skills-block p {
+            font-size: 10.5pt;
+            line-height: 1.55;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .project { margin-bottom: 12px; }
+        .project-name {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 10.5pt;
+            letter-spacing: -0.005em;
+        }
+        .project-desc {
+            font-size: 10.5pt;
+            line-height: 1.55;
+            color: var(--text);
+            margin-top: 2px;
+        }
+
+        .cert-item, .lang-item, .interest-item {
+            font-size: 10.5pt;
+            margin-bottom: 5px;
+            line-height: 1.5;
+        }
+        .cert-item strong,
+        .interest-item strong {
+            color: var(--primary);
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .award { margin-bottom: 9px; }
+        .award-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 10.5pt;
+            letter-spacing: -0.005em;
+        }
+        .award-desc {
+            font-size: 10.5pt;
+            line-height: 1.55;
+            color: var(--text);
+            margin-top: 2px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                padding: 0.4in 0.5in;
+                max-width: 100%;
+                border-radius: 0;
+            }
+            .page::before { display: none; }
+            a { color: var(--text); text-decoration: none; }
+            .contact a { color: var(--link); text-decoration: underline; }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 16px 10px; font-size: 12pt; }
+            .page { padding: 28px 22px; }
+            h1 { font-size: 20pt; }
+            .role-header { gap: 4px; }
+            .role-dates { font-size: 9.5pt; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>P. R. Manjee, EE, MIS</h1>
+            <div class="headline">Chief Technology Officer · Digital Transformation &amp; Omnichannel Modernization</div>
+            <div class="contact">Chicago, IL · <a href="tel:3122969067">312.296.9067</a> · <a href="mailto:princemanjee@gmail.com">princemanjee@gmail.com</a> · <a href="https://www.linkedin.com/in/princemanjee">linkedin.com/in/princemanjee</a> · <a href="https://cv.princerehman.com">cv.princerehman.com</a></div>
+        </header>
+
+        <h2>Executive Profile</h2>
+        <p class="summary">Technology executive with 30 years architecting and leading enterprise digital transformations across healthcare, financial services, manufacturing, and hospitality. Hands-on practitioner from factory-floor electrical engineering through C-Suite digital transformation advisory; has personally built, migrated, secured, and modernized enterprise systems at scale. Led multi-year platform migrations, cloud adoption strategies, and legacy-to-microservices transitions while managing distributed teams and multi-million-dollar budgets. Reduced enterprise IT costs by $1.2M annually, improved knowledge-worker capacity 28%, and led 60-day ransomware recovery - pairs strategic vision with operational credibility because both have been executed at scale, under pressure.</p>
+
+        <h2>Experience</h2>
+
+        <div class="role">
+            <div class="role-header"><span><span class="role-title">MMR - Modern Workplace Consultant</span> · <span class="role-position">AI Adoption Program Lead</span></span><span class="role-dates">Jul 2025 – Jan 2026</span></div>
+            <ul>
+                <li>Embedded structured AI/ML practices across software engineering operations; transitioned teams from ad-hoc prompting to reusable context-engineering frameworks</li>
+                <li>Defined KPIs linking AI adoption to measurable productivity and code-quality outcomes; established governance for responsible AI deployment</li>
+                <li>Advised executive sponsors on AI roadmap, change management, ethical AI, and long-term strategic adoption</li>
+            </ul>
+        </div>
+
+        <div class="role">
+            <div class="role-header"><span><span class="role-title">FVK Solutions (Confidential Client)</span> · <span class="role-position">Contract Incident Response &amp; Recovery Lead</span></span><span class="role-dates">Oct 2025 – Dec 2025</span></div>
+            <ul>
+                <li>Led cross-functional incident response team through full ransomware recovery cycle (threat assessment, containment, negotiation, restoration) in under 60 days</li>
+                <li>Re-architected core information systems with segmentation, monitoring, and resilience frameworks to prevent recurrence</li>
+                <li>Delivered post-incident playbooks, business-continuity standards, and team training to harden enterprise security posture and disaster-recovery capability</li>
+            </ul>
+        </div>
+
+        <div class="role">
+            <div class="role-header"><span><span class="role-title">DTIG</span> · <span class="role-position">UX Strategy &amp; Digital Transformation Consultant</span></span><span class="role-dates">May 2021 – Dec 2024</span></div>
+            <ul>
+                <li>Led enterprise modernization for healthcare and business clients; aligned executive sponsors, IT leadership, and operations on multi-year transformation roadmaps</li>
+                <li>Architected omnichannel digital workplace solutions integrating Microsoft 365, Teams, SharePoint, line-of-business systems, and analytics platforms</li>
+                <li>Managed cloud migration programs (Azure, AWS, M365) across distributed teams; established cost-optimization, governance, and security standards</li>
+                <li>Co-authored automated SharePoint migration toolset using Portainer, Terraform, Balena, Ansible, Docker, and Kubernetes</li>
+                <li>Delivered HIMSS information architecture modernization producing 28% knowledge-worker capacity improvement</li>
+                <li>Executed zero-downtime, no-disruption migration across five SharePoint server farms at University of Chicago Medicine</li>
+            </ul>
+        </div>
+
+        <div class="role">
+            <div class="role-header"><span><span class="role-title">MICAH Legal Services Inc.</span> · <span class="role-position">Digital Transformation Director (Part-time advisory)</span></span><span class="role-dates">May 2020 – Present</span></div>
+            <ul>
+                <li>Defined cloud-first technology strategy for statewide service organization; established technical standards, modernization roadmap, and security posture</li>
+                <li>Improved IT operations, staffing, support processes, and technology governance across distributed offices</li>
+            </ul>
+        </div>
+
+        <div class="role">
+            <div class="role-header"><span><span class="role-title">Kaufman Hall</span> · <span class="role-position">Senior SharePoint Architect / Office 365 Administrator</span></span><span class="role-dates">Jun 2015 – Aug 2019</span></div>
+            <ul>
+                <li>Owned enterprise collaboration platform serving 5,000+ users; led upgrades, migrations, and integrations with Salesforce.com and ERP analytics</li>
+                <li>Designed information architecture and consolidation strategy that reduced annual IT spending by $1.2M</li>
+                <li>Established governance via steering committees; built automation tools and executive Power BI dashboards on AXIOM ERP and Salesforce data</li>
+            </ul>
+        </div>
+
+        <div class="role">
+            <div class="role-header"><span><span class="role-title">Tahoe Partners</span> · <span class="role-position">Information Technology Solutions Architect</span></span><span class="role-dates">May 2019 – May 2021</span></div>
+            <ul>
+                <li>Led modernization assessments and transformation strategies for healthcare clients; created standardized methodology used across 20+ engagements</li>
+                <li>Designed SharePoint and cloud migration strategies (lift-and-shift, re-platforming) with zero operational disruption</li>
+            </ul>
+        </div>
+
+        <div class="role">
+            <div class="role-header"><span><span class="role-title">Rockit Ranch Productions</span> · <span class="role-position">Director of Technology and Digital Strategy</span></span><span class="role-dates">Sep 2013 – Jul 2015</span></div>
+            <ul>
+                <li>Led modernization of business systems supporting expansion from regional to national operations</li>
+                <li>Implemented unified identity management; completed enterprise Microsoft 365 deployment; built dashboards and analytics tools; authored 200+ knowledgebase articles</li>
+            </ul>
+        </div>
+
+        <h2>Skills</h2>
+        <div class="skills-block">
+            <h3>Retail &amp; Omnichannel Platforms</h3>
+            <p>Point-of-Sale (Lightspeed Retail evaluation) · E-Commerce (Shopify, BigCommerce evaluation) · Order Management Systems (OMS) · Inventory Visibility · Customer Experience Platforms · Loyalty &amp; Identity Platforms</p>
+            <h3>Enterprise Architecture &amp; Modernization</h3>
+            <p>HubSpot · Salesforce · Microsoft Dynamics · Zoho · Microsoft 365 · SharePoint (2010 – Online) · Microsoft Teams · Exchange Online · ERP Integration · Microservices · API Strategy</p>
+            <h3>Cloud &amp; Infrastructure</h3>
+            <p>Azure (App Services, SQL DB, Data Warehouse, Migrate, DevOps) · AWS · Google Cloud · Hyper-V · VMware · Docker · Kubernetes · Terraform · Ansible · CI/CD Pipelines · Infrastructure as Code</p>
+            <h3>Data, Analytics &amp; Business Intelligence</h3>
+            <p>Azure Data Warehouse · Power BI · Tableau · SQL Server · MySQL · PostgreSQL · MongoDB · Cosmos DB · ETL Pipelines · Real-Time Dashboards · Demand Forecasting</p>
+            <h3>AI / ML &amp; Emerging Technology</h3>
+            <p>AI Adoption Frameworks · Context Engineering · Prompt Engineering · LLM Integration (OpenAI, Anthropic, Local) · Workflow Automation · Power Automate · UiPath · Robotic Process Automation</p>
+            <h3>Cybersecurity, Risk &amp; Compliance</h3>
+            <p>HIPAA · PCI · SOC 2 · GDPR · ISO 27001 · Zero Trust Architecture · IAM · MFA · SSO · Disaster Recovery · Business Continuity Planning · Incident Response · Vulnerability Assessment</p>
+            <h3>Software Engineering &amp; SDLC</h3>
+            <p>Agile · Scrum · Waterfall · CI/CD · REST APIs · GraphQL · Microservices · LAMP Stack · Node.js · React · TypeScript · PHP · Python · PowerShell · Bash</p>
+            <h3>Financial &amp; Vendor Management</h3>
+            <p>IT Budget Ownership · SaaS Strategy · Cloud Cost Optimization (FinOps) · ROI Tracking · Strategic Partnerships · Systems Integrators · Hardware Vendor Relationships</p>
+        </div>
+
+        <h2>Education</h2>
+        <div class="education-line"><strong>Master of Technology, Digital Transformation</strong> - MIT Sloan School of Management</div>
+        <div class="education-line"><strong>MS Information Systems</strong> - Massachusetts Institute of Technology</div>
+        <div class="education-line"><strong>BS Electrical Engineering</strong> - University of Notre Dame · GPA 3.5</div>
+    </div>
+</body>
+</html>

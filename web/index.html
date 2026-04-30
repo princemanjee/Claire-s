@@ -1,0 +1,1904 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-audience="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P. R. Manjee, Chief of Technology Candidate, Claire's</title>
+    <meta name="description" content="Application portfolio for P. R. Manjee, CTO/CIO candidate for Claire's. Audience-targeted views.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            /* Page foundation: deeper navy-charcoal, hint of Ames Watson navy */
+            --bg: #060914;
+            --bg-2: #0e1426;
+            /* Ambient palette: Ames Watson navy / Claire's pink / gold */
+            --blob-1: #1f3a5f;
+            --blob-2: #8a2150;
+            --blob-3: #b08a36;
+            --text: #f4f5f8;
+            --text-soft: #bdc3cd;
+            --text-quiet: #8a909a;
+            --rule: rgba(236, 237, 239, 0.16);
+            --rule-strong: rgba(236, 237, 239, 0.30);
+            --gold: #e6c178;
+            --gold-soft: #f2d9a3;
+            /* Claire's signature pink, dialed into navy/gold palette */
+            --pink: #ee5a93;
+            --pink-deep: #c43872;
+            --teal: #7cc6c0;
+            --warning: #ff9b9b;
+            --success: #9bd9b0;
+            /* Cards lift visibly off the page: 82% opacity navy-tinted glass */
+            --glass: rgba(26, 34, 54, 0.82);
+            --glass-strong: rgba(36, 46, 70, 0.94);
+            --glass-border: rgba(236, 237, 239, 0.22);
+            --glass-shadow:
+                0 28px 60px -16px rgba(0, 0, 0, 0.70),
+                0 6px 16px -4px rgba(0, 0, 0, 0.45),
+                0 0 0 1px rgba(236, 237, 239, 0.06) inset,
+                0 1px 0 rgba(255, 255, 255, 0.09) inset;
+            --sans: 'Inter Tight', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+        }
+
+        [data-theme="light"] {
+            --bg: #f3f1ec;
+            --bg-2: #e6e2d6;
+            --blob-1: #d2c5e6;
+            --blob-2: #f0c2cd;
+            --blob-3: #d6c08a;
+            --text: #15181f;
+            --text-soft: #4a4d54;
+            --text-quiet: #757882;
+            --rule: rgba(21, 24, 31, 0.10);
+            --rule-strong: rgba(21, 24, 31, 0.22);
+            --gold: #9c6d18;
+            --gold-soft: #b88a32;
+            --pink: #a3445e;
+            --pink-deep: #8a2a48;
+            --teal: #1d6661;
+            --warning: #a83838;
+            --success: #2c7a4d;
+            --glass: rgba(252, 250, 244, 0.66);
+            --glass-strong: rgba(252, 250, 244, 0.86);
+            --glass-border: rgba(21, 24, 31, 0.10);
+            --glass-shadow: 0 14px 40px -14px rgba(80, 60, 30, 0.18), 0 0 0 1px rgba(21, 24, 31, 0.04) inset;
+        }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+
+        body {
+            font-family: var(--sans);
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.5;
+            font-size: 15.5px;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            transition: background 0.6s ease, color 0.4s ease;
+            font-feature-settings: "ss01", "cv01", "cv11";
+            letter-spacing: -0.005em;
+        }
+
+        .ambient {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
+            transition: opacity 0.6s ease;
+        }
+        .ambient.a1 { width: 720px; height: 720px; top: -200px; left: -180px; background: var(--blob-1); opacity: 0.85; }
+        .ambient.a2 { width: 640px; height: 640px; bottom: -180px; right: -160px; background: var(--blob-2); opacity: 0.62; }
+        .ambient.a3 { width: 460px; height: 460px; top: 38%; right: 18%; background: var(--blob-3); opacity: 0.42; }
+        [data-theme="light"] .ambient.a1 { opacity: 0.50; }
+        [data-theme="light"] .ambient.a2 { opacity: 0.40; }
+        [data-theme="light"] .ambient.a3 { opacity: 0.42; }
+
+        .grain {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.18;
+            mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.92 0 0 0 0 0.88 0 0 0 0.45 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+        [data-theme="light"] .grain { opacity: 0.10; mix-blend-mode: multiply; }
+
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(28px) saturate(180%);
+            -webkit-backdrop-filter: blur(28px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            box-shadow: var(--glass-shadow);
+        }
+        .glass-strong { background: var(--glass-strong); }
+
+        /* Per-section accent: top hairline stripe in section-coded color.
+           Default is gold; specific section IDs override via --accent-color. */
+        .section-card {
+            --accent-color: var(--gold);
+            position: relative;
+        }
+        .section-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 32px;
+            right: 32px;
+            height: 2px;
+            border-radius: 0 0 2px 2px;
+            background: linear-gradient(90deg, transparent 0%, var(--accent-color) 50%, transparent 100%);
+            opacity: 0.85;
+            pointer-events: none;
+        }
+        @media (max-width: 720px) {
+            .section-card::before { left: 18px; right: 18px; }
+        }
+        #track-record .section-card { --accent-color: var(--success); }
+        #wholesale-mistake .section-card { --accent-color: var(--warning); }
+        #generations .section-card { --accent-color: var(--pink); }
+        #princesses .section-card { --accent-color: var(--pink); }
+        #strategic-thinking .section-card { --accent-color: var(--teal); }
+        #materials .section-card { --accent-color: var(--gold-soft); }
+        #contact .section-card { --accent-color: var(--pink); }
+
+        /* TOP BAR */
+        .topbar {
+            position: fixed;
+            top: 14px;
+            left: 14px;
+            right: 14px;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            pointer-events: none;
+        }
+        .topbar > * { pointer-events: auto; }
+
+        .brand-pill {
+            padding: 7px 14px 7px 7px;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 0.86em;
+            font-weight: 600;
+            border-radius: 999px;
+            color: var(--text);
+        }
+        .brand-pill .brand-mono {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px; height: 26px;
+            background: var(--gold);
+            color: var(--bg);
+            border-radius: 50%;
+            font-weight: 800;
+            font-size: 0.96em;
+            font-family: var(--mono);
+        }
+        .brand-pill .brand-name { letter-spacing: -0.01em; font-weight: 700; }
+        .brand-pill .brand-sub {
+            color: var(--text-quiet);
+            font-weight: 500;
+            font-size: 0.78em;
+            margin-left: 4px;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+
+        .audience-status {
+            padding: 7px 14px 7px 11px;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78em;
+            font-weight: 600;
+            border-radius: 999px;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+            transition: all 0.22s ease;
+            color: var(--text);
+        }
+        body[data-audience]:not([data-audience=""]) .audience-status { display: inline-flex; }
+        .audience-status:hover { border-color: var(--gold); color: var(--gold); }
+        .audience-status .as-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 0 4px rgba(212, 169, 85, 0.16);
+            animation: pulse 2.4s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 4px rgba(212, 169, 85, 0.10); }
+            50% { box-shadow: 0 0 0 7px rgba(212, 169, 85, 0.04); }
+        }
+
+        .controls { display: flex; gap: 7px; align-items: center; }
+        .ctrl {
+            background: var(--glass-strong);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            color: var(--text);
+            padding: 7px 13px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-family: var(--sans);
+            font-size: 0.78em;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            box-shadow: var(--glass-shadow);
+            letter-spacing: 0.2px;
+        }
+        .ctrl:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        .ctrl .ic { font-size: 1em; line-height: 1; }
+        .ctrl-nav .bars { display: inline-flex; flex-direction: column; gap: 3px; }
+        .ctrl-nav .bars span {
+            width: 14px; height: 2px;
+            background: currentColor;
+            border-radius: 2px;
+            transition: all 0.25s ease;
+        }
+        body.nav-open .ctrl-nav .bars span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+        body.nav-open .ctrl-nav .bars span:nth-child(2) { opacity: 0; }
+        body.nav-open .ctrl-nav .bars span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+
+        .nav-panel {
+            position: fixed;
+            top: 60px;
+            right: 14px;
+            width: 300px;
+            max-height: 70vh;
+            overflow-y: auto;
+            background: var(--glass-strong);
+            backdrop-filter: blur(28px) saturate(180%);
+            -webkit-backdrop-filter: blur(28px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            padding: 10px;
+            box-shadow: var(--glass-shadow);
+            opacity: 0;
+            transform: translateY(-6px) scale(0.97);
+            pointer-events: none;
+            transition: opacity 0.22s ease, transform 0.22s ease;
+            z-index: 199;
+        }
+        body.nav-open .nav-panel {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+        .nav-panel-title {
+            font-size: 0.66em;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: var(--text-quiet);
+            padding: 6px 12px;
+            margin-bottom: 2px;
+            font-weight: 700;
+        }
+        .nav-panel ul { list-style: none; }
+        .nav-panel a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.88em;
+            font-weight: 500;
+            transition: all 0.16s ease;
+            border: 1px solid transparent;
+        }
+        .nav-panel a:hover, .nav-panel a.active {
+            background: rgba(212, 169, 85, 0.13);
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+        .nav-panel a .nav-num {
+            font-family: var(--mono);
+            font-size: 0.74em;
+            color: var(--text-quiet);
+            font-weight: 600;
+            min-width: 22px;
+        }
+
+        /* CONTAINER */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+
+        /* HERO (compact) */
+        .hero {
+            position: relative;
+            z-index: 2;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 90px 22px 40px;
+        }
+        .hero-inner {
+            max-width: 1240px;
+            width: 100%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        @media (max-width: 900px) {
+            .hero-inner { grid-template-columns: 1fr; gap: 24px; }
+        }
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.7em;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+        .hero-tag::before {
+            content: "";
+            width: 24px; height: 1px;
+            background: var(--gold);
+        }
+        .hero h1 {
+            font-size: clamp(2.4em, 5.4vw, 4.2em);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.035em;
+            color: var(--text);
+            margin-bottom: 14px;
+        }
+        .hero h1 .accent { color: var(--gold); }
+        .hero-role {
+            font-size: clamp(1.05em, 1.6vw, 1.3em);
+            color: var(--text);
+            margin-bottom: 8px;
+            font-weight: 500;
+            letter-spacing: -0.005em;
+        }
+        .hero-role .target { color: var(--gold); font-weight: 700; }
+        .hero-credentials {
+            font-size: 0.84em;
+            color: var(--text-soft);
+            font-weight: 500;
+            margin-bottom: 22px;
+            letter-spacing: 0.2px;
+        }
+        .hero-credentials .sep { color: var(--text-quiet); margin: 0 8px; }
+        .hero-tagline {
+            font-size: 0.98em;
+            line-height: 1.6;
+            color: var(--text-soft);
+            font-weight: 400;
+            margin-bottom: 24px;
+            max-width: 600px;
+        }
+        .hero-tagline strong { color: var(--text); font-weight: 700; }
+
+        .hero-cta { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85em;
+            letter-spacing: 0.2px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            font-family: var(--sans);
+            border: 1px solid transparent;
+        }
+        .btn-primary { background: var(--gold); color: var(--bg); }
+        .btn-primary:hover {
+            background: var(--gold-soft);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 22px -8px rgba(212, 169, 85, 0.45);
+        }
+        .btn-ghost {
+            background: transparent;
+            color: var(--text);
+            border-color: var(--rule-strong);
+        }
+        .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+        .btn .arrow { transition: transform 0.22s ease; }
+        .btn:hover .arrow { transform: translateX(3px); }
+
+        /* HERO STATS PANEL (right side) */
+        .hero-stats {
+            padding: 22px;
+            border-radius: 14px;
+        }
+        .hero-stats-title {
+            font-size: 0.7em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            color: var(--gold);
+            margin-bottom: 14px;
+        }
+        .hs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px 18px;
+        }
+        .hs {
+            min-width: 0;
+        }
+        .hs-value {
+            font-family: var(--mono);
+            font-weight: 600;
+            font-size: 1.45em;
+            line-height: 1;
+            color: var(--gold);
+            letter-spacing: -0.02em;
+            margin-bottom: 4px;
+        }
+        .hs-label {
+            font-size: 0.74em;
+            color: var(--text-soft);
+            line-height: 1.35;
+            font-weight: 500;
+        }
+
+        /* SECTIONS (compact) */
+        .section {
+            position: relative;
+            z-index: 2;
+            padding: 36px 0 12px;
+        }
+        .section-card {
+            padding: 36px 38px;
+            margin-bottom: 16px;
+        }
+        @media (max-width: 720px) {
+            .section-card { padding: 26px 22px; }
+        }
+        .section-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.68em;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        .section-eyebrow .num {
+            font-family: var(--mono);
+            font-size: 1.05em;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0;
+            text-transform: none;
+        }
+        .section h2 {
+            font-size: clamp(1.45em, 2.6vw, 2em);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.022em;
+            color: var(--text);
+            margin-bottom: 10px;
+            max-width: 920px;
+        }
+        .section h2 em { font-style: normal; color: var(--gold); }
+        .section .section-lead {
+            font-size: 0.96em;
+            color: var(--text-soft);
+            line-height: 1.55;
+            max-width: 820px;
+            margin-bottom: 22px;
+            font-weight: 400;
+        }
+        .section h3 {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--text);
+            margin: 18px 0 8px;
+            line-height: 1.25;
+            letter-spacing: -0.005em;
+        }
+        .section h4 {
+            font-size: 0.96em;
+            font-weight: 700;
+            color: var(--text);
+            margin: 14px 0 6px;
+            letter-spacing: 0;
+        }
+        .section p { color: var(--text-soft); line-height: 1.65; margin-bottom: 10px; font-size: 0.95em; }
+        .section p strong { color: var(--text); font-weight: 700; }
+        .section ul, .section ol { margin: 8px 0 12px 22px; color: var(--text-soft); }
+        .section li { margin-bottom: 5px; line-height: 1.55; font-size: 0.95em; }
+
+        /* IDENTIFY */
+        .identify { padding: 6px 0 28px; }
+        .identify-card { padding: 32px 36px; }
+        .identify-prompt {
+            font-size: clamp(1.4em, 2.4vw, 1.8em);
+            line-height: 1.18;
+            color: var(--text);
+            margin-bottom: 8px;
+            font-weight: 700;
+            letter-spacing: -0.022em;
+            max-width: 720px;
+        }
+        .identify-prompt em { font-style: normal; color: var(--gold); }
+        .identify-sub {
+            font-size: 0.94em;
+            color: var(--text-soft);
+            line-height: 1.55;
+            margin-bottom: 22px;
+            max-width: 700px;
+        }
+        .audiences {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        @media (max-width: 920px) { .audiences { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .audiences { grid-template-columns: 1fr; } }
+        .aud-card {
+            position: relative;
+            padding: 18px 18px 16px;
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+            text-align: left;
+            overflow: hidden;
+            font-family: var(--sans);
+            color: var(--text);
+        }
+        .aud-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            transform: scaleX(0);
+            transition: transform 0.32s ease;
+        }
+        .aud-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--gold);
+            background: var(--glass-strong);
+        }
+        .aud-card:hover::before { transform: scaleX(1); }
+        .aud-card .aud-num {
+            font-family: var(--mono);
+            font-weight: 600;
+            font-size: 0.74em;
+            color: var(--gold);
+            margin-bottom: 6px;
+            letter-spacing: 0.4px;
+        }
+        .aud-card .aud-name {
+            font-weight: 700;
+            font-size: 1.08em;
+            color: var(--text);
+            line-height: 1.2;
+            margin-bottom: 6px;
+            letter-spacing: -0.01em;
+        }
+        .aud-card .aud-name em { font-style: normal; color: var(--gold); }
+        .aud-card .aud-desc {
+            font-size: 0.84em;
+            color: var(--text-soft);
+            line-height: 1.45;
+            margin-bottom: 12px;
+        }
+        .aud-card .aud-show {
+            font-size: 0.72em;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            transition: gap 0.22s ease;
+        }
+        .aud-card:hover .aud-show { gap: 11px; }
+
+        /* HOOKS */
+        .hooks .hook {
+            display: none;
+            padding: 28px 32px;
+            position: relative;
+            border-left: 3px solid var(--gold);
+            border-radius: 0 14px 14px 0;
+        }
+        body[data-audience="owner"] .hook[data-for="owner"],
+        body[data-audience="ceo"] .hook[data-for="ceo"],
+        body[data-audience="board"] .hook[data-for="board"],
+        body[data-audience="cto"] .hook[data-for="cto"],
+        body[data-audience="recruiter"] .hook[data-for="recruiter"],
+        body[data-audience="all"] .hook[data-for="all"] {
+            display: block;
+        }
+        .hook-eyebrow {
+            font-size: 0.68em;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .hook-title {
+            font-size: clamp(1.2em, 2.1vw, 1.6em);
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.25;
+            margin-bottom: 14px;
+            letter-spacing: -0.02em;
+            max-width: 920px;
+        }
+        .hook-body {
+            font-size: 0.96em;
+            line-height: 1.6;
+            color: var(--text-soft);
+            max-width: 820px;
+        }
+        .hook-body p { margin-bottom: 10px; color: var(--text-soft); }
+        .hook-body strong { color: var(--text); font-weight: 700; }
+        .hook-body em { color: var(--gold); font-style: normal; font-weight: 600; }
+
+        /* AUDIENCE FILTER (fixed: "all" only shows in all-mode) */
+        body[data-audience=""] [data-aud]:not([data-aud~="always"]) { display: none; }
+        body[data-audience="owner"] [data-aud]:not([data-aud~="owner"]):not([data-aud~="always"]) { display: none; }
+        body[data-audience="ceo"]   [data-aud]:not([data-aud~="ceo"]):not([data-aud~="always"]) { display: none; }
+        body[data-audience="board"] [data-aud]:not([data-aud~="board"]):not([data-aud~="always"]) { display: none; }
+        body[data-audience="cto"]   [data-aud]:not([data-aud~="cto"]):not([data-aud~="always"]) { display: none; }
+        body[data-audience="recruiter"] [data-aud]:not([data-aud~="recruiter"]):not([data-aud~="always"]) { display: none; }
+        body[data-audience="all"] [data-aud]:not([data-aud~="all"]):not([data-aud~="always"]) { display: none; }
+
+        /* ABOUT */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 28px;
+            align-items: start;
+            margin-top: 8px;
+        }
+        @media (max-width: 720px) { .about-grid { grid-template-columns: 1fr; } }
+        .stats-col { padding: 20px; border-radius: 12px; }
+        .stats-col-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px 18px;
+        }
+        .stat { padding: 0; }
+        .stat-value {
+            font-family: var(--mono);
+            font-weight: 600;
+            font-size: 1.5em;
+            line-height: 1;
+            color: var(--gold);
+            letter-spacing: -0.02em;
+            margin-bottom: 4px;
+        }
+        .stat-label {
+            font-size: 0.74em;
+            color: var(--text-soft);
+            line-height: 1.4;
+            font-weight: 500;
+        }
+        .education-row {
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid var(--rule);
+            font-size: 0.88em;
+            color: var(--text-soft);
+            line-height: 1.6;
+        }
+        .education-row strong { color: var(--text); }
+
+        /* TRACK RECORD */
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 44px 1fr;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            background: var(--glass);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+        @media (max-width: 720px) {
+            .comparison-row { grid-template-columns: 1fr; }
+            .arrow-cell { padding: 4px; transform: rotate(90deg); height: 32px; }
+        }
+        .failure-cell, .prevention-cell { padding: 16px 18px; }
+        .failure-cell {
+            background: rgba(232, 138, 138, 0.06);
+            border-right: 1px solid rgba(232, 138, 138, 0.16);
+        }
+        .prevention-cell { background: rgba(136, 200, 156, 0.05); }
+        [data-theme="light"] .failure-cell { background: rgba(168, 56, 56, 0.06); }
+        [data-theme="light"] .prevention-cell { background: rgba(44, 122, 77, 0.04); }
+        .arrow-cell {
+            background: var(--gold);
+            color: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.15em;
+            letter-spacing: -0.02em;
+        }
+        .failure-label, .prevention-label {
+            font-size: 0.62em;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            margin-bottom: 6px;
+        }
+        .failure-label { color: var(--warning); }
+        .prevention-label { color: var(--success); }
+        .failure-text, .prevention-text {
+            color: var(--text);
+            font-size: 0.9em;
+            line-height: 1.55;
+        }
+        .prevention-text strong { color: var(--gold); }
+        .prevention-evidence {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.78em;
+            color: var(--text-quiet);
+            font-style: italic;
+            font-family: var(--mono);
+        }
+
+        /* CAPACITY */
+        .capacity-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 12px;
+        }
+        @media (max-width: 920px) { .capacity-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .capacity-grid { grid-template-columns: 1fr; } }
+        .capacity-card {
+            padding: 18px;
+            border-radius: 12px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-top: 2px solid var(--gold);
+            transition: all 0.24s ease;
+        }
+        .capacity-card:hover {
+            transform: translateY(-2px);
+            border-top-color: var(--pink);
+        }
+        .capacity-card .icon { font-size: 1.3em; margin-bottom: 6px; color: var(--gold); }
+        .capacity-card h4 {
+            font-weight: 700;
+            font-size: 0.98em;
+            color: var(--text);
+            margin-bottom: 5px;
+            line-height: 1.25;
+            letter-spacing: -0.005em;
+        }
+        .capacity-card p {
+            color: var(--text-soft);
+            font-size: 0.86em;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .commitment-list {
+            margin-top: 18px;
+            padding: 22px 24px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(31, 58, 95, 0.55) 0%, rgba(90, 31, 58, 0.45) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            color: white;
+        }
+        [data-theme="light"] .commitment-list {
+            background: linear-gradient(135deg, rgba(21, 24, 31, 0.92) 0%, rgba(80, 26, 50, 0.88) 100%);
+        }
+        .commitment-list h3 {
+            color: var(--gold-soft);
+            font-weight: 700;
+            margin-bottom: 12px;
+            font-size: 1em;
+            letter-spacing: -0.005em;
+        }
+        .commitment-list ul {
+            list-style: none;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 22px;
+        }
+        @media (max-width: 720px) { .commitment-list ul { grid-template-columns: 1fr; } }
+        .commitment-list li {
+            padding-left: 24px;
+            position: relative;
+            line-height: 1.55;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9em;
+        }
+        .commitment-list li::before {
+            content: "\2192";
+            color: var(--gold-soft);
+            font-weight: 800;
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1em;
+        }
+        .commitment-list li strong { color: var(--gold-soft); font-weight: 700; }
+
+        /* STORY (Wholesale, Generations, Princesses) - 2 col on wide screens */
+        .story-prose {
+            font-size: 0.96em;
+            line-height: 1.7;
+            color: var(--text);
+            column-count: 2;
+            column-gap: 36px;
+        }
+        @media (max-width: 920px) { .story-prose { column-count: 1; } }
+        .story-prose p {
+            color: var(--text);
+            margin-bottom: 12px;
+            font-size: 0.95em;
+            font-weight: 400;
+            break-inside: avoid;
+        }
+        .pull-quote {
+            border-left: 3px solid var(--gold);
+            padding: 6px 0 6px 18px;
+            margin: 14px 0;
+            font-weight: 600;
+            font-size: 1.05em;
+            line-height: 1.45;
+            color: var(--text);
+            letter-spacing: -0.005em;
+            break-inside: avoid;
+        }
+        .pull-quote strong { color: var(--gold); font-weight: 700; }
+
+        /* ACCORDION */
+        .accordion-grid { display: grid; gap: 10px; margin-top: 12px; }
+        details.accordion {
+            border-radius: 12px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+        details.accordion[open] { border-color: var(--gold); }
+        details.accordion summary {
+            cursor: pointer;
+            padding: 16px 20px;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            user-select: none;
+        }
+        details.accordion summary::-webkit-details-marker { display: none; }
+        details.accordion summary::after {
+            content: "+";
+            color: var(--gold);
+            font-size: 1.4em;
+            font-weight: 700;
+            transition: transform 0.28s ease;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        details.accordion[open] summary::after { transform: rotate(45deg); }
+        .acc-summary-text { display: flex; flex-direction: column; gap: 3px; }
+        .acc-tag {
+            display: inline-block;
+            font-size: 0.62em;
+            font-weight: 800;
+            color: var(--gold);
+            background: rgba(212, 169, 85, 0.13);
+            padding: 2px 8px;
+            border-radius: 999px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            margin-right: 9px;
+        }
+        .acc-title {
+            font-weight: 700;
+            font-size: 0.98em;
+            color: var(--text);
+            letter-spacing: -0.005em;
+        }
+        .acc-meta {
+            font-size: 0.74em;
+            font-weight: 500;
+            color: var(--text-quiet);
+            letter-spacing: 0.2px;
+            font-family: var(--mono);
+        }
+        details.accordion .acc-body {
+            padding: 0 22px 18px;
+            border-top: 1px solid var(--glass-border);
+        }
+        details.accordion[open] .acc-body { padding-top: 18px; }
+        .acc-body h3 { color: var(--gold); font-size: 1em; margin: 14px 0 6px; }
+        .acc-body h4 { color: var(--text); font-size: 0.92em; margin: 10px 0 4px; }
+        .acc-body p { color: var(--text-soft); line-height: 1.6; margin-bottom: 10px; font-size: 0.9em; }
+        .acc-body p strong { color: var(--text); font-weight: 700; }
+        .acc-body ul, .acc-body ol { margin: 8px 0 10px 20px; }
+        .acc-body li { color: var(--text-soft); margin-bottom: 4px; line-height: 1.5; font-size: 0.9em; }
+
+        .open-full {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 14px;
+            border-radius: 999px;
+            background: var(--gold);
+            color: var(--bg);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.78em;
+            letter-spacing: 0.2px;
+            margin: 0 6px 14px 0;
+            transition: all 0.2s ease;
+        }
+        .open-full:hover {
+            background: var(--gold-soft);
+            transform: translateY(-1px);
+        }
+
+        /* PACKAGES */
+        .skill-block { margin-bottom: 8px; font-size: 0.9em; }
+        .skill-block strong { color: var(--gold); display: inline; margin-right: 6px; font-weight: 700; }
+        .skill-block span { color: var(--text-soft); }
+        .cl-meta { color: var(--text-quiet); font-size: 0.84em; margin-bottom: 10px; font-family: var(--mono); }
+
+        /* CONTACT */
+        .contact-card { padding: 36px 36px; text-align: center; }
+        .contact-card h2 { margin: 0 auto 10px; }
+        .contact-card .section-lead { margin: 0 auto 18px; }
+        .contact-cta {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* FOOTER */
+        footer {
+            position: relative;
+            z-index: 2;
+            padding: 36px 22px 28px;
+            text-align: center;
+            color: var(--text-soft);
+            border-top: 1px solid var(--rule);
+            margin-top: 30px;
+        }
+        footer .ft-name {
+            font-weight: 700;
+            font-size: 1.05em;
+            color: var(--gold);
+            margin-bottom: 4px;
+            letter-spacing: -0.01em;
+        }
+        footer p { margin-bottom: 4px; opacity: 0.86; font-size: 0.86em; }
+        footer .ft-contact { margin-top: 12px; font-size: 0.88em; }
+        footer .ft-contact a {
+            color: var(--gold);
+            text-decoration: none;
+            margin: 0 7px;
+            transition: color 0.2s ease;
+        }
+        footer .ft-contact a:hover { color: var(--gold-soft); }
+
+        /* SHARE TOAST */
+        .share-toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(50px);
+            background: var(--glass-strong);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid var(--gold);
+            color: var(--text);
+            padding: 10px 20px;
+            border-radius: 999px;
+            font-size: 0.84em;
+            font-weight: 600;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+            z-index: 300;
+            box-shadow: var(--glass-shadow);
+        }
+        .share-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @media (max-width: 720px) {
+            .topbar { top: 10px; left: 10px; right: 10px; }
+            .container { padding: 0 14px; }
+            .hero { padding: 80px 14px 30px; min-height: auto; }
+            .nav-panel { right: 10px; left: 10px; width: auto; }
+            .brand-pill .brand-sub { display: none; }
+            .audiences { gap: 10px; }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .reveal.in { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <div class="ambient a1"></div>
+    <div class="ambient a2"></div>
+    <div class="ambient a3"></div>
+    <div class="grain"></div>
+
+    <header class="topbar">
+        <div class="brand-pill glass-strong glass">
+            <span class="brand-mono">M</span>
+            <span class="brand-name">P. R. Manjee</span>
+            <span class="brand-sub">CTO / CIO</span>
+        </div>
+
+        <div class="audience-status glass-strong glass" id="audStatus" title="Click to change audience">
+            <span class="as-dot"></span>
+            <span>Viewing as <strong id="audName">guest</strong></span>
+            <span style="opacity:0.4;">/</span>
+            <span style="font-weight:600;">Switch</span>
+        </div>
+
+        <div class="controls">
+            <button class="ctrl" id="shareBtn" title="Copy link to this view" style="display:none;">
+                <span class="ic">&#x2398;</span>
+                <span>Share</span>
+            </button>
+            <button class="ctrl" id="themeToggle" aria-label="Toggle light/dark theme">
+                <span class="ic" id="themeIcon">&#9728;</span>
+                <span id="themeLabel">Light</span>
+            </button>
+            <button class="ctrl ctrl-nav" id="navTrigger" aria-expanded="false">
+                <span class="bars"><span></span><span></span><span></span></span>
+                <span>Index</span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="nav-panel" id="navPanel">
+        <div class="nav-panel-title">On this page</div>
+        <ul id="navList"></ul>
+    </nav>
+
+    <section class="hero" id="hero" data-aud="always">
+        <div class="hero-inner">
+            <div>
+                <div class="hero-tag">Application portfolio</div>
+                <h1>P. R. <span class="accent">Manjee</span></h1>
+                <div class="hero-role">Candidate, Chief of Technology<span class="target"> at Claire's</span></div>
+                <div class="hero-credentials">
+                    EE, MIS<span class="sep">|</span>MIT Sloan<span class="sep">|</span>Notre Dame<span class="sep">|</span>Chicago, IL
+                </div>
+                <p class="hero-tagline">
+                    Thirty years preventing the digital-transformation failures Claire's just lived through. <strong>$322M</strong> in aggregated IT savings. <strong>178</strong> zero-downtime migrations. An <strong>80%</strong> personal ROI rate against an <strong>80%</strong> industry failure rate. The operator the next eighteen months will require.
+                </p>
+                <div class="hero-cta">
+                    <a href="#identify" class="btn btn-primary" data-target="identify">
+                        <span>Begin the tour</span>
+                        <span class="arrow">&rarr;</span>
+                    </a>
+                    <a href="#contact" class="btn btn-ghost" data-target="contact">Reach out</a>
+                </div>
+            </div>
+
+            <div class="hero-stats glass">
+                <div class="hero-stats-title">At a glance</div>
+                <div class="hs-grid">
+                    <div class="hs"><div class="hs-value">30</div><div class="hs-label">Years practitioner experience</div></div>
+                    <div class="hs"><div class="hs-value">80%</div><div class="hs-label">Personal ROI rate (industry: 80% fail)</div></div>
+                    <div class="hs"><div class="hs-value">$322M</div><div class="hs-label">Aggregate IT savings delivered</div></div>
+                    <div class="hs"><div class="hs-value">100K+</div><div class="hs-label">Users on platforms I have owned</div></div>
+                    <div class="hs"><div class="hs-value">178</div><div class="hs-label">Zero-downtime farm migrations</div></div>
+                    <div class="hs"><div class="hs-value">28%</div><div class="hs-label">Knowledge-worker capacity gain</div></div>
+                    <div class="hs"><div class="hs-value">~69h</div><div class="hs-label">On-prem disaster to cloud recovery</div></div>
+                    <div class="hs"><div class="hs-value">60d</div><div class="hs-label">Ransomware breach to full recovery</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+
+        <section class="identify" id="identify" data-aud="always">
+            <div class="identify-card section-card glass">
+                <div class="section-eyebrow"><span class="num">01</span><span>Before we begin</span></div>
+                <h2 class="identify-prompt"><em>Who is reading?</em></h2>
+                <p class="identify-sub">
+                    The opening is sharper when it is for you specifically. Pick your role; only what is relevant appears below. Switch any time.
+                </p>
+
+                <div class="audiences">
+                    <button class="aud-card" data-aud-pick="owner">
+                        <div class="aud-num">01 / Ownership</div>
+                        <div class="aud-name">Owner / <em>Investor</em></div>
+                        <p class="aud-desc">Ames Watson, the management company, capital partners. ROI history, financial model, eighteen-month thesis.</p>
+                        <span class="aud-show">Show this view &rarr;</span>
+                    </button>
+
+                    <button class="aud-card" data-aud-pick="ceo">
+                        <div class="aud-num">02 / Executive</div>
+                        <div class="aud-name">Claire's <em>CEO</em>, COO, CMO</div>
+                        <p class="aud-desc">Track record, brand vision, ninety-day commitments, the wholesale critique, what we ship together.</p>
+                        <span class="aud-show">Show this view &rarr;</span>
+                    </button>
+
+                    <button class="aud-card" data-aud-pick="board">
+                        <div class="aud-num">03 / Board</div>
+                        <div class="aud-name">Board of <em>Directors</em></div>
+                        <p class="aud-desc">Governance, leadership credibility, the thirty-year arc, defensibility, succession-readiness.</p>
+                        <span class="aud-show">Show this view &rarr;</span>
+                    </button>
+
+                    <button class="aud-card" data-aud-pick="cto">
+                        <div class="aud-num">04 / Technical</div>
+                        <div class="aud-name">Peer <em>CTO</em> / Tech Hire</div>
+                        <p class="aud-desc">Stack decisions, ninety-day architecture moves, decision-AI playbook, full skills matrix.</p>
+                        <span class="aud-show">Show this view &rarr;</span>
+                    </button>
+
+                    <button class="aud-card" data-aud-pick="recruiter">
+                        <div class="aud-num">05 / Sourcing</div>
+                        <div class="aud-name">Recruiter / Search <em>Firm</em></div>
+                        <p class="aud-desc">Five resume formats and matching cover letters calibrated for downstream readers, plus credentials.</p>
+                        <span class="aud-show">Show this view &rarr;</span>
+                    </button>
+
+                    <button class="aud-card" data-aud-pick="all">
+                        <div class="aud-num">06 / No filter</div>
+                        <div class="aud-name">Just <em>exploring</em></div>
+                        <p class="aud-desc">Show everything in canonical order: about, track record, capacity, critique, both visions, strategy, materials.</p>
+                        <span class="aud-show">Show everything &rarr;</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section hooks" data-aud="owner ceo board cto recruiter all">
+            <div class="hook glass" data-for="owner">
+                <div class="hook-eyebrow">For ownership and capital partners</div>
+                <h3 class="hook-title">You bought a brand in Chapter 11 because the unit economics still work. The technology that made the unit economics break is fixable in eighteen months.</h3>
+                <div class="hook-body">
+                    <p>Twelve transformations of this shape across healthcare, financial services, manufacturing, and hospitality. Aggregate IT cost savings: <strong>$322M</strong>. Personal ROI rate: <strong>80%</strong>, against an industry baseline that fails 80% of the time. I am writing for the role that determines whether your eighteen months produce a measurable platform inflection or a slower bankruptcy filing. The case below is structured for that decision.</p>
+                </div>
+            </div>
+
+            <div class="hook glass" data-for="ceo">
+                <div class="hook-eyebrow">For the CEO and executive team</div>
+                <h3 class="hook-title">Your customers are not gone. They are at Walmart, choosing between your earrings and Walmart's house brand, and Walmart is winning the in-aisle decision.</h3>
+                <div class="hook-body">
+                    <p>The fix for thinning mall traffic is not more shelves. It is fewer, better, more deliberate moments inside the stores Claire's already has, plus a deliberate refusal to keep diluting the brand on a Walmart endcap. Same transformation pattern I have run in healthcare and finance: same complexity, same answer. By <strong>Day 90</strong>, the data spine is unified, Salesforce is dead, decision-AI is recommending earrings buys for the Midwest. By month 18, <strong>$500-800M</strong> annualized revenue recovered, EBITDA back to break-even or positive.</p>
+                </div>
+            </div>
+
+            <div class="hook glass" data-for="board">
+                <div class="hook-eyebrow">For the Board of Directors</div>
+                <h3 class="hook-title">The next CTO is the load-bearing hire of this turnaround. The board's job is to confirm the candidate has executed at this scale, on this clock, more than once.</h3>
+                <div class="hook-body">
+                    <p>Capital allocated to preservation does not produce transformation; it produces the next bankruptcy filing on a slower schedule. The 2018-2025 cycle proved that. The candidate you want has done this work twelve times, has documented evidence, and can be measured against named milestones at Day 30, Day 60, Day 90.</p>
+                </div>
+            </div>
+
+            <div class="hook glass" data-for="cto">
+                <div class="hook-eyebrow">For peer technologists and the technical hiring committee</div>
+                <h3 class="hook-title">The architecture decision that frees the next twelve months of engineering work is a HubSpot-centered revenue spine replacing Salesforce, with Lightspeed POS, Shopify or BigCommerce, Azure data warehouse, and decision-AI piloted in earrings before scale.</h3>
+                <div class="hook-body">
+                    <p>I built that map across thirty years of running enterprise stacks. I can read a five-vendor architecture diagram and tell you within an hour where the failure modes are. By <strong>Day 90</strong>, I would ship a unified revenue dashboard, a hardened cybersecurity posture, and a working decision-AI pilot that merchants are reviewing daily.</p>
+                </div>
+            </div>
+
+            <div class="hook glass" data-for="recruiter">
+                <div class="hook-eyebrow">For recruiters and search partners</div>
+                <h3 class="hook-title">Thirty years digital transformation. MIT Sloan Master of Technology. Multi-million dollar budget ownership. Available for direct hire or contract.</h3>
+                <div class="hook-body">
+                    <p>Five resume formats below, each calibrated to a different downstream reader (recruiter screen, peer-CTO review, transformation lead, CEO review, full background verification), plus matching cover letters. Send the package that fits the next round.</p>
+                </div>
+            </div>
+
+            <div class="hook glass" data-for="all">
+                <div class="hook-eyebrow">No filter applied</div>
+                <h3 class="hook-title">All sections visible in canonical order. Read in any order.</h3>
+                <div class="hook-body">
+                    <p>This is the full portfolio. The audience selector above filters to a tighter view if you prefer.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="about" data-aud="owner ceo board cto all">
+            <div class="section-card glass">
+                <div class="section-eyebrow"><span class="num">02</span><span>About the presenter</span></div>
+                <h2><em>Thirty years</em> from the factory floor to the C-Suite, built for the kind of turnaround Claire's needs.</h2>
+
+                <div class="about-grid">
+                    <div class="stats-col glass">
+                        <div class="stats-col-grid">
+                            <div class="stat"><div class="stat-value">30</div><div class="stat-label">Years experience</div></div>
+                            <div class="stat"><div class="stat-value">80%</div><div class="stat-label">Personal ROI rate</div></div>
+                            <div class="stat"><div class="stat-value">$322M</div><div class="stat-label">IT savings delivered</div></div>
+                            <div class="stat"><div class="stat-value">100K+</div><div class="stat-label">Users on platforms</div></div>
+                            <div class="stat"><div class="stat-value">178</div><div class="stat-label">Zero-downtime migrations</div></div>
+                            <div class="stat"><div class="stat-value">28%</div><div class="stat-label">Knowledge-worker gain</div></div>
+                            <div class="stat"><div class="stat-value">~69h</div><div class="stat-label">DR cutover to cloud</div></div>
+                            <div class="stat"><div class="stat-value">60d</div><div class="stat-label">Ransomware recovery</div></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p>Technology executive with thirty years architecting and leading enterprise digital transformations across <strong>healthcare, financial services, manufacturing, and hospitality</strong>. Career began on the factory floor at ARM-S Electric (high-voltage diagnostics, PLC programming, automation engineering) and progressed through enterprise platform architecture, multi-year cloud migrations, and into C-Suite advisory.</p>
+
+                        <p>Most CTO candidates can speak to strategy <strong>or</strong> operations. I have spent half of those thirty years executing the work and the other half leading the people who execute it. When I tell you a five-vendor stack will collapse under load, I have collapsed those stacks myself. When I propose a 90-day cutover, I have run those cutovers, including the ones that went wrong.</p>
+
+                        <p>For Claire's, that combination is the point. The brand does not need a CTO who can articulate omnichannel theory. It needs one who has unified fragmented stacks, made the hard sequencing calls, owned the budget, and delivered measurable outcomes under pressure, on a clock.</p>
+
+                        <div class="education-row">
+                            <strong>Education:</strong> Master of Technology in Digital Transformation (MIT Sloan), MS Information Systems (MIT), BS Electrical Engineering (Notre Dame, 3.5 GPA).
+                            <strong style="margin-left:8px;">Recent:</strong> AI Adoption Program Lead (MMR, 2025-26), Contract Incident Response Lead (FVK Solutions, 2025), Digital Transformation Director (MICAH Legal Services, 2020-Present).
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="track-record" data-aud="owner ceo board cto all">
+            <div class="section-card glass">
+                <div class="section-eyebrow"><span class="num">03</span><span>Track record</span></div>
+                <h2>Preventing the failures Claire's <em>just lived through</em>.</h2>
+                <p class="section-lead">Claire's bankruptcy is execution failure across five specific dimensions. Below: the parallel evidence I have prevented each.</p>
+
+                <div class="comparison-row">
+                    <div class="failure-cell">
+                        <div class="failure-label">Failure Mode 01</div>
+                        <div class="failure-text"><strong>Capital allocated to preservation, not transformation.</strong> $575M in 2018 restructuring capital used to service debt. Zero operational breakthroughs. Accumulated $700M new debt by 2025.</div>
+                    </div>
+                    <div class="arrow-cell">&rarr;</div>
+                    <div class="prevention-cell">
+                        <div class="prevention-label">Prevention pattern</div>
+                        <div class="prevention-text"><strong>I treat budget cycles as transformation windows.</strong> At Kaufman Hall, an information architecture redesign reduced annual IT spending by $1.2M while modernizing a 5,000-user platform. Cost discipline and modernization are not opposites.<span class="prevention-evidence">$1.2M annual reduction, Kaufman Hall, 2015-2019.</span></div>
+                    </div>
+                </div>
+
+                <div class="comparison-row">
+                    <div class="failure-cell">
+                        <div class="failure-label">Failure Mode 02</div>
+                        <div class="failure-text"><strong>Tactical, not strategic, digital transformation.</strong> BOPIS implemented. Roblox launched. No digital DNA, no real omnichannel, no AI-driven decisions. Surface moves that did not move the underlying numbers.</div>
+                    </div>
+                    <div class="arrow-cell">&rarr;</div>
+                    <div class="prevention-cell">
+                        <div class="prevention-label">Prevention pattern</div>
+                        <div class="prevention-text"><strong>I refuse work that leaves the data spine unchanged.</strong> At HIMSS, an information-architecture modernization produced a measured 28% improvement in knowledge-worker capacity. Surface UX changes are nothing without the underlying foundation.<span class="prevention-evidence">28% KW capacity gain, HIMSS via DTIG, 2020.</span></div>
+                    </div>
+                </div>
+
+                <div class="comparison-row">
+                    <div class="failure-cell">
+                        <div class="failure-label">Failure Mode 03</div>
+                        <div class="failure-text"><strong>No real omnichannel, no unified inventory or data view.</strong> Stores, e-commerce, and OMS run as silos. Customers see different inventory, prices, and offers depending on channel.</div>
+                    </div>
+                    <div class="arrow-cell">&rarr;</div>
+                    <div class="prevention-cell">
+                        <div class="prevention-label">Prevention pattern</div>
+                        <div class="prevention-text"><strong>I build unified data spines in healthcare-critical environments,</strong> a credible proxy for retail's complexity. 178 zero-downtime farm migrations, including a five-farm SharePoint cutover at UChicago Medicine with zero interruption to emergency-care operations.<span class="prevention-evidence">178 zero-downtime migrations, 30-year career.</span></div>
+                    </div>
+                </div>
+
+                <div class="comparison-row">
+                    <div class="failure-cell">
+                        <div class="failure-label">Failure Mode 04</div>
+                        <div class="failure-text"><strong>No decision-making AI.</strong> Customer-facing AI experiments only (chatbots, virtual worlds). Zero AI in inventory, demand forecasting, or assortment, where it actually changes cash, turns, and margin.</div>
+                    </div>
+                    <div class="arrow-cell">&rarr;</div>
+                    <div class="prevention-cell">
+                        <div class="prevention-label">Prevention pattern</div>
+                        <div class="prevention-text"><strong>Currently leading an AI adoption program built on this exact principle.</strong> At MMR, transitioned engineering teams from ad-hoc prompting to structured context-engineering frameworks with KPIs linking AI usage to productivity and code quality.<span class="prevention-evidence">AI Adoption Program Lead, MMR, 2025-26 active.</span></div>
+                    </div>
+                </div>
+
+                <div class="comparison-row">
+                    <div class="failure-cell">
+                        <div class="failure-label">Failure Mode 05</div>
+                        <div class="failure-text"><strong>No tested cybersecurity or DR resilience.</strong> Retail's threat surface is large. Without disaster-recovery muscle, the next ransomware event or natural disaster becomes the next bankruptcy event.</div>
+                    </div>
+                    <div class="arrow-cell">&rarr;</div>
+                    <div class="prevention-cell">
+                        <div class="prevention-label">Prevention pattern</div>
+                        <div class="prevention-text"><strong>Led full crisis recoveries on the clock, twice over.</strong> 60 days from initial ransomware breach through containment, threat-actor negotiation, forensic analysis, full re-architecture. Separately, ~69 hours from on-prem natural disaster to full operational recovery in cloud.<span class="prevention-evidence">FVK Solutions 2025; ~69h on-prem-to-cloud DR.</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="capacity" data-aud="owner ceo board cto all">
+            <div class="section-card glass">
+                <div class="section-eyebrow"><span class="num">04</span><span>Capacity to deliver</span></div>
+                <h2>What I bring, and what I would <em>commit to</em> in the first 90 days.</h2>
+                <p class="section-lead">A CTO is hired to convert capital into measurable outcomes. The capabilities are below; the commitments are firmer than that.</p>
+
+                <div class="capacity-grid">
+                    <div class="capacity-card">
+                        <div class="icon">&#127959;</div>
+                        <h4>Platform modernization muscle</h4>
+                        <p>Multi-year platform migrations across Azure, AWS, GCP, M365. Container orchestration, microservices, API strategy, legacy decommission, executed at enterprise scale.</p>
+                    </div>
+                    <div class="capacity-card">
+                        <div class="icon">&#128202;</div>
+                        <h4>Data spine construction</h4>
+                        <p>Azure Data Warehouse, Power BI executive dashboards, ETL pipelines. Single source of truth platforms that finance, ops, and merchandising all act on.</p>
+                    </div>
+                    <div class="capacity-card">
+                        <div class="icon">&#129302;</div>
+                        <h4>AI where it changes margin</h4>
+                        <p>Active AI adoption program with KPI-tied outcomes. For Claire's, AI matters most in inventory, demand forecasting, and assortment, where it directly affects cash, turns, and markdowns.</p>
+                    </div>
+                    <div class="capacity-card">
+                        <div class="icon">&#128737;</div>
+                        <h4>Cybersecurity and resilience</h4>
+                        <p>HIPAA, PCI, SOC 2, Zero Trust, IAM. Live ransomware-recovery experience plus on-prem-to-cloud DR in under 70 hours.</p>
+                    </div>
+                    <div class="capacity-card">
+                        <div class="icon">&#128188;</div>
+                        <h4>Vendor and financial discipline</h4>
+                        <p>Multi-million dollar IT budgets owned and optimized. ROI-driven investment decisions, not vendor-led ones. <strong>$322M</strong> aggregate cost savings delivered.</p>
+                    </div>
+                    <div class="capacity-card">
+                        <div class="icon">&#128101;</div>
+                        <h4>Distributed team leadership</h4>
+                        <p>Cross-functional teams aligned around accountability, governance, and clear standards. Methodology used across 20-plus engagements. Culture that rewards shipping over slideware.</p>
+                    </div>
+                </div>
+
+                <div class="commitment-list">
+                    <h3>Commitments for the first 90 days at Claire's</h3>
+                    <ul>
+                        <li><strong>A single source of revenue truth.</strong> Eliminate the gap between store, e-commerce, OMS data. Stand up a governed data spine finance, merchandising, and store ops can all act on.</li>
+                        <li><strong>A defensible 18-month sequence.</strong> Pick three or four projects that move cash, turns, and customer experience the most. Stop the rest.</li>
+                        <li><strong>A team and culture that can ship.</strong> Distributed technology orgs rebuild around accountability and clear standards. I have built and led teams of that shape.</li>
+                        <li><strong>A measurable proof point by Day 90.</strong> One demonstrable outcome, not a slide deck, that proves the new direction works.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="wholesale-mistake" data-aud="owner ceo board all">
+            <div class="section-card glass">
+                <div class="section-eyebrow"><span class="num">05</span><span>Strategic critique</span></div>
+                <h2>The <em>wholesale</em> mistake.</h2>
+                <p class="section-lead">Why partnering with Walmart, Albertsons, and CVS was the wrong answer to thinning mall traffic, and why it accelerated the decline it was meant to fix.</p>
+
+                <div class="story-prose">
+                    <p>When mall traffic declined, leadership reached for the obvious lever: wholesale partnerships with Walmart, Albertsons, CVS. The reasoning was that if customers were not coming to the mall, Claire's should go where customers already were. On paper, more shelves equals more sales. In practice, the move inverted Claire's value proposition and accelerated the decline.</p>
+
+                    <p>The first problem is cannibalization, not expansion. Customers Claire's "captured" on big-box endcaps were largely customers who would have come to a Claire's mall store anyway. The wholesale play did not enlarge the audience; it gave the existing audience a reason to stop driving to the mall, and a much weaker reason to come back. Foot traffic at Claire's own retail collapsed faster, not slower.</p>
+
+                    <div class="pull-quote"><strong>The second problem is competing inside someone else's house.</strong> Right next to the Claire's section in a Walmart sits Walmart's own private-label jewelry. Walmart did not stock Claire's because Walmart wants Claire's to win. Walmart stocked Claire's to pull customers into the aisle, then convert them onto Walmart's house brand, where Walmart's margin is two to four times higher.</div>
+
+                    <p>Every time a price-sensitive customer made the in-aisle choice, Claire's lost twice. Once on the lost sale. Once on the implicit signal that Claire's and Walmart's house line are interchangeable choices on the same shelf. Lowering price to defend the wholesale shelf did not save the sales; it accelerated the brand dilution. A Tiffany blue box sits in a Tiffany store, never on a Walmart endcap, for exactly this reason.</p>
+
+                    <p><strong>This is precisely why the Generations and Princesses Visions matter.</strong> Both are explicit refusals to keep playing the wholesale-shelf game. Both are designed to make Claire's a destination customers choose to drive to, not a brand they pass while shopping for laundry detergent.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="generations" data-aud="ceo board all">
+            <div class="section-card glass">
+                <div class="section-eyebrow"><span class="num">06</span><span>Brand vision, part one</span></div>
+                <h2>The <em>Generations</em> Vision.</h2>
+                <p class="section-lead">A matrilineal ritual that turns thirty years of dormant emotional equity into a moat no competitor can copy.</p>
+
+                <div class="story-prose">
+                    <p>The first generation of Claire's customers, the girls who got their first ear piercing under a Claire's sign in the 1990s and early 2000s, is now thirty-five to forty-eight years old. Many are mothers. A growing number are grandmothers. Each carries fifteen to thirty years of unactivated emotional equity with this brand, and right now we do nothing with it.</p>
+
+                    <p>Their daughters and granddaughters are, today, in our target demographic. Daughters internalize brand preferences from mothers, co-shop more frequently with mothers than with peers, and treat the shopping itself as bonding. The mother-daughter visit is not a transaction with two people in it. It is a ritual with one purpose and two participants.</p>
+
+                    <p>Generations is that Claire's stops thinking of itself as a single-generation tween brand and starts behaving as a multigenerational ritual brand. The same store the mother visited at nine becomes the same store she brings her daughter to at nine. Twenty years later, that daughter brings her own daughter. The brand becomes the constant in a generational handoff.</p>
+
+                    <div class="pull-quote">Amazon can ship earrings overnight. Walmart can sell them next to laundry detergent. Neither can be the place where her grandmother once stood. <strong>That is the moat.</strong></div>
+
+                    <p>Operationally, three layers. <strong>The CRM</strong> models family clusters across two and three generations with lifecycle milestones tagged. <strong>The POS</strong> tags experiences and not just transactions. <strong>The loyalty engine</strong> recognizes the second generation when she presents at the counter and surfaces the lineage to staff. Generational lifetime value, not individual CLV, becomes the metric merchandising and marketing optimize against.</p>
+
+                    <p>Once a quarter, a Sunday Generations Tea in partnership with a high-end hotel: the Peninsula, the Drake, the Ritz. After tea, families walk to a Claire's that is staffed and ready, and they choose matching pieces from a small Generations capsule collection. Twenty years from now, those daughters bring their daughters. The CRM still knows. The store still knows. The ritual still works.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="princesses" data-aud="ceo board all">
+            <div class="section-card glass">
+                <div class="section-eyebrow"><span class="num">07</span><span>Brand vision, part two</span></div>
+                <h2>The <em>Princesses</em> Vision.</h2>
+                <p class="section-lead">Where Dad goes to buy his Princess something special. An annual gift ritual, a commemorative box, and a male customer segment Claire's has never tapped.</p>
+
+                <div class="story-prose">
+                    <p>Every father with a daughter has the same problem at least twice a year. Birthday, plus one of Christmas, Hanukkah, graduation, first communion, sweet sixteen, dance recital. He needs to give her something that feels personal, that signals she is the center of his world for that moment, that does not look like it came from the same Amazon cart as the laundry detergent. Right now, he has nowhere good to go.</p>
+
+                    <p>Princesses is that Claire's becomes the place he goes. Specifically. Annually. As ritual. A customer segment Claire's has historically never seen: the father, walking in alone, looking for the right gift for his Princess. We build the store experience and the product packaging so he walks in once and never has to ask the question again. He just comes back next year.</p>
+
+                    <div class="pull-quote"><strong>The product is a Princess Box.</strong> A signature commemorative package. The way a Tiffany blue box does emotional work before it is opened. Inside, every year, two things. A year-coded collectible stuffed animal. And a piece of jewelry designed to accumulate over time into a collection she keeps for life.</div>
+
+                    <p>The mechanics are simple and deliberate. <strong>The stuffie</strong> is a different design every year, dated and numbered. By the time she is fifteen, she has fifteen of them on a shelf. <strong>The jewelry</strong> is the second half: a starter charm bracelet at age five with one charm, a new charm every year. By eighteen, she has a piece of fine-feeling jewelry that contains thirteen years of her father's intentional gift-giving, all from the same brand.</p>
+
+                    <p>Operationally: a new product line, packaging line, merchandising calendar, staff training. The CRM captures the father, links him to the daughter, and the loyalty engine sends a quiet reminder six weeks before her birthday every year: this year's Princess Box is ready, we have her age and last year's piece on file.</p>
+
+                    <p>The strategic prize is enormous. <strong>Claire's currently does almost no business with men.</strong> The Princess Box gives them a reason: a recurring, calendarable purchase tied to one of the most emotionally weighted occasions of the year. Average ticket meaningfully higher than the impulse buy. Frequency locked in by birthday plus one or two milestones. Tiffany has done a version of this for adults for over a hundred years. Claire's, properly executed, does it for the segment Tiffany never serves.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="strategic-thinking" data-aud="ceo board cto all">
+            <div class="section-card glass">
+                <div class="section-eyebrow"><span class="num">08</span><span>Strategic thinking</span></div>
+                <h2>The Claire's <em>transformation plan</em>.</h2>
+                <p class="section-lead">A CTO candidate's best evidence is the work itself. The unsolicited strategic plan I built for Claire's: root-cause analysis, three-pillar strategy, 18-month roadmap, the specific 90-day sequence I would lead.</p>
+
+                <div class="accordion-grid">
+                    <details class="accordion">
+                        <summary>
+                            <span class="acc-summary-text">
+                                <span><span class="acc-tag">Document</span><span class="acc-title">Executive Summary</span></span>
+                                <span class="acc-meta">~2,500 words / 8-10 min / overview</span>
+                            </span>
+                        </summary>
+                        <div class="acc-body">
+                            <a class="open-full" href="Claire's_Executive_Summary_1Page.html" target="_blank" rel="noopener">Open the FULL version &rarr;</a>
+                            <p><strong>The Opportunity.</strong> Global jewelry market growing 5-8% annually; North America at 8.4%. Claire's revenue declining 15-20% YoY. Failure is operational, not market-driven, and that means it is fixable.</p>
+                            <p><strong>The Diagnosis.</strong> Store experience misaligned with Gen Z values; digital transformation tactical not strategic; capital post-2018 used for cash preservation rather than transformation.</p>
+                            <p><strong>The Strategy.</strong> Pillar 1: technology spine, replace Salesforce with HubSpot-centered architecture. Pillar 2: brand and loyalty, launch Generations and Princesses programs. Pillar 3: store modernization, remodel 300+ stores.</p>
+                            <p><strong>The Financial Model.</strong> $105-165M investment over 18 months. $500-800M annualized revenue recoverable. Path from -$500M EBITDA to break-even or positive. Payback 2-3 years.</p>
+                        </div>
+                    </details>
+
+                    <details class="accordion">
+                        <summary>
+                            <span class="acc-summary-text">
+                                <span><span class="acc-tag">Document</span><span class="acc-title">Comprehensive Strategic Intelligence Report</span></span>
+                                <span class="acc-meta">~8,000 words / 22-25 min / deep-dive</span>
+                            </span>
+                        </summary>
+                        <div class="acc-body">
+                            <a class="open-full" href="Claire's_Comprehensive_Strategic_Intelligence_Report.html" target="_blank" rel="noopener">Open the FULL version &rarr;</a>
+                            <h3>Part 1: Market Diagnosis</h3>
+                            <p>Specialty jewelry market $365.9B (2024), $580.7B (2033). Claire's lost 25-30% of customers to Etsy/digital-native, 15-20% to Depop/secondhand, 10-15% to Ulta. Capital allocation 2018-2025 was preservation, not transformation.</p>
+                            <h3>Part 2: Competitive Intelligence</h3>
+                            <p>Signet's playbook: strategic acquisitions (Blue Nile, Rocksblox, Piercing Pagoda), 5.2M Vault Rewards members, 23% digital penetration. If Claire's matched Signet, +$300-500M annual revenue.</p>
+                            <h3>Parts 3-5: Pillars, roadmap, financial model</h3>
+                            <p>Replace Salesforce with HubSpot spine (50-60% lower TCO). Build Generations and Princesses programs. Launch decision-AI starting with Earrings in Midwest. Total $105-165M for $500-800M annualized recovery.</p>
+                        </div>
+                    </details>
+
+                    <details class="accordion">
+                        <summary>
+                            <span class="acc-summary-text">
+                                <span><span class="acc-tag">Document</span><span class="acc-title">90-Day Tactical Plan</span></span>
+                                <span class="acc-meta">~6,000 words / 18-20 min / execution</span>
+                            </span>
+                        </summary>
+                        <div class="acc-body">
+                            <a class="open-full" href="Claire's_90Day_Tactical_Plan.html" target="_blank" rel="noopener">Open the FULL version &rarr;</a>
+                            <h3>Days 1-30: Freeze Salesforce, design the spine</h3>
+                            <p>Day 1 all-hands: "We are systematically removing Salesforce." Audit dependencies; lock target architecture (HubSpot, Shopify or BigCommerce, Lightspeed Retail, Azure DW). Design HubSpot data model.</p>
+                            <h3>Days 31-60: Stand up the spine, begin migration</h3>
+                            <p>Configure HubSpot production; integrate e-commerce; Day 45 first live e-commerce orders in HubSpot. Deploy POS connector; Day 60 first unified revenue dashboard.</p>
+                            <h3>Days 61-90: Cut over, launch decision AI</h3>
+                            <p>Execute full Salesforce migration; set Salesforce read-only by Day 90. Launch decision-AI pilot for earrings in Midwest with merchant approval workflow.</p>
+                        </div>
+                    </details>
+
+                    <details class="accordion">
+                        <summary>
+                            <span class="acc-summary-text">
+                                <span><span class="acc-tag">Document</span><span class="acc-title">Decision-Making AI Implementation Guide</span></span>
+                                <span class="acc-meta">~7,000 words / 20-22 min / technical</span>
+                            </span>
+                        </summary>
+                        <div class="acc-body">
+                            <a class="open-full" href="Claire's_Decision_AI_Implementation_Guide.html" target="_blank" rel="noopener">Open the FULL version &rarr;</a>
+                            <h3>Why AI first, generative second</h3>
+                            <p>For a retailer in turnaround, AI's highest value is in operational decision-making (what to buy, where to place it, how much inventory to hold). Directly affects cash, margin, turns.</p>
+                            <h3>Six-phase decision workflow</h3>
+                            <p><strong>Forecast</strong> demand by SKU, region, channel. <strong>Optimize</strong> into PO quantities. <strong>Propose</strong> with rationale. <strong>Human review</strong> with mandatory override reasons. <strong>Execute</strong>. <strong>Learn</strong> from accuracy and margin realization.</p>
+                            <h3>Pilot: Earrings in Midwest</h3>
+                            <p>35% of jewelry revenue, highest velocity. Targets: forecast error &lt;15% (vs 25-30%), sell-through +5-10%, overstock -20%, margin +1-2 points.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="materials" data-aud="recruiter cto board ceo all">
+            <div class="section-card glass">
+                <div class="section-eyebrow"><span class="num">09</span><span>Application materials</span></div>
+                <h2>Five packages, <em>calibrated</em> to each reader.</h2>
+                <p class="section-lead">Each package contains a tailored resume and matching cover letter; standalone files open in a new tab.</p>
+
+                <div class="accordion-grid">
+
+                    <details class="accordion" data-aud="recruiter all">
+                        <summary>
+                            <span class="acc-summary-text">
+                                <span><span class="acc-tag">Recruiter</span><span class="acc-title">Default Package</span></span>
+                                <span class="acc-meta">For online application systems and first-pass recruiter review</span>
+                            </span>
+                        </summary>
+                        <div class="acc-body">
+                            <a class="open-full" href="Resume_Claires_Default_2026-04-29.html" target="_blank" rel="noopener">Resume &rarr;</a>
+                            <a class="open-full" href="CoverLetter_Claires_Default_2026-04-29.html" target="_blank" rel="noopener">Cover letter &rarr;</a>
+                            <h4>Resume excerpt</h4>
+                            <p>Technology executive, 30 years architecting and leading enterprise digital transformations across healthcare, financial services, manufacturing, and hospitality. Reduced enterprise IT spend by $1.2M annually. Led 60-day ransomware recovery. Zero-downtime migrations across five SharePoint server farms in healthcare-critical environments.</p>
+                            <h4>Cover letter excerpt</h4>
+                            <p class="cl-meta">To the Claire's Hiring Team. April 29, 2026.</p>
+                            <p>Claire's most expensive technology problem is not a system; it is the space between systems. Stores that cannot see online inventory. E-commerce that cannot read POS history. Loyalty that cannot follow a customer across channels. The CTO mandate here is to close those gaps.</p>
+                        </div>
+                    </details>
+
+                    <details class="accordion" data-aud="cto recruiter all">
+                        <summary>
+                            <span class="acc-summary-text">
+                                <span><span class="acc-tag">Technical</span><span class="acc-title">Skills-First Package</span></span>
+                                <span class="acc-meta">For peer CTOs, hiring managers, technical review</span>
+                            </span>
+                        </summary>
+                        <div class="acc-body">
+                            <a class="open-full" href="Resume_Claires_SkillsFirst_2026-04-29.html" target="_blank" rel="noopener">Resume &rarr;</a>
+                            <a class="open-full" href="CoverLetter_Claires_SkillsFirst_2026-04-29.html" target="_blank" rel="noopener">Cover letter &rarr;</a>
+                            <h4>Skills matrix</h4>
+                            <div class="skill-block"><strong>Retail and Omnichannel</strong> <span>POS (Lightspeed Retail eval), E-Commerce (Shopify, BigCommerce eval), OMS, Inventory Visibility, CX Platforms</span></div>
+                            <div class="skill-block"><strong>Cloud and Infrastructure</strong> <span>Azure, AWS, GCP, Docker, Kubernetes, Terraform, Ansible, CI/CD, IaC</span></div>
+                            <div class="skill-block"><strong>Data, Analytics, BI</strong> <span>Azure Data Warehouse, Power BI, Tableau, SQL Server, MySQL, ETL Pipelines</span></div>
+                            <div class="skill-block"><strong>Cybersecurity, Risk, Compliance</strong> <span>HIPAA, PCI, SOC 2, GDPR, ISO 27001, Zero Trust, IAM, DR/BCP</span></div>
+                        </div>
+                    </details>
+
+                    <details class="accordion" data-aud="cto recruiter board ceo all">
+                        <summary>
+                            <span class="acc-summary-text">
+                                <span><span class="acc-tag">Transformation</span><span class="acc-title">Projects Package</span></span>
+                                <span class="acc-meta">For digital transformation leads, consultancy, implementation review</span>
+                            </span>
+                        </summary>
+                        <div class="acc-body">
+                            <a class="open-full" href="Resume_Claires_Projects_2026-04-29.html" target="_blank" rel="noopener">Resume &rarr;</a>
+                            <a class="open-full" href="CoverLetter_Claires_Projects_2026-04-29.html" target="_blank" rel="noopener">Cover letter &rarr;</a>
+                            <p><strong>AI Adoption Program (MMR, 2025).</strong> Modernized engineering operations by embedding AI into the development lifecycle.</p>
+                            <p><strong>Ransomware Incident Response (FVK Solutions, 2025).</strong> 60 days to full recovery from breach via SonicWall router exploit.</p>
+                            <p><strong>HIMSS Information Architecture Modernization (DTIG, 2020).</strong> 28% improvement in knowledge-worker capacity.</p>
+                            <p><strong>UChicago Medicine Multi-Farm Migration (DTIG, 2020-2021).</strong> Five SharePoint farms, zero downtime, healthcare-critical.</p>
+                            <p><strong>Kaufman Hall IA Consolidation (2015-2019).</strong> $1.2M annual IT spending reduction while improving the platform.</p>
+                        </div>
+                    </details>
+
+                    <details class="accordion" data-aud="ceo board recruiter all">
+                        <summary>
+                            <span class="acc-summary-text">
+                                <span><span class="acc-tag">Executive</span><span class="acc-title">Custom Package</span></span>
+                                <span class="acc-meta">For CEO, board review, executive search, comprehensive evaluation</span>
+                            </span>
+                        </summary>
+                        <div class="acc-body">
+                            <a class="open-full" href="Resume_Claires_Custom_2026-04-29.html" target="_blank" rel="noopener">Resume &rarr;</a>
+                            <a class="open-full" href="CoverLetter_Claires_Custom_2026-04-29.html" target="_blank" rel="noopener">Cover letter &rarr;</a>
+                            <h4>Cover letter (CEO, board)</h4>
+                            <p class="cl-meta">To the Claire's CEO and Executive Leadership Team.</p>
+                            <p>The jewelry market is growing 5 to 8 percent globally; North America at 8.4. Claire's is not in trouble because the market disappeared. Claire's is in trouble because operational and technology delivery has fallen out of alignment with how its customer wants to shop. That is fixable, and the fix is structural.</p>
+                            <p>My case in three lines: thirty-year operational arc; track record unifying fragmented stacks with quantified outcomes; proven crisis leadership.</p>
+                        </div>
+                    </details>
+
+                    <details class="accordion" data-aud="recruiter board all">
+                        <summary>
+                            <span class="acc-summary-text">
+                                <span><span class="acc-tag">Verification</span><span class="acc-title">Full CV / Master narrative</span></span>
+                                <span class="acc-meta">For executive search firms, reference checks, full-arc verification</span>
+                            </span>
+                        </summary>
+                        <div class="acc-body">
+                            <a class="open-full" href="Resume_Claires_FullCV_2026-04-29.html" target="_blank" rel="noopener">Full CV &rarr;</a>
+                            <a class="open-full" href="CoverLetter_Claires_FullCV_2026-04-29.html" target="_blank" rel="noopener">Cover letter &rarr;</a>
+                            <p>Complete career history. Every role from ARM-S Electric (1998) through MMR (2026). Awards, volunteer work, certifications, full education. Cover letter narrates the thirty-year arc as a single continuous story.</p>
+                        </div>
+                    </details>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact" data-aud="always">
+            <div class="contact-card section-card glass">
+                <div class="section-eyebrow" style="justify-content:center;"><span class="num">10</span><span>Reach out</span></div>
+                <h2><em>Eighteen months</em> from now, Claire's is either re-emerging as a destination or quietly managing decline.</h2>
+                <p class="section-lead">I would welcome the opportunity to discuss how I would lead the technology side of that decision with you, the board, and the executive team.</p>
+                <div class="contact-cta">
+                    <a href="mailto:princemanjee@gmail.com" class="btn btn-primary">
+                        <span>princemanjee@gmail.com</span>
+                        <span class="arrow">&rarr;</span>
+                    </a>
+                    <a href="tel:3122969067" class="btn btn-ghost">312.296.9067</a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <div class="ft-name">P. R. Manjee</div>
+        <p>Candidate for Chief of Technology at Claire's. EE, MIS, MIT Sloan, University of Notre Dame.</p>
+        <p style="font-size:0.82em;opacity:0.7;">Operational depth. Executive scope. Defined path.</p>
+        <div class="ft-contact">
+            <a href="tel:3122969067">312.296.9067</a>
+            <span style="opacity:0.4;">/</span>
+            <a href="mailto:princemanjee@gmail.com">princemanjee@gmail.com</a>
+            <span style="opacity:0.4;">/</span>
+            <a href="https://www.linkedin.com/in/princemanjee/">linkedin.com/in/princemanjee</a>
+        </div>
+    </footer>
+
+    <div class="share-toast" id="shareToast">Link copied. Send it to the right reader.</div>
+
+    <script>
+        (function () {
+            const html = document.documentElement;
+            const t = document.getElementById('themeToggle');
+            const ic = document.getElementById('themeIcon');
+            const lb = document.getElementById('themeLabel');
+            function apply(theme) {
+                html.dataset.theme = theme;
+                if (theme === 'light') { ic.innerHTML = '&#9790;'; lb.textContent = 'Dark'; }
+                else { ic.innerHTML = '&#9728;'; lb.textContent = 'Light'; }
+            }
+            const saved = localStorage.getItem('clr-theme');
+            const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+            apply(saved || (prefersLight ? 'light' : 'dark'));
+            t.addEventListener('click', () => {
+                const next = html.dataset.theme === 'dark' ? 'light' : 'dark';
+                apply(next);
+                localStorage.setItem('clr-theme', next);
+            });
+        })();
+
+        const AUDIENCE_LABELS = {
+            owner: 'an owner',
+            ceo: 'a Claire’s executive',
+            board: 'a board director',
+            cto: 'a peer CTO',
+            recruiter: 'a recruiter',
+            all: 'an explorer',
+        };
+
+        const audStatus = document.getElementById('audStatus');
+        const audName = document.getElementById('audName');
+        const shareBtn = document.getElementById('shareBtn');
+
+        function setAudience(audience, opts) {
+            opts = opts || {};
+            if (audience && !AUDIENCE_LABELS[audience]) audience = '';
+            document.body.dataset.audience = audience || '';
+            if (audience) {
+                audName.textContent = AUDIENCE_LABELS[audience];
+                shareBtn.style.display = 'inline-flex';
+                if (!opts.silent) {
+                    history.replaceState(null, '', '#' + audience);
+                    localStorage.setItem('clr-audience', audience);
+                }
+                buildNav(audience);
+                if (!opts.noScroll) {
+                    setTimeout(() => {
+                        const hookSection = document.querySelector('.hooks .hook[data-for="' + audience + '"]');
+                        if (hookSection) hookSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 140);
+                }
+            } else {
+                audName.textContent = 'guest';
+                shareBtn.style.display = 'none';
+                if (!opts.silent) {
+                    history.replaceState(null, '', location.pathname);
+                    localStorage.removeItem('clr-audience');
+                }
+                buildNav('');
+            }
+            requestAnimationFrame(updateRevealObservers);
+        }
+
+        document.querySelectorAll('[data-aud-pick]').forEach(btn => {
+            btn.addEventListener('click', () => setAudience(btn.dataset.audPick));
+        });
+
+        audStatus.addEventListener('click', () => {
+            setAudience('');
+            const id = document.getElementById('identify');
+            if (id) id.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        shareBtn.addEventListener('click', async () => {
+            const url = location.href;
+            try {
+                await navigator.clipboard.writeText(url);
+            } catch (e) {
+                const t = document.createElement('textarea');
+                t.value = url; document.body.appendChild(t); t.select();
+                try { document.execCommand('copy'); } catch (_) {}
+                document.body.removeChild(t);
+            }
+            const toast = document.getElementById('shareToast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2200);
+        });
+
+        const SECTIONS = [
+            { id: 'hero',               num: '00', name: 'Welcome',                  audAttr: 'always' },
+            { id: 'identify',           num: '01', name: 'Identify',                 audAttr: 'always' },
+            { id: 'about',              num: '02', name: 'About the presenter',     audAttr: 'owner ceo board cto all' },
+            { id: 'track-record',       num: '03', name: 'Track record',             audAttr: 'owner ceo board cto all' },
+            { id: 'capacity',           num: '04', name: 'Capacity to deliver',      audAttr: 'owner ceo board cto all' },
+            { id: 'wholesale-mistake',  num: '05', name: 'Wholesale mistake',        audAttr: 'owner ceo board all' },
+            { id: 'generations',        num: '06', name: 'Generations vision',       audAttr: 'ceo board all' },
+            { id: 'princesses',         num: '07', name: 'Princesses vision',        audAttr: 'ceo board all' },
+            { id: 'strategic-thinking', num: '08', name: 'Strategic thinking',       audAttr: 'ceo board cto all' },
+            { id: 'materials',          num: '09', name: 'Materials',                audAttr: 'recruiter cto board ceo all' },
+            { id: 'contact',            num: '10', name: 'Reach out',                audAttr: 'always' },
+        ];
+        const navList = document.getElementById('navList');
+
+        function buildNav(audience) {
+            const out = [];
+            SECTIONS.forEach(s => {
+                const auds = s.audAttr.split(/\s+/);
+                const visible = auds.includes('always') ||
+                                (audience && auds.includes(audience)) ||
+                                (!audience && auds.includes('always'));
+                if (visible) {
+                    out.push(
+                        '<li><a href="#' + s.id + '" data-target="' + s.id + '">' +
+                        '<span class="nav-num">' + s.num + '</span>' +
+                        '<span>' + s.name + '</span></a></li>'
+                    );
+                }
+            });
+            navList.innerHTML = out.join('');
+            attachNavLinkHandlers();
+        }
+
+        function attachNavLinkHandlers() {
+            document.querySelectorAll('.nav-panel a[data-target]').forEach(link => {
+                link.addEventListener('click', () => {
+                    document.body.classList.remove('nav-open');
+                    document.getElementById('navTrigger').setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+
+        const navTrigger = document.getElementById('navTrigger');
+        navTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const open = document.body.classList.toggle('nav-open');
+            navTrigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-panel') && !e.target.closest('#navTrigger')) {
+                document.body.classList.remove('nav-open');
+                navTrigger.setAttribute('aria-expanded', 'false');
+            }
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.body.classList.remove('nav-open');
+                navTrigger.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        let navIO;
+        function updateRevealObservers() {
+            if (navIO) navIO.disconnect();
+            navIO = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        document.querySelectorAll('.nav-panel a[data-target]').forEach(a => {
+                            a.classList.toggle('active', a.dataset.target === entry.target.id);
+                        });
+                    }
+                });
+            }, { threshold: 0.4, rootMargin: '-100px 0px -40% 0px' });
+            document.querySelectorAll('section[id]').forEach(s => navIO.observe(s));
+        }
+
+        document.querySelectorAll('a[data-target]').forEach(a => {
+            a.addEventListener('click', () => {
+                document.body.classList.remove('nav-open');
+            });
+        });
+
+        function openIfInDetails() {
+            const id = location.hash.slice(1);
+            if (!id) return;
+            const target = document.getElementById(id);
+            if (!target) return;
+            let parent = target.closest('details');
+            while (parent) {
+                parent.open = true;
+                parent = parent.parentElement && parent.parentElement.closest('details');
+            }
+        }
+
+        (function init() {
+            const hashAud = location.hash.slice(1);
+            const savedAud = localStorage.getItem('clr-audience');
+            if (hashAud && AUDIENCE_LABELS[hashAud]) {
+                setAudience(hashAud, { silent: false, noScroll: true });
+            } else if (savedAud && AUDIENCE_LABELS[savedAud]) {
+                setAudience(savedAud, { silent: true, noScroll: true });
+            } else {
+                buildNav('');
+            }
+            updateRevealObservers();
+            openIfInDetails();
+            const targets = document.querySelectorAll('.section .section-card, .hero-inner > *, .audiences > *');
+            targets.forEach((el, i) => {
+                el.classList.add('reveal');
+                setTimeout(() => el.classList.add('in'), 80 + i * 40);
+            });
+        })();
+
+        window.addEventListener('hashchange', () => {
+            const a = location.hash.slice(1);
+            if (AUDIENCE_LABELS[a]) {
+                setAudience(a, { silent: true, noScroll: true });
+            }
+        });
+    </script>
+</body>
+</html>

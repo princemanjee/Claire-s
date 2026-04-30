@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>P. R. Manjee - Cover Letter (Executive) - Claire's CTO</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #1f3a5f;
+            --primary-deep: #14283f;
+            --accent: #c8a14a;
+            --accent-deep: #a37418;
+            --link: #0a66c2;
+            --link-hover: #084a8e;
+            --text: #1a1a1a;
+            --muted: #555;
+            --quiet: #777;
+            --rule: #d8d8d8;
+            --rule-light: #ececec;
+            --bg-page: #ffffff;
+            --bg-1: #dde4ee;
+            --bg-2: #c4d2e2;
+        }
+
+        body {
+            font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(ellipse 800px 500px at 18% 0%, rgba(31, 58, 95, 0.16) 0%, transparent 60%),
+                radial-gradient(ellipse 600px 500px at 88% 100%, rgba(200, 161, 74, 0.18) 0%, transparent 55%),
+                linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+            background-attachment: fixed;
+            line-height: 1.6;
+            font-size: 11.5pt;
+            min-height: 100vh;
+            padding: 32px 16px;
+            position: relative;
+            letter-spacing: -0.005em;
+        }
+
+        .page {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.75in 0.9in;
+            background: var(--bg-page);
+            box-shadow:
+                0 28px 70px -18px rgba(20, 40, 63, 0.32),
+                0 8px 24px -10px rgba(20, 40, 63, 0.18),
+                0 0 0 1px rgba(31, 58, 95, 0.05),
+                0 1px 0 rgba(255, 255, 255, 0.85) inset;
+            border-radius: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 60%, var(--primary) 100%);
+            border-radius: 8px 8px 0 0;
+        }
+
+        .header-block {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 14px;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 18pt;
+            color: var(--primary);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.012em;
+        }
+
+        .headline {
+            color: var(--accent-deep);
+            font-size: 11pt;
+            font-weight: 600;
+            margin-top: 5px;
+            letter-spacing: -0.005em;
+        }
+
+        .audience-tag {
+            font-size: 9.5pt;
+            color: var(--muted);
+            font-style: italic;
+            margin-top: 4px;
+        }
+
+        .contact {
+            font-size: 9.5pt;
+            color: var(--muted);
+            margin-top: 8px;
+        }
+        .contact a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            font-weight: 500;
+            transition: color 0.18s ease;
+        }
+        .contact a:hover { color: var(--link-hover); }
+
+        .date-line {
+            font-size: 11pt;
+            color: var(--muted);
+            margin-bottom: 22px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .recipient {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 18px;
+            letter-spacing: -0.005em;
+        }
+
+        p {
+            margin-bottom: 14px;
+            color: var(--text);
+        }
+
+        /* Bold-italic emphasis for scannable keywords */
+        strong, b {
+            font-weight: 600;
+            font-style: italic;
+            color: var(--primary);
+        }
+
+        a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            transition: color 0.18s ease;
+        }
+        a:hover { color: var(--link-hover); }
+
+        ol { margin-left: 24px; margin-bottom: 14px; }
+        ol li { margin-bottom: 9px; line-height: 1.6; }
+        ul { margin-left: 24px; margin-bottom: 14px; }
+        ul li { margin-bottom: 9px; line-height: 1.6; }
+        li::marker { color: var(--accent-deep); }
+
+        .signature { margin-top: 26px; }
+        .signature-name {
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.005em;
+        }
+        .signature-contact {
+            font-size: 10pt;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                padding: 0.6in 0.8in;
+                max-width: 100%;
+                border-radius: 0;
+            }
+            .page::before { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 14px 8px; font-size: 12pt; }
+            .page { padding: 32px 22px; }
+            h1 { font-size: 17pt; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header-block">
+            <h1>P. R. Manjee, EE, MIS</h1>
+            <div class="headline">Chief Technology Officer · Digital Transformation &amp; Omnichannel Modernization</div>
+            <div class="audience-tag">Executive variant - written for the CEO / Board / Senior Leadership</div>
+            <div class="contact">Chicago, IL · <a href="tel:3122969067">312.296.9067</a> · <a href="mailto:princemanjee@gmail.com">princemanjee@gmail.com</a> · <a href="https://www.linkedin.com/in/princemanjee">linkedin.com/in/princemanjee</a></div>
+        </div>
+
+        <div class="date-line">April 29, 2026</div>
+        <div class="recipient">To the Claire's CEO and Executive Leadership Team</div>
+
+        <p>The jewelry market is moving from <strong>$365.9B (2024) toward $580.7B (2033)</strong> at 5-8% globally; North America compounds at 8.4%. Claire's revenue is down <strong>15-20% YoY</strong> inside that growing market. Claire's is not in trouble because the market disappeared. Claire's is in trouble because its operational and technology delivery has fallen out of alignment with how its customer wants to shop, and because <strong>$575M of restructuring capital after the 2018 bankruptcy was spent on cash preservation rather than transformation</strong>. That is a fixable problem, and the fix is structural rather than tactical. The CTO mandate here is to rebuild the technology foundation that lets every other business decision compound.</p>
+
+        <p>I am writing to be considered for that role.</p>
+
+        <p>My case in three lines:</p>
+
+        <ol>
+            <li><strong>Thirty-year operational arc</strong> - factory floor through C-Suite advisory - has taught me how to turn strategic ambition into measurable outcomes without losing either side.</li>
+            <li><strong>Track record of unifying fragmented enterprise stacks</strong> in healthcare, finance, and hospitality - environments at least as complex as omnichannel retail - with quantified results: $1.2M annual IT spend reduction, 28% knowledge-worker capacity improvement, zero-downtime migrations of five-farm enterprise platforms.</li>
+            <li><strong>Proven crisis leadership</strong> - most recently, a 60-day ransomware recovery from breach through full re-architecture - that gives me the operational muscle a turnaround company needs in its first technology executive.</li>
+        </ol>
+
+        <p>The 18-month plan I would bring sits on three integrated pillars and a defined financial envelope:</p>
+
+        <ul>
+            <li><strong>Technology spine.</strong> Retire Salesforce and stand up HubSpot as the single CRM and revenue brain at <em>50-60% lower TCO</em>. Replatform e-commerce to Shopify or BigCommerce, roll Lightspeed Retail to stores, land every transaction in Azure. Layer decision-making AI on top: forecast, optimize, propose, human review, execute, learn. <em>Operational AI under merchant governance, not chatbots.</em></li>
+            <li><strong>Brand and loyalty (Generations + Princesses).</strong> Reactivate <em>20-30 years of dormant brand equity</em> in mothers and grandmothers through multigenerational family clusters in CRM, monthly Generations Days, and tea-house partnerships. Reframe "first piercing" as a defined Princesses ritual that brings the next generation in early. <em>Ritual brand, not a discount card.</em></li>
+            <li><strong>Store modernization with real omnichannel.</strong> 300+ remodels by Month 18 in a curated, Gen Z-aligned format, with ship-from-store, BOPIS optimization, and unified returns built on the new spine. Walmart wholesale stays capped as a tactical Princesses discovery channel; <em>the brand is not for rent.</em></li>
+        </ul>
+
+        <p>The math is <strong>$105-165M of investment recovering $500-800M of annualized revenue</strong> and $30-65M of cost takeout, payback 2-3 years, EBITDA from -$500M to break-even or positive by Month 18, success probability <strong>60-70% with disciplined execution</strong>. Day 90 carries four concrete proof points: Salesforce read-only, omnichannel dashboards in production, decision-making AI generating real buying recommendations for earrings in the Midwest, and the 18-month plan defended by operating evidence rather than promises.</p>
+
+        <p>The next 18 months will determine whether Claire's re-emerges as a destination for a new generation of customers or quietly manages decline. I would welcome the opportunity to discuss how I would lead the technology side of that decision with you, the board, and the executive team.</p>
+
+        <p>Respectfully,</p>
+
+        <div class="signature">
+            <div class="signature-name">P. R. Manjee, EE, MIS</div>
+            <div class="signature-contact">princemanjee@gmail.com · <a href="tel:3122969067">312.296.9067</a> · <a href="https://www.linkedin.com/in/princemanjee">linkedin.com/in/princemanjee</a></div>
+        </div>
+    </div>
+</body>
+</html>

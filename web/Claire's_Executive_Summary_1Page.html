@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Claire's Turnaround: Executive Summary</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #1f3a5f;
+            --primary-deep: #14283f;
+            --accent: #c8a14a;
+            --accent-deep: #a37418;
+            --link: #0a66c2;
+            --link-hover: #084a8e;
+            --oxblood: #6b1b2c;
+            --text: #1a1a1a;
+            --muted: #555;
+            --quiet: #777;
+            --rule: #d8d8d8;
+            --rule-light: #ececec;
+            --bg-page: #ffffff;
+            --bg-1: #dde4ee;
+            --bg-2: #c4d2e2;
+            --tint-warm: #fdf7e8;
+            --tint-cool: #eef3fa;
+            --tint-rose: #f8eef0;
+        }
+
+        body {
+            font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(ellipse 800px 500px at 18% 0%, rgba(31, 58, 95, 0.16) 0%, transparent 60%),
+                radial-gradient(ellipse 600px 500px at 88% 100%, rgba(200, 161, 74, 0.18) 0%, transparent 55%),
+                linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+            background-attachment: fixed;
+            line-height: 1.6;
+            font-size: 11.5pt;
+            min-height: 100vh;
+            padding: 32px 16px;
+            letter-spacing: -0.005em;
+        }
+
+        .top-nav {
+            max-width: 9in;
+            margin: 0 auto 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10pt;
+        }
+        .top-nav a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(31, 58, 95, 0.12);
+            transition: all 0.18s ease;
+        }
+        .top-nav a:hover { background: rgba(255, 255, 255, 0.85); }
+
+        .page {
+            max-width: 9in;
+            margin: 0 auto;
+            background: var(--bg-page);
+            box-shadow:
+                0 28px 70px -18px rgba(20, 40, 63, 0.32),
+                0 8px 24px -10px rgba(20, 40, 63, 0.18),
+                0 0 0 1px rgba(31, 58, 95, 0.05),
+                0 1px 0 rgba(255, 255, 255, 0.85) inset;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 50%, var(--primary) 100%);
+        }
+
+        .page-header {
+            padding: 48px 60px 28px;
+            border-bottom: 1px solid var(--rule-light);
+        }
+        .page-header h1 {
+            font-size: 28pt;
+            color: var(--primary);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+        }
+        .page-header .lede {
+            color: var(--accent-deep);
+            font-size: 13pt;
+            font-weight: 600;
+            letter-spacing: -0.005em;
+            margin-bottom: 14px;
+        }
+        .page-header .meta {
+            font-size: 10pt;
+            color: var(--muted);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+        .page-header .meta span { display: inline-flex; align-items: center; gap: 6px; }
+        .page-header .meta b {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            font-weight: 500;
+            color: var(--primary);
+            font-style: normal;
+        }
+
+        .stat-strip {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            background: linear-gradient(180deg, #f7f9fc 0%, #f0f4f8 100%);
+            border-bottom: 1px solid var(--rule-light);
+        }
+        .stat-cell {
+            padding: 18px 14px;
+            text-align: center;
+            border-right: 1px solid var(--rule-light);
+        }
+        .stat-cell:last-child { border-right: none; }
+        .stat-cell .v {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14pt;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+        .stat-cell .l {
+            font-size: 8.5pt;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-top: 4px;
+        }
+
+        .body-content { padding: 36px 60px 48px; }
+
+        h2 {
+            font-size: 16pt;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: -0.012em;
+            margin: 32px 0 14px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary);
+            position: relative;
+        }
+        h2::before {
+            content: counter(sec, decimal-leading-zero);
+            counter-increment: sec;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            color: var(--accent-deep);
+            position: absolute;
+            left: 0;
+            top: -14px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+        }
+        .body-content { counter-reset: sec; }
+
+        h3 {
+            font-size: 12pt;
+            color: var(--primary-deep);
+            font-weight: 700;
+            margin: 18px 0 8px;
+            letter-spacing: -0.005em;
+        }
+
+        p { margin-bottom: 12px; color: var(--text); }
+        strong, b {
+            font-weight: 600;
+            font-style: italic;
+            color: var(--primary);
+        }
+        a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        a:hover { color: var(--link-hover); }
+
+        ul, ol { margin: 10px 0 14px 22px; }
+        li { margin-bottom: 6px; line-height: 1.55; }
+        li::marker { color: var(--accent-deep); }
+
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: 18px 0 8px;
+        }
+        .pillar {
+            background: linear-gradient(180deg, #ffffff 0%, var(--tint-cool) 100%);
+            padding: 18px 16px 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(31, 58, 95, 0.1);
+            box-shadow: 0 4px 14px -8px rgba(20, 40, 63, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+        .pillar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        .pillar-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            color: var(--accent-deep);
+            font-weight: 500;
+            letter-spacing: 0.06em;
+        }
+        .pillar h4 {
+            color: var(--primary);
+            font-size: 11.5pt;
+            font-weight: 700;
+            margin: 4px 0 8px;
+            line-height: 1.2;
+            letter-spacing: -0.005em;
+        }
+        .pillar p {
+            font-size: 10pt;
+            color: var(--text);
+            line-height: 1.55;
+            margin-bottom: 0;
+        }
+
+        .callout {
+            background: linear-gradient(135deg, var(--tint-warm) 0%, #fff 100%);
+            border-left: 4px solid var(--accent);
+            padding: 16px 20px;
+            border-radius: 0 6px 6px 0;
+            margin: 16px 0;
+        }
+        .callout p { margin-bottom: 0; }
+
+        .phase-row {
+            display: grid;
+            grid-template-columns: 110px 1fr;
+            gap: 18px;
+            padding: 16px 0;
+            border-bottom: 1px dashed var(--rule);
+        }
+        .phase-row:last-child { border-bottom: none; }
+        .phase-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9.5pt;
+            font-weight: 700;
+            color: var(--accent-deep);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            line-height: 1.4;
+            padding-top: 2px;
+        }
+        .phase-body h4 {
+            font-size: 11.5pt;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: -0.005em;
+        }
+        .phase-body p {
+            font-size: 10.5pt;
+            margin-bottom: 0;
+            color: var(--text);
+        }
+
+        .fin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: 10pt;
+        }
+        .fin-table th {
+            text-align: left;
+            padding: 10px 12px;
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            font-size: 9.5pt;
+            text-transform: uppercase;
+        }
+        .fin-table th:nth-child(2), .fin-table th:nth-child(3) { text-align: right; }
+        .fin-table td {
+            padding: 9px 12px;
+            border-bottom: 1px solid var(--rule-light);
+        }
+        .fin-table td:nth-child(2), .fin-table td:nth-child(3) {
+            font-family: 'JetBrains Mono', monospace;
+            text-align: right;
+            font-weight: 500;
+            color: var(--primary);
+        }
+        .fin-table tr:nth-child(2n) td { background: #fafbfd; }
+        .fin-table .total td {
+            background: var(--tint-warm);
+            font-weight: 700;
+            border-bottom: 2px solid var(--accent);
+        }
+        .fin-table .total td:first-child { color: var(--primary); }
+
+        .ask-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 14px 0;
+        }
+        .ask-card {
+            background: linear-gradient(135deg, #ffffff 0%, var(--tint-cool) 100%);
+            border: 1px solid rgba(31, 58, 95, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 14px 18px;
+            border-radius: 0 6px 6px 0;
+        }
+        .ask-card .label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8.5pt;
+            color: var(--accent-deep);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 4px;
+        }
+        .ask-card .value {
+            font-size: 10.5pt;
+            line-height: 1.45;
+            color: var(--text);
+        }
+        .ask-card .value strong { color: var(--primary); }
+
+        .month18-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+            margin: 14px 0 4px;
+        }
+        .m18 {
+            background: linear-gradient(180deg, #ffffff 0%, var(--tint-warm) 100%);
+            border: 1px solid rgba(200, 161, 74, 0.3);
+            padding: 14px 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .m18 .v {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13pt;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+        .m18 .l {
+            font-size: 8.5pt;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 4px;
+            line-height: 1.2;
+        }
+
+        .closing {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-deep) 100%);
+            color: #f5f8fc;
+            padding: 22px 26px;
+            border-radius: 8px;
+            margin: 26px 0 0;
+            font-size: 11.5pt;
+            line-height: 1.55;
+            position: relative;
+            overflow: hidden;
+        }
+        .closing::after {
+            content: "";
+            position: absolute;
+            right: -40px; top: -40px;
+            width: 160px; height: 160px;
+            background: radial-gradient(circle, rgba(200, 161, 74, 0.18) 0%, transparent 70%);
+        }
+        .closing strong {
+            color: var(--accent);
+            font-style: normal;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                font-size: 10.5pt;
+            }
+            .top-nav { display: none; }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                max-width: 100%;
+                border-radius: 0;
+            }
+            .page::before { display: none; }
+            h2 { page-break-after: avoid; }
+            .pillar-grid, .ask-grid, .month18-grid { page-break-inside: avoid; }
+            .closing { page-break-inside: avoid; }
+        }
+
+        @media (max-width: 900px) {
+            .body-content, .page-header { padding-left: 32px; padding-right: 32px; }
+            .stat-strip { grid-template-columns: repeat(3, 1fr); }
+            .pillar-grid { grid-template-columns: 1fr; }
+            .ask-grid { grid-template-columns: 1fr; }
+            .month18-grid { grid-template-columns: repeat(3, 1fr); }
+            .page-header h1 { font-size: 22pt; }
+        }
+        @media (max-width: 540px) {
+            .stat-strip { grid-template-columns: repeat(2, 1fr); }
+            .month18-grid { grid-template-columns: repeat(2, 1fr); }
+            .phase-row { grid-template-columns: 1fr; gap: 6px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+        <a href="index.html">&larr; Portfolio</a>
+        <a href="Claire's_Comprehensive_Strategic_Intelligence_Report.html">Full Strategic Report &rarr;</a>
+    </div>
+
+    <article class="page">
+        <header class="page-header">
+            <h1>Claire's Turnaround: Executive Summary</h1>
+            <div class="lede">A defined playbook with named decisions, dated milestones, quantified outcomes, and a stated probability.</div>
+            <div class="meta">
+                <span>For <b>CEO, CFO, Board</b></span>
+                <span>By <b>P. R. Manjee, CTO/CIO Candidate</b></span>
+                <span>Read time <b>5 min</b></span>
+                <span>Horizon <b>18 months</b></span>
+            </div>
+        </header>
+
+        <div class="stat-strip">
+            <div class="stat-cell"><div class="v">$580.7B</div><div class="l">Jewelry market by 2033</div></div>
+            <div class="stat-cell"><div class="v">8.4%</div><div class="l">N. America CAGR</div></div>
+            <div class="stat-cell"><div class="v">-15-20%</div><div class="l">Claire's YoY revenue</div></div>
+            <div class="stat-cell"><div class="v">1,326</div><div class="l">US stores at risk</div></div>
+            <div class="stat-cell"><div class="v">$105-165M</div><div class="l">Investment envelope</div></div>
+            <div class="stat-cell"><div class="v">$500-800M</div><div class="l">Annualized recovery</div></div>
+        </div>
+
+        <div class="body-content">
+            <h2>The Opportunity</h2>
+            <p>Claire's filed Chapter 11 in August 2025 inside a growing market. The global specialty jewelry market is moving from <strong>$365.9B in 2024 to $580.7B in 2033 at 5-8% CAGR</strong>, with North America compounding at 8.4%. Claire's revenue is down 15-20% YoY across 2025 and 1,326 US stores are at risk. This is the <strong>second bankruptcy in seven years inside a market that is expanding</strong>. That is the entire thesis: <strong>this is execution failure, not market failure, and execution failure is fixable</strong>.</p>
+
+            <h2>The Diagnosis</h2>
+            <p>Three root causes explain the gap.</p>
+
+            <div class="pillar-grid">
+                <div class="pillar">
+                    <div class="pillar-num">ROOT CAUSE 01</div>
+                    <h4>Technology spine fragmented</h4>
+                    <p>Salesforce CRM and Salesforce Commerce Cloud sitting on top of fragmented store POS makes a single source of truth for revenue, customer, and inventory <em>impossible</em>. Without that, real omnichannel is impossible, decision-making AI is impossible, and operational decision speed is impossible. Signet runs at <strong>23% digital penetration</strong>; Claire's runs <strong>below 15%</strong>.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-num">ROOT CAUSE 02</div>
+                    <h4>Store and brand experience missed Gen Z</h4>
+                    <p>Cluttered, dated stores have lost Gen Z to Etsy and Depop (40-50% of the loss combined), to Ulta Beauty's piercing entry across <strong>1,500+ locations</strong>, to Amazon convenience, and to independent piercers. The product is still relevant; the delivery mechanism is wrong. <strong>20-30 years of dormant brand equity in mothers and grandmothers has not been monetized</strong>.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-num">ROOT CAUSE 03</div>
+                    <h4>Capital allocation funded preservation, not transformation</h4>
+                    <p><strong>$575M of restructuring capital after the 2018 bankruptcy was spent on cash preservation and debt service rather than transformation</strong>. By 2025, $700M of new debt has been added with no operational breakthrough. The transformation window was open between 2018 and 2025; it was squandered.</p>
+                </div>
+            </div>
+
+            <h2>The Strategy: Three Integrated Pillars</h2>
+
+            <h3>Pillar 1 &middot; HubSpot-centered Technology Spine</h3>
+            <p>Eliminate Salesforce. Stand up <strong>HubSpot as the single CRM and revenue brain</strong> at 50-60% lower TCO. Replatform to <strong>Shopify or BigCommerce</strong> on the front end, roll <strong>Lightspeed Retail</strong> (or equivalent cloud POS with a HubSpot connector) to stores, land every transaction in <strong>Azure</strong>. Layer Power BI dashboards and a decision-making AI loop on top: forecast, optimize, propose, human review, execute, learn. <strong>Not chatbots; AI making real buying and allocation calls under merchant governance</strong>, starting with earrings in the Midwest at Day 90 and scaling to 60% of assortment by Month 12.</p>
+
+            <h3>Pillar 2 &middot; Generations + Princesses Brand and Loyalty</h3>
+            <p><strong>Generations</strong> is the multigenerational ritual program: mother-daughter-grandmother family clusters in HubSpot, monthly "Generations Day" in stores, co-branded Sunday afternoon tea partnerships at hotels with destination charms and a same-day Claire's CTA. <strong>Princesses</strong> is the tween-led entry expression that turns "first piercing" into a defined ritual: appointment, parental moment, photo, certificate, anniversary outreach the following year. Together they reposition Claire's from <strong>single-generation tween chain to multigenerational ritual brand</strong>, with the technology wired to attribute generational lifetime value, not just individual CLV.</p>
+
+            <h3>Pillar 3 &middot; Store Modernization with Real Omnichannel</h3>
+            <p><strong>300+ remodels by Month 18</strong> in a curated, minimal format with integrated piercing flow and live inventory at the till. Real omnichannel fulfillment (ship-from-store, BOPIS optimization, unified returns). The Walmart wholesale shop-in-shop stays capped as a tactical Princesses discovery channel, not a strategy; <strong>wholesale dilutes price, brand control, and the data signal AI needs</strong>, so the direct-to-consumer spine stays the center of gravity.</p>
+
+            <h2>The Financial Model</h2>
+
+            <table class="fin-table">
+                <thead>
+                    <tr><th>Line item</th><th>Spend</th><th>Outcome</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Platform migration</td><td>$30-50M</td><td>Salesforce out, HubSpot in</td></tr>
+                    <tr><td>Store remodels (300 stores)</td><td>$15-25M</td><td>Curated, Gen Z format</td></tr>
+                    <tr><td>E-commerce replatform</td><td>$10-15M</td><td>Off Salesforce Commerce Cloud</td></tr>
+                    <tr><td>Cloud POS deployment</td><td>$10-15M</td><td>Lightspeed across fleet</td></tr>
+                    <tr><td>Data + decision AI</td><td>$5-10M</td><td>Forecast, allocate, optimize</td></tr>
+                    <tr><td>Integration engineering</td><td>$10-15M</td><td>Connectors and pipelines</td></tr>
+                    <tr><td>Team and staffing</td><td>$20-30M</td><td>Engineers, PM, design, data</td></tr>
+                    <tr><td>Contingency (10%)</td><td>$5-10M</td><td>Unknowns at peak migration</td></tr>
+                    <tr class="total"><td>Total 18-month investment</td><td>$105-165M</td><td>Returns below</td></tr>
+                </tbody>
+            </table>
+
+            <p><strong>Revenue recovery</strong> is $500-800M annualized. E-commerce penetration moving from below 15% to 25%+ delivers $300-500M; same-store sales moving from -15% to +2-3% delivers another $200-300M of prevention-and-recovery value. <strong>Cost takeout</strong> is $30-65M annualized: Salesforce decommission ($10-15M), inventory turns release ($30-50M of working capital), AI-driven margin (+$20-30M annual).</p>
+
+            <div class="callout">
+                <p><strong>Payback 2-3 years.</strong> EBITDA moves from a -$500M+ annual loss to break-even or positive by Month 18. <strong>Success probability is 60-70%</strong> with disciplined execution. The principal risks (organizational change, data migration complexity, holiday-season cutover, market downturn) are all named, sequenced around, and managed by phased rollout.</p>
+            </div>
+
+            <h2>The 90-Day Critical Path</h2>
+
+            <div class="phase-row">
+                <div class="phase-tag">Days 1-30</div>
+                <div class="phase-body">
+                    <h4>Freeze Salesforce, lock the architecture</h4>
+                    <p>Day 1 directive: no new objects, automations, or integrations on Salesforce. Architecture locked by Day 30: <strong>HubSpot, Shopify or BigCommerce, Lightspeed Retail, Azure</strong>. Dependency map, data mapping workbook, and dashboard spec board-approved.</p>
+                </div>
+            </div>
+
+            <div class="phase-row">
+                <div class="phase-tag">Days 31-60</div>
+                <div class="phase-body">
+                    <h4>Stand up the spine</h4>
+                    <p>HubSpot in production. <strong>Live e-commerce orders by Day 45</strong>. POS connector running in pilot stores. <strong>First unified revenue dashboard live by Day 60</strong>, single source of truth for performance reviews. Salesforce migration piloted on a controlled slice.</p>
+                </div>
+            </div>
+
+            <div class="phase-row">
+                <div class="phase-tag">Days 61-90</div>
+                <div class="phase-body">
+                    <h4>Cut over and launch decision-making AI</h4>
+                    <p>Full Salesforce cutover. <strong>Read-only by Day 90, $10-15M run-rate exiting</strong>. Decision-making AI pilot live for earrings in the Midwest with merchants approving or overriding daily and the model learning from human decisions. Operational AI, not a chatbot.</p>
+                </div>
+            </div>
+
+            <h2>The Ask</h2>
+
+            <div class="ask-grid">
+                <div class="ask-card">
+                    <div class="label">Capital</div>
+                    <div class="value"><strong>$105-165M committed over 18 months</strong>, contractually gated rather than re-litigated each quarter.</div>
+                </div>
+                <div class="ask-card">
+                    <div class="label">Authority</div>
+                    <div class="value"><strong>CTO with P&amp;L accountability</strong> for technology transformation and operational turnaround.</div>
+                </div>
+                <div class="ask-card">
+                    <div class="label">Governance</div>
+                    <div class="value"><strong>Monthly board review against defined milestones</strong> (Day 90, Month 6, Month 12, Month 18). No surprise management.</div>
+                </div>
+                <div class="ask-card">
+                    <div class="label">Mandate</div>
+                    <div class="value">Full ownership of CRM, e-commerce, POS, data, and the decision-making AI program with explicit authority to retire Salesforce.</div>
+                </div>
+            </div>
+
+            <h2>Success Metrics at Month 18</h2>
+            <div class="month18-grid">
+                <div class="m18"><div class="v">25%+</div><div class="l">E-commerce penetration</div></div>
+                <div class="m18"><div class="v">+2-3%</div><div class="l">Same-store sales</div></div>
+                <div class="m18"><div class="v">Break-even+</div><div class="l">EBITDA</div></div>
+                <div class="m18"><div class="v">300+</div><div class="l">Stores remodeled</div></div>
+                <div class="m18"><div class="v">2M+</div><div class="l">Generations members</div></div>
+                <div class="m18"><div class="v">$500-800M</div><div class="l">Annualized revenue</div></div>
+            </div>
+
+            <div class="closing">
+                <p>This is a defined playbook with <strong>named decisions, dated milestones, quantified outcomes, and a stated probability</strong>. The window is 18 months. The market is open. <strong>The capital and the authority to execute are the two questions remaining.</strong></p>
+            </div>
+        </div>
+    </article>
+</body>
+</html>
