@@ -987,6 +987,161 @@
         .skill-block { margin-bottom: 8px; font-size: 0.9em; }
         .skill-block strong { color: var(--gold); display: inline; margin-right: 6px; font-weight: 700; }
         .skill-block span { color: var(--text-soft); }
+
+        /* Materials inline packages (audience-targeted full doc) */
+        .pkg-block {
+            background: rgba(38, 48, 70, 0.55);
+            border: 1px solid var(--glass-border);
+            border-left: 3px solid var(--gold);
+            border-radius: 14px;
+            padding: 28px 32px;
+            margin-top: 22px;
+        }
+        .pkg-block + .pkg-block { margin-top: 16px; }
+        @media (max-width: 720px) { .pkg-block { padding: 22px 18px; } }
+        .pkg-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-bottom: 22px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--rule);
+        }
+        .pkg-tag {
+            display: inline-block;
+            font-size: 0.66em;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.6px;
+            color: var(--gold);
+            background: rgba(212, 169, 85, 0.13);
+            padding: 4px 10px;
+            border-radius: 999px;
+            margin-bottom: 9px;
+        }
+        .pkg-title {
+            font-weight: 700;
+            font-size: 1.18em;
+            color: var(--text);
+            margin: 0 0 4px 0;
+            letter-spacing: -0.01em;
+            line-height: 1.25;
+        }
+        .pkg-audience-line {
+            font-size: 0.85em;
+            color: var(--text-soft);
+            line-height: 1.5;
+            max-width: 560px;
+        }
+        .pkg-cta {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .pkg-cta .open-full { margin: 0; }
+        .cl-block {
+            margin-bottom: 28px;
+            padding-bottom: 24px;
+            border-bottom: 1px dashed var(--rule);
+        }
+        .cl-block .cl-meta {
+            margin-bottom: 6px;
+            color: var(--text-quiet);
+            font-family: var(--mono);
+            font-size: 0.82em;
+        }
+        .cl-recipient {
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 14px;
+            font-size: 0.95em;
+            letter-spacing: -0.005em;
+        }
+        .cl-body p {
+            margin-bottom: 11px;
+            color: var(--text-soft);
+            font-size: 0.93em;
+            line-height: 1.65;
+        }
+        .cl-body p strong { color: var(--text); font-weight: 700; }
+        .cl-body p em { color: var(--gold); font-style: normal; }
+        .cl-body ul, .cl-body ol { margin: 6px 0 14px 22px; }
+        .cl-body li {
+            color: var(--text-soft);
+            font-size: 0.93em;
+            line-height: 1.6;
+            margin-bottom: 6px;
+        }
+        .cl-body li strong { color: var(--text); }
+        .cl-sig {
+            color: var(--gold);
+            font-weight: 700;
+            margin-top: 14px;
+            font-size: 0.94em;
+        }
+        .cv-block .cv-section-head {
+            font-size: 0.74em;
+            font-weight: 800;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1.6px;
+            margin: 22px 0 10px;
+            padding-top: 14px;
+            border-top: 1px solid var(--rule);
+        }
+        .cv-block .cv-section-head:first-child {
+            border-top: none;
+            padding-top: 0;
+            margin-top: 0;
+        }
+        .cv-block p {
+            color: var(--text-soft);
+            font-size: 0.92em;
+            line-height: 1.65;
+            margin-bottom: 10px;
+        }
+        .cv-block p strong { color: var(--text); font-weight: 700; }
+        .role-block { margin-bottom: 14px; }
+        .role-head {
+            color: var(--text);
+            font-weight: 600;
+            font-size: 0.93em;
+            margin-bottom: 5px;
+            letter-spacing: -0.005em;
+            line-height: 1.4;
+        }
+        .role-co { color: var(--gold); font-weight: 700; }
+        .role-dates {
+            color: var(--text-quiet);
+            font-family: var(--mono);
+            font-size: 0.86em;
+            font-weight: 500;
+        }
+        .role-bullets { margin: 0 0 0 20px; }
+        .role-bullets li {
+            color: var(--text-soft);
+            font-size: 0.9em;
+            line-height: 1.55;
+            margin-bottom: 5px;
+        }
+        .skill-row {
+            margin-bottom: 8px;
+            font-size: 0.9em;
+            line-height: 1.55;
+        }
+        .skill-row .skill-area { color: var(--gold); font-weight: 700; margin-right: 6px; }
+        .skill-row .skill-list { color: var(--text-soft); }
+        .cv-block ul.simple { margin: 6px 0 12px 22px; }
+        .cv-block ul.simple li {
+            color: var(--text-soft);
+            font-size: 0.9em;
+            line-height: 1.55;
+            margin-bottom: 5px;
+        }
+        .cv-block ul.simple li strong { color: var(--text); }
+
         .cl-meta { color: var(--text-quiet); font-size: 0.84em; margin-bottom: 10px; font-family: var(--mono); }
 
         /* CONTACT */
@@ -1118,7 +1273,7 @@
                 <h1>P. R. <span class="accent">Manjee</span></h1>
                 <div class="hero-role">Candidate, Chief of Technology<span class="target"> at Claire's</span></div>
                 <div class="hero-credentials">
-                    Chicago, IL
+                    EE, MIS<span class="sep">|</span>Chicago, IL
                 </div>
                 <p class="hero-tagline">
                     Thirty years preventing the digital-transformation failures Claire's just lived through. <strong>$322M</strong> in aggregated IT savings. <strong>178</strong> zero-downtime migrations. An <strong>80%</strong> personal ROI rate against an <strong>80%</strong> industry failure rate. The operator the next eighteen months will require.
@@ -1547,100 +1702,374 @@
             </div>
         </section>
 
-        <section class="section" id="materials" data-aud="recruiter cto board ceo all">
+        <section class="section" id="materials" data-aud="owner ceo board cto recruiter all">
             <div class="section-card glass">
                 <div class="section-eyebrow"><span class="num">09</span><span>Application materials</span></div>
-                <h2>Five packages, <em>calibrated</em> to each reader.</h2>
-                <p class="section-lead">Each package contains a tailored resume and matching cover letter; standalone files open in a new tab.</p>
+                <h2>The full <em>cover letter</em> and <em>resume</em>, calibrated to your lens.</h2>
+                <p class="section-lead">One package targeted to the audience you selected. Click either link to open the standalone print-ready version in a new tab.</p>
 
-                <div class="accordion-grid">
-
-                    <details class="accordion" data-aud="recruiter all">
-                        <summary>
-                            <span class="acc-summary-text">
-                                <span><span class="acc-tag">Recruiter</span><span class="acc-title">Default Package</span></span>
-                                <span class="acc-meta">For online application systems and first-pass recruiter review</span>
-                            </span>
-                        </summary>
-                        <div class="acc-body">
-                            <a class="open-full" href="Resume_Claires_Default_2026-04-29.html" target="_blank" rel="noopener">Resume &rarr;</a>
-                            <a class="open-full" href="CoverLetter_Claires_Default_2026-04-29.html" target="_blank" rel="noopener">Cover letter &rarr;</a>
-                            <h4>Resume excerpt</h4>
-                            <p>Technology executive, 30 years architecting and leading enterprise digital transformations across healthcare, financial services, manufacturing, and hospitality. Reduced enterprise IT spend by $1.2M annually. Led 60-day ransomware recovery. Zero-downtime migrations across five SharePoint server farms in healthcare-critical environments.</p>
-                            <h4>Cover letter excerpt</h4>
-                            <p class="cl-meta">To the Claire's Hiring Team. April 29, 2026.</p>
-                            <p>Claire's most expensive technology problem is not a system; it is the space between systems. Stores that cannot see online inventory. E-commerce that cannot read POS history. Loyalty that cannot follow a customer across channels. The CTO mandate here is to close those gaps.</p>
+                <!-- EXECUTIVE PACKAGE: owner / ceo / board / all -->
+                <div class="pkg-block" data-aud="owner ceo board all">
+                    <div class="pkg-header">
+                        <div class="pkg-titles">
+                            <span class="pkg-tag">Executive package</span>
+                            <h3 class="pkg-title">For CEO, Board, and capital partners</h3>
+                            <div class="pkg-audience-line">Comprehensive 4-page format. Capital framing, three-pillar plan, financial envelope, probability bands.</div>
                         </div>
-                    </details>
-
-                    <details class="accordion" data-aud="cto recruiter all">
-                        <summary>
-                            <span class="acc-summary-text">
-                                <span><span class="acc-tag">Technical</span><span class="acc-title">Skills-First Package</span></span>
-                                <span class="acc-meta">For peer CTOs, hiring managers, technical review</span>
-                            </span>
-                        </summary>
-                        <div class="acc-body">
-                            <a class="open-full" href="Resume_Claires_SkillsFirst_2026-04-29.html" target="_blank" rel="noopener">Resume &rarr;</a>
-                            <a class="open-full" href="CoverLetter_Claires_SkillsFirst_2026-04-29.html" target="_blank" rel="noopener">Cover letter &rarr;</a>
-                            <h4>Skills matrix</h4>
-                            <div class="skill-block"><strong>Retail and Omnichannel</strong> <span>POS (Lightspeed Retail eval), E-Commerce (Shopify, BigCommerce eval), OMS, Inventory Visibility, CX Platforms</span></div>
-                            <div class="skill-block"><strong>Cloud and Infrastructure</strong> <span>Azure, AWS, GCP, Docker, Kubernetes, Terraform, Ansible, CI/CD, IaC</span></div>
-                            <div class="skill-block"><strong>Data, Analytics, BI</strong> <span>Azure Data Warehouse, Power BI, Tableau, SQL Server, MySQL, ETL Pipelines</span></div>
-                            <div class="skill-block"><strong>Cybersecurity, Risk, Compliance</strong> <span>HIPAA, PCI, SOC 2, GDPR, ISO 27001, Zero Trust, IAM, DR/BCP</span></div>
+                        <div class="pkg-cta">
+                            <a class="open-full" href="CoverLetter_Claires_Custom_2026-04-29.html" target="_blank" rel="noopener">Open cover letter &rarr;</a>
+                            <a class="open-full" href="Resume_Claires_Custom_2026-04-29.html" target="_blank" rel="noopener">Open resume &rarr;</a>
                         </div>
-                    </details>
+                    </div>
 
-                    <details class="accordion" data-aud="cto recruiter board ceo all">
-                        <summary>
-                            <span class="acc-summary-text">
-                                <span><span class="acc-tag">Transformation</span><span class="acc-title">Projects Package</span></span>
-                                <span class="acc-meta">For digital transformation leads, consultancy, implementation review</span>
-                            </span>
-                        </summary>
-                        <div class="acc-body">
-                            <a class="open-full" href="Resume_Claires_Projects_2026-04-29.html" target="_blank" rel="noopener">Resume &rarr;</a>
-                            <a class="open-full" href="CoverLetter_Claires_Projects_2026-04-29.html" target="_blank" rel="noopener">Cover letter &rarr;</a>
-                            <p><strong>AI Adoption Program (MMR, 2025).</strong> Modernized engineering operations by embedding AI into the development lifecycle.</p>
-                            <p><strong>Ransomware Incident Response (FVK Solutions, 2025).</strong> 60 days to full recovery from breach via SonicWall router exploit.</p>
-                            <p><strong>HIMSS Information Architecture Modernization (DTIG, 2020).</strong> 28% improvement in knowledge-worker capacity.</p>
-                            <p><strong>UChicago Medicine Multi-Farm Migration (DTIG, 2020-2021).</strong> Five SharePoint farms, zero downtime, healthcare-critical.</p>
-                            <p><strong>Kaufman Hall IA Consolidation (2015-2019).</strong> $1.2M annual IT spending reduction while improving the platform.</p>
+                    <div class="cl-block">
+                        <div class="cl-meta">April 29, 2026</div>
+                        <div class="cl-recipient">To the Claire's CEO and Executive Leadership Team</div>
+                        <div class="cl-body">
+                            <p>The jewelry market is moving from $365.9B (2024) toward $580.7B (2033) at 5-8% globally; North America compounds at 8.4%. Claire's revenue is down 15-20% YoY inside that growing market. Claire's is not in trouble because the market disappeared. Claire's is in trouble because its operational and technology delivery has fallen out of alignment with how its customer wants to shop, and because $575M of restructuring capital after the 2018 bankruptcy was spent on cash preservation rather than transformation. That is a fixable problem, and the fix is structural rather than tactical. The CTO mandate here is to rebuild the technology foundation that lets every other business decision compound.</p>
+                            <p>I am writing to be considered for that role. My case in three lines:</p>
+                            <ol>
+                                <li><strong>Thirty-year operational arc</strong>, factory floor through C-Suite advisory, has taught me how to turn strategic ambition into measurable outcomes without losing either side.</li>
+                                <li><strong>Track record of unifying fragmented enterprise stacks</strong> in healthcare, finance, and hospitality (environments at least as complex as omnichannel retail) with quantified results: $1.2M annual IT spend reduction, 28% knowledge-worker capacity improvement, zero-downtime migrations of five-farm enterprise platforms.</li>
+                                <li><strong>Proven crisis leadership</strong>, most recently a 60-day ransomware recovery from breach through full re-architecture, that gives me the operational muscle a turnaround company needs in its first technology executive.</li>
+                            </ol>
+                            <p>The 18-month plan I would bring sits on three integrated pillars and a defined financial envelope:</p>
+                            <ul>
+                                <li><strong>Technology spine.</strong> Retire Salesforce and stand up HubSpot as the single CRM and revenue brain at 50-60% lower TCO. Replatform e-commerce to Shopify or BigCommerce, roll Lightspeed Retail to stores, land every transaction in Azure. Layer decision-making AI on top: forecast, optimize, propose, human review, execute, learn. Operational AI under merchant governance, not chatbots.</li>
+                                <li><strong>Brand and loyalty (Generations + Princesses).</strong> Reactivate 20-30 years of dormant brand equity in mothers and grandmothers through multigenerational family clusters in CRM, monthly Generations Days, and tea-house partnerships. Reframe "first piercing" as a defined Princesses ritual that brings the next generation in early. Ritual brand, not a discount card.</li>
+                                <li><strong>Store modernization with real omnichannel.</strong> 300+ remodels by Month 18 in a curated, Gen Z-aligned format, with ship-from-store, BOPIS optimization, and unified returns built on the new spine. Walmart wholesale stays capped as a tactical Princesses discovery channel; the brand is not for rent.</li>
+                            </ul>
+                            <p>The math is $105-165M of investment recovering $500-800M of annualized revenue and $30-65M of cost takeout, payback 2-3 years, EBITDA from -$500M to break-even or positive by Month 18, success probability 60-70% with disciplined execution. Day 90 carries four concrete proof points: Salesforce read-only, omnichannel dashboards in production, decision-making AI generating real buying recommendations for earrings in the Midwest, and the 18-month plan defended by operating evidence rather than promises.</p>
+                            <p>The next 18 months will determine whether Claire's re-emerges as a destination for a new generation of customers or quietly manages decline. I would welcome the opportunity to discuss how I would lead the technology side of that decision with you, the board, and the executive team.</p>
                         </div>
-                    </details>
+                        <div class="cl-sig">Respectfully, P. R. Manjee, EE, MIS</div>
+                    </div>
 
-                    <details class="accordion" data-aud="ceo board recruiter all">
-                        <summary>
-                            <span class="acc-summary-text">
-                                <span><span class="acc-tag">Executive</span><span class="acc-title">Custom Package</span></span>
-                                <span class="acc-meta">For CEO, board review, executive search, comprehensive evaluation</span>
-                            </span>
-                        </summary>
-                        <div class="acc-body">
-                            <a class="open-full" href="Resume_Claires_Custom_2026-04-29.html" target="_blank" rel="noopener">Resume &rarr;</a>
-                            <a class="open-full" href="CoverLetter_Claires_Custom_2026-04-29.html" target="_blank" rel="noopener">Cover letter &rarr;</a>
-                            <h4>Cover letter (CEO, board)</h4>
-                            <p class="cl-meta">To the Claire's CEO and Executive Leadership Team.</p>
-                            <p>The jewelry market is growing 5 to 8 percent globally; North America at 8.4. Claire's is not in trouble because the market disappeared. Claire's is in trouble because operational and technology delivery has fallen out of alignment with how its customer wants to shop. That is fixable, and the fix is structural.</p>
-                            <p>My case in three lines: thirty-year operational arc; track record unifying fragmented stacks with quantified outcomes; proven crisis leadership.</p>
+                    <div class="cv-block">
+                        <h4 class="cv-section-head">Executive Profile</h4>
+                        <p>Technology executive with 30 years architecting and leading enterprise digital transformations across healthcare, financial services, manufacturing, and hospitality. Hands-on practitioner from factory-floor electrical engineering through C-Suite digital transformation advisory; has personally built, migrated, secured, and modernized enterprise systems at scale. Led multi-year platform migrations, cloud adoption strategies, and legacy-to-microservices transitions while managing distributed teams and multi-million-dollar budgets. Reduced enterprise IT costs by $1.2M annually, improved knowledge-worker capacity 28%, and led 60-day ransomware recovery, pairing strategic vision with operational credibility because both have been executed at scale, under pressure.</p>
+
+                        <h4 class="cv-section-head">Experience</h4>
+
+                        <div class="role-block">
+                            <div class="role-head"><span class="role-co">MMR &middot; Modern Workplace Consultant</span> &middot; AI Adoption Program Lead (Software Engineering Transformation) &middot; <span class="role-dates">Jul 2025 – Jan 2026</span></div>
+                            <ul class="role-bullets">
+                                <li>Embedded structured AI/ML practices across software engineering operations; transitioned teams from ad-hoc prompting to reusable context-engineering frameworks</li>
+                                <li>Defined KPIs linking AI adoption to measurable productivity and code-quality outcomes; established governance for responsible AI deployment</li>
+                                <li>Advised executive sponsors on AI roadmap, change management, ethical AI, and long-term strategic adoption</li>
+                            </ul>
                         </div>
-                    </details>
 
-                    <details class="accordion" data-aud="recruiter board all">
-                        <summary>
-                            <span class="acc-summary-text">
-                                <span><span class="acc-tag">Verification</span><span class="acc-title">Full CV / Master narrative</span></span>
-                                <span class="acc-meta">For executive search firms, reference checks, full-arc verification</span>
-                            </span>
-                        </summary>
-                        <div class="acc-body">
-                            <a class="open-full" href="Resume_Claires_FullCV_2026-04-29.html" target="_blank" rel="noopener">Full CV &rarr;</a>
-                            <a class="open-full" href="CoverLetter_Claires_FullCV_2026-04-29.html" target="_blank" rel="noopener">Cover letter &rarr;</a>
-                            <p>Complete career history. Every role from ARM-S Electric (1998) through MMR (2026). Awards, volunteer work, certifications. Cover letter narrates the thirty-year arc as a single continuous story.</p>
+                        <div class="role-block">
+                            <div class="role-head"><span class="role-co">FVK Solutions (Confidential Client)</span> &middot; Contract Incident Response &amp; Recovery Lead &middot; <span class="role-dates">Oct 2025 – Dec 2025</span></div>
+                            <ul class="role-bullets">
+                                <li>Led cross-functional incident response team through full ransomware recovery cycle (threat assessment, containment, negotiation, restoration) in under 60 days</li>
+                                <li>Re-architected core information systems with segmentation, monitoring, and resilience frameworks to prevent recurrence</li>
+                                <li>Delivered post-incident playbooks, business-continuity standards, and team training to harden enterprise security posture and disaster-recovery capability</li>
+                            </ul>
                         </div>
-                    </details>
 
+                        <div class="role-block">
+                            <div class="role-head"><span class="role-co">DTIG</span> &middot; UX Strategy &amp; Digital Transformation Consultant &middot; <span class="role-dates">May 2021 – Dec 2024</span></div>
+                            <ul class="role-bullets">
+                                <li>Led enterprise modernization for healthcare and business clients; aligned executive sponsors, IT leadership, and operations on multi-year transformation roadmaps</li>
+                                <li>Architected omnichannel digital workplace solutions integrating Microsoft 365, Teams, SharePoint, line-of-business systems, and analytics platforms</li>
+                                <li>Managed cloud migration programs (Azure, AWS, M365) across distributed teams; established cost-optimization, governance, and security standards</li>
+                                <li>Co-authored automated SharePoint migration toolset using Portainer, Terraform, Balena, Ansible, Docker, and Kubernetes</li>
+                            </ul>
+                        </div>
+
+                        <div class="role-block">
+                            <div class="role-head"><span class="role-co">MICAH Legal Services Inc.</span> &middot; Digital Transformation Director (Part-time advisory) &middot; <span class="role-dates">May 2020 – Present</span></div>
+                            <ul class="role-bullets">
+                                <li>Defined cloud-first technology strategy for statewide service organization; established technical standards, modernization roadmap, and security posture</li>
+                                <li>Improved IT operations, staffing, support processes, and technology governance across distributed offices</li>
+                            </ul>
+                        </div>
+
+                        <div class="role-block">
+                            <div class="role-head"><span class="role-co">Kaufman Hall</span> &middot; Senior SharePoint Architect / Office 365 Administrator &middot; <span class="role-dates">Jun 2015 – Aug 2019</span></div>
+                            <ul class="role-bullets">
+                                <li>Owned enterprise collaboration platform serving 5,000+ users; led upgrades, migrations, and integrations with Salesforce.com and ERP analytics</li>
+                                <li>Designed information architecture and consolidation strategy that reduced annual IT spending by $1.2M</li>
+                                <li>Established governance via steering committees; built automation tools and executive Power BI dashboards on AXIOM ERP and Salesforce data</li>
+                            </ul>
+                        </div>
+
+                        <div class="role-block">
+                            <div class="role-head"><span class="role-co">Tahoe Partners</span> &middot; Information Technology Solutions Architect &middot; <span class="role-dates">May 2019 – May 2021</span></div>
+                            <ul class="role-bullets">
+                                <li>Led modernization assessments and transformation strategies for healthcare clients; created standardized methodology used across 20+ engagements</li>
+                                <li>Designed SharePoint and cloud migration strategies (lift-and-shift, re-platforming) with zero operational disruption</li>
+                            </ul>
+                        </div>
+
+                        <div class="role-block">
+                            <div class="role-head"><span class="role-co">Rockit Ranch Productions</span> &middot; Director of Technology and Digital Strategy &middot; <span class="role-dates">Sep 2013 – Jul 2015</span></div>
+                            <ul class="role-bullets">
+                                <li>Led modernization of business systems supporting expansion from regional to national operations</li>
+                                <li>Implemented unified identity management; completed enterprise Microsoft 365 deployment; built dashboards and analytics tools; authored 200+ knowledgebase articles</li>
+                            </ul>
+                        </div>
+
+                        <div class="role-block">
+                            <div class="role-head"><span class="role-co">Groove Science Studios, Inc.</span> &middot; Member of the Board of Advisors (Co-Founder) &middot; <span class="role-dates">Jun 2014 – Present</span></div>
+                            <ul class="role-bullets">
+                                <li>Co-founded and serve on the Board of Advisors for Soundscape VR; own product roadmaps and strategic planning cycles</li>
+                                <li>Develop partnership strategies with industry stakeholders; align hardware/software initiatives with business goals; support solution delivery and best practices</li>
+                            </ul>
+                        </div>
+
+                        <h4 class="cv-section-head">Skills</h4>
+                        <div class="skill-row"><span class="skill-area">Retail and Omnichannel:</span><span class="skill-list">POS (Lightspeed Retail eval), E-Commerce (Shopify, BigCommerce eval), Order Management Systems (OMS), Inventory Visibility, Customer Experience Platforms, Loyalty &amp; Identity</span></div>
+                        <div class="skill-row"><span class="skill-area">Enterprise Architecture:</span><span class="skill-list">HubSpot, Salesforce, Microsoft Dynamics, Zoho, Microsoft 365, SharePoint, Teams, ERP Integration, Microservices, API Strategy</span></div>
+                        <div class="skill-row"><span class="skill-area">Cloud and Infrastructure:</span><span class="skill-list">Azure, AWS, Google Cloud, Hyper-V, VMware, Docker, Kubernetes, Terraform, Ansible, CI/CD, Infrastructure as Code</span></div>
+                        <div class="skill-row"><span class="skill-area">Data, Analytics, BI:</span><span class="skill-list">Azure Data Warehouse, Power BI, Tableau, SQL Server, MySQL, PostgreSQL, MongoDB, Cosmos DB, ETL Pipelines, Real-Time Dashboards</span></div>
+                        <div class="skill-row"><span class="skill-area">AI / ML and Emerging Tech:</span><span class="skill-list">AI Adoption Frameworks, Context Engineering, Prompt Engineering, LLM Integration, Power Automate, UiPath, RPA</span></div>
+                        <div class="skill-row"><span class="skill-area">Cybersecurity, Risk, Compliance:</span><span class="skill-list">HIPAA, PCI, SOC 2, GDPR, ISO 27001, Zero Trust, IAM, MFA, SSO, Disaster Recovery, Business Continuity, Incident Response</span></div>
+                        <div class="skill-row"><span class="skill-area">Software Engineering and SDLC:</span><span class="skill-list">Agile, Scrum, CI/CD, REST APIs, Microservices, LAMP, Node.js, React, TypeScript, Python, PowerShell, Bash</span></div>
+                        <div class="skill-row"><span class="skill-area">Financial and Vendor Management:</span><span class="skill-list">IT Budget Ownership, SaaS Strategy, Cloud Cost Optimization (FinOps), ROI Tracking, Strategic Partnerships, Systems Integrators</span></div>
+
+                        <h4 class="cv-section-head">Selected Projects</h4>
+                        <p><strong>AI Adoption Program, MMR Engineering Transformation (2025).</strong> Modernized software engineering operations by embedding AI into the development lifecycle. Transitioned teams from ad-hoc "vibe coding" to structured context-engineering frameworks; built training, KPIs, and measurement systems linking AI usage directly to measurable performance gains.</p>
+                        <p><strong>Ransomware Incident Response, FVK Solutions / Cognesense (2025).</strong> Led on-site emergency response team after a ransomware attack exploiting a SonicWall router vulnerability. Directed containment, threat-actor negotiation, forensic analysis, and full-system restoration. Re-architected hardened infrastructure and trained team on incident response methodology; full recovery delivered in under 60 days.</p>
+                        <p><strong>HIMSS Information Architecture Modernization, DTIG (2020).</strong> Worked with healthcare-information-management governing body to redesign and deploy modern information architecture. Built logical single-source-of-truth on SharePoint and Dataverse; measured and reported a <strong>28% improvement in knowledge-worker capacity</strong>.</p>
+                        <p><strong>University of Chicago Medicine Multi-Farm Migration, DTIG (2020-2021).</strong> Completed discovery, redesign, and <strong>zero-downtime migration of five SharePoint server farms</strong> with zero interruption to emergency-care operations.</p>
+                        <p><strong>Reyes Holdings SharePoint Migration &amp; PMO Analytics, DTIG (2020-2021).</strong> Aligned client needs with engineering requirements for migration automation tooling. Defined KPIs for migration PMO and designed Power BI reports for real-time decision-making and stakeholder communication.</p>
+                        <p><strong>Heitman Financial SharePoint Upgrade &amp; Executive Analytics, Heitman (2019).</strong> Realigned stakeholder expectations and delivered SharePoint 2013 to Online + 2016 hybrid migration. Deployed LiveTiles intranet skin and built standard + executive Power BI dashboards backed by Salesforce.com data.</p>
+                        <p><strong>DTIG Automated SharePoint Migration Toolset (Co-Author), DTIG (2021).</strong> Contributed to design, development, and deployment of orchestration and automation library using Portainer, Terraform, Balena, Ansible, Chef, Docker, and Kubernetes.</p>
+                        <p><strong>Rockit Ranch Cloud &amp; Identity Migration, Rockit Ranch Productions (2014).</strong> Migrated on-premise file servers and Windows Active Directory to SharePoint and Azure AD. Designed and deployed BPM workflow automation supporting expansion from regional to national operations.</p>
+
+                        <h4 class="cv-section-head">Certifications</h4>
+                        <ul class="simple">
+                            <li><strong>Certified HIPAA Security Professional</strong> &middot; 4Med</li>
+                            <li><strong>Microsoft Certified Systems Engineer</strong> &middot; Productivity Point</li>
+                            <li>Context Engineering and Prompt Engineering practitioner (OpenAI, Anthropic frameworks)</li>
+                        </ul>
+
+                        <h4 class="cv-section-head">Service &amp; Interests</h4>
+                        <ul class="simple">
+                            <li><strong>Founder, Friends of Fur</strong> (2018 – Present). Animal welfare organization focused on rescue, medical support, and adoption services.</li>
+                            <li><strong>Pet Therapy, Village Senior Care</strong> (2004 – 2007). Trained and managed therapeutic animals for senior care facilities.</li>
+                            <li><strong>Animal Care Volunteer, PAWS Chicago</strong> (2004 – 2009). Care and support for shelter animals.</li>
+                            <li><strong>Civic Tech Participant, Random Hacks of Kindness</strong>. Supported the Sohana Project for Chicago's CERT Team.</li>
+                        </ul>
+                    </div>
                 </div>
+
+                <!-- TECHNICAL PACKAGE: cto -->
+                <div class="pkg-block" data-aud="cto">
+                    <div class="pkg-header">
+                        <div class="pkg-titles">
+                            <span class="pkg-tag">Technical package</span>
+                            <h3 class="pkg-title">For the Technology Hiring Committee &amp; peer CTO review</h3>
+                            <div class="pkg-audience-line">Skills-first 2-page format. Architecture-decision framing, Salesforce-to-HubSpot dependency map, decision-making AI sequencing.</div>
+                        </div>
+                        <div class="pkg-cta">
+                            <a class="open-full" href="CoverLetter_Claires_SkillsFirst_2026-04-29.html" target="_blank" rel="noopener">Open cover letter &rarr;</a>
+                            <a class="open-full" href="Resume_Claires_SkillsFirst_2026-04-29.html" target="_blank" rel="noopener">Open resume &rarr;</a>
+                        </div>
+                    </div>
+
+                    <div class="cl-block">
+                        <div class="cl-meta">April 29, 2026</div>
+                        <div class="cl-recipient">To the Claire's Technology Hiring Committee</div>
+                        <div class="cl-body">
+                            <p>The hardest part of leading retail technology in 2026 is not picking the right platform; it is sequencing platform decisions so that store, e-commerce, OMS, data, and security architectures stop fighting each other. That is the work I want to do at Claire's.</p>
+                            <p>My background is operational, not theoretical. Thirty years of architecting and running enterprise stacks (Microsoft 365, SharePoint from 2010 through Online, Salesforce, HubSpot, Lightspeed-class POS evaluations, Shopify and BigCommerce assessments, OMS and fulfillment integrations, Azure and AWS) gives me a working library of how these systems break and how they hold together at scale. I can read a five-vendor architecture diagram and tell you within an hour where the failure modes are.</p>
+                            <p>A few specifics relevant to the JD's domain matrix:</p>
+                            <ul>
+                                <li><strong>Retail systems and omnichannel.</strong> I have led platform unifications integrating point-of-sale data, inventory visibility, and customer profiles into single-source-of-truth analytics. Healthcare's matrix of 5,000-user collaboration platforms, M&amp;A consolidations, and zero-downtime migrations is not a literal Claire's POS environment, but the operational pattern transfers directly.</li>
+                                <li><strong>Cloud and modernization.</strong> Multi-year programs across Azure, AWS, and GCP. Container orchestration with Docker, Kubernetes, Terraform, Ansible, ArgoCD. CI/CD pipelines, microservices, API strategy, legacy decommission. Co-authored a SharePoint migration toolset using Portainer, Balena, and Kubernetes that reduced migration cycle time meaningfully.</li>
+                                <li><strong>Data, analytics, and AI.</strong> Power BI executive dashboards on Salesforce and ERP data. Azure Data Warehouse for unified reporting. Most recently, I built an AI adoption program that embedded context-engineering and prompt-engineering frameworks with measurable KPIs across an engineering organization. For Claire's specifically, the sequencing is non-negotiable: <em>operational decision-making AI first</em> (forecast, optimize, propose, human review, execute, learn for inventory and assortment, targeting <em>forecast error below 15%</em> against a 25-30% baseline), generative AI second, and only after the data spine has earned the right to scale it.</li>
+                                <li><strong>Cybersecurity and resilience.</strong> Led a 60-day ransomware recovery (incident response, threat-actor negotiation, forensic containment, full re-architecture). PCI, SOC 2, HIPAA, Zero Trust, IAM, MFA, SSO are part of how I design, not a separate workstream.</li>
+                            </ul>
+                            <p>I do not believe a CTO should ship a single tool decision in the first thirty days. I believe a CTO should ship a single <em>architecture decision</em>, one that frees the next twelve months of engineering work from compounding tech debt. At Claire's, that decision is to <strong>retire Salesforce CRM and Salesforce Commerce Cloud</strong> in favor of <strong>HubSpot as the single revenue brain</strong>, Shopify or BigCommerce on the front end, Lightspeed Retail at the till, and Azure underneath, with the merchandising AI loop running on top. The TCO advantage is <strong>50-60% at retail scale</strong>, and more importantly the architecture stops fighting itself: omnichannel becomes possible, decision-making AI becomes possible, and the rest of the 18-month plan stops being aspirational. I would welcome the chance to walk through the dependency map and the cutover sequencing in detail.</p>
+                        </div>
+                        <div class="cl-sig">Respectfully, P. R. Manjee, EE, MIS</div>
+                    </div>
+
+                    <div class="cv-block">
+                        <h4 class="cv-section-head">Executive Profile</h4>
+                        <p>Technology executive with 30 years architecting and leading enterprise digital transformations across healthcare, financial services, manufacturing, and hospitality. Hands-on practitioner from factory-floor electrical engineering through C-Suite digital transformation advisory. Reduced enterprise IT costs by $1.2M annually, improved knowledge-worker capacity 28%, and led 60-day ransomware recovery; pairs strategic vision with operational credibility because both have been executed at scale, under pressure.</p>
+
+                        <h4 class="cv-section-head">Experience</h4>
+
+                        <div class="role-block">
+                            <div class="role-head"><span class="role-co">MMR</span> &middot; AI Adoption Program Lead &middot; <span class="role-dates">Jul 2025 – Jan 2026</span></div>
+                            <ul class="role-bullets">
+                                <li>Embedded structured AI/ML practices across software engineering operations; transitioned teams from ad-hoc prompting to reusable context-engineering frameworks</li>
+                                <li>Defined KPIs linking AI adoption to measurable productivity and code-quality outcomes; established governance for responsible AI deployment</li>
+                                <li>Advised executive sponsors on AI roadmap, change management, ethical AI, and long-term strategic adoption</li>
+                            </ul>
+                        </div>
+
+                        <div class="role-block">
+                            <div class="role-head"><span class="role-co">FVK Solutions (Confidential Client)</span> &middot; Contract Incident Response &amp; Recovery Lead &middot; <span class="role-dates">Oct 2025 – Dec 2025</span></div>
+                            <ul class="role-bullets">
+                                <li>Led cross-functional incident response team through full ransomware recovery cycle (threat assessment, containment, negotiation, restoration) in under 60 days</li>
+                                <li>Re-architected core information systems with segmentation, monitoring, and resilience frameworks to prevent recurrence</li>
+                                <li>Delivered post-incident playbooks, business-continuity standards, and team training to harden enterprise security posture and disaster-recovery capability</li>
+                            </ul>
+                        </div>
+
+                        <div class="role-block">
+                            <div class="role-head"><span class="role-co">DTIG</span> &middot; UX Strategy &amp; Digital Transformation Consultant &middot; <span class="role-dates">May 2021 – Dec 2024</span></div>
+                            <ul class="role-bullets">
+                                <li>Led enterprise modernization for healthcare and business clients; aligned executive sponsors, IT leadership, and operations on multi-year transformation roadmaps</li>
+                                <li>Architected omnichannel digital workplace solutions integrating Microsoft 365, Teams, SharePoint, line-of-business systems, and analytics platforms</li>
+                                <li>Managed cloud migration programs (Azure, AWS, M365) across distributed teams; established cost-optimization, governance, and security standards</li>
+                                <li>Co-authored automated SharePoint migration toolset using Portainer, Terraform, Balena, Ansible, Docker, and Kubernetes</li>
+                                <li>Delivered HIMSS information architecture modernization producing 28% knowledge-worker capacity improvement</li>
+                                <li>Executed zero-downtime, no-disruption migration across five SharePoint server farms at University of Chicago Medicine</li>
+                            </ul>
+                        </div>
+
+                        <div class="role-block">
+                            <div class="role-head"><span class="role-co">MICAH Legal Services Inc.</span> &middot; Digital Transformation Director (Part-time advisory) &middot; <span class="role-dates">May 2020 – Present</span></div>
+                            <ul class="role-bullets">
+                                <li>Defined cloud-first technology strategy for statewide service organization; established technical standards, modernization roadmap, and security posture</li>
+                                <li>Improved IT operations, staffing, support processes, and technology governance across distributed offices</li>
+                            </ul>
+                        </div>
+
+                        <div class="role-block">
+                            <div class="role-head"><span class="role-co">Kaufman Hall</span> &middot; Senior SharePoint Architect / Office 365 Administrator &middot; <span class="role-dates">Jun 2015 – Aug 2019</span></div>
+                            <ul class="role-bullets">
+                                <li>Owned enterprise collaboration platform serving 5,000+ users; led upgrades, migrations, and integrations with Salesforce.com and ERP analytics</li>
+                                <li>Designed information architecture and consolidation strategy that reduced annual IT spending by $1.2M</li>
+                                <li>Established governance via steering committees; built automation tools and executive Power BI dashboards on AXIOM ERP and Salesforce data</li>
+                            </ul>
+                        </div>
+
+                        <div class="role-block">
+                            <div class="role-head"><span class="role-co">Tahoe Partners</span> &middot; Information Technology Solutions Architect &middot; <span class="role-dates">May 2019 – May 2021</span></div>
+                            <ul class="role-bullets">
+                                <li>Led modernization assessments and transformation strategies for healthcare clients; created standardized methodology used across 20+ engagements</li>
+                                <li>Designed SharePoint and cloud migration strategies (lift-and-shift, re-platforming) with zero operational disruption</li>
+                            </ul>
+                        </div>
+
+                        <div class="role-block">
+                            <div class="role-head"><span class="role-co">Rockit Ranch Productions</span> &middot; Director of Technology and Digital Strategy &middot; <span class="role-dates">Sep 2013 – Jul 2015</span></div>
+                            <ul class="role-bullets">
+                                <li>Led modernization of business systems supporting expansion from regional to national operations</li>
+                                <li>Implemented unified identity management; completed enterprise Microsoft 365 deployment; built dashboards and analytics tools; authored 200+ knowledgebase articles</li>
+                            </ul>
+                        </div>
+
+                        <h4 class="cv-section-head">Skills</h4>
+                        <div class="skill-row"><span class="skill-area">Retail and Omnichannel:</span><span class="skill-list">POS (Lightspeed Retail eval), E-Commerce (Shopify, BigCommerce eval), OMS, Inventory Visibility, CX Platforms, Loyalty &amp; Identity</span></div>
+                        <div class="skill-row"><span class="skill-area">Enterprise Architecture:</span><span class="skill-list">HubSpot, Salesforce, Microsoft Dynamics, Zoho, M365, SharePoint (2010 to Online), Teams, Exchange Online, ERP Integration, Microservices, API Strategy</span></div>
+                        <div class="skill-row"><span class="skill-area">Cloud and Infrastructure:</span><span class="skill-list">Azure (App Services, SQL DB, Data Warehouse, Migrate, DevOps), AWS, GCP, Hyper-V, VMware, Docker, Kubernetes, Terraform, Ansible, CI/CD, IaC</span></div>
+                        <div class="skill-row"><span class="skill-area">Data, Analytics, BI:</span><span class="skill-list">Azure Data Warehouse, Power BI, Tableau, SQL Server, MySQL, PostgreSQL, MongoDB, Cosmos DB, ETL Pipelines, Real-Time Dashboards, Demand Forecasting</span></div>
+                        <div class="skill-row"><span class="skill-area">AI / ML and Emerging Tech:</span><span class="skill-list">AI Adoption Frameworks, Context Engineering, Prompt Engineering, LLM Integration (OpenAI, Anthropic, Local), Workflow Automation, Power Automate, UiPath, RPA</span></div>
+                        <div class="skill-row"><span class="skill-area">Cybersecurity, Risk, Compliance:</span><span class="skill-list">HIPAA, PCI, SOC 2, GDPR, ISO 27001, Zero Trust, IAM, MFA, SSO, Disaster Recovery, BCP, Incident Response, Vulnerability Assessment</span></div>
+                        <div class="skill-row"><span class="skill-area">Software Engineering and SDLC:</span><span class="skill-list">Agile, Scrum, Waterfall, CI/CD, REST APIs, GraphQL, Microservices, LAMP, Node.js, React, TypeScript, PHP, Python, PowerShell, Bash</span></div>
+                        <div class="skill-row"><span class="skill-area">Financial and Vendor Management:</span><span class="skill-list">IT Budget Ownership, SaaS Strategy, Cloud Cost Optimization (FinOps), ROI Tracking, Strategic Partnerships, Systems Integrators, Hardware Vendor Relationships</span></div>
+                    </div>
+                </div>
+
+                <!-- DEFAULT PACKAGE: recruiter -->
+                <div class="pkg-block" data-aud="recruiter">
+                    <div class="pkg-header">
+                        <div class="pkg-titles">
+                            <span class="pkg-tag">Recruiter package</span>
+                            <h3 class="pkg-title">For Director of Recruiting &amp; first-pass screening</h3>
+                            <div class="pkg-audience-line">One-page format. Quick fit summary, quantified outcomes, geographic and availability fit.</div>
+                        </div>
+                        <div class="pkg-cta">
+                            <a class="open-full" href="CoverLetter_Claires_Default_2026-04-29.html" target="_blank" rel="noopener">Open cover letter &rarr;</a>
+                            <a class="open-full" href="Resume_Claires_Default_2026-04-29.html" target="_blank" rel="noopener">Open resume &rarr;</a>
+                        </div>
+                    </div>
+
+                    <div class="cl-block">
+                        <div class="cl-meta">April 29, 2026</div>
+                        <div class="cl-recipient">To the Claire's Hiring Team</div>
+                        <div class="cl-body">
+                            <p>The global jewelry market is moving from $365.9B in 2024 toward $580.7B in 2033 at 5-8% CAGR, with North America compounding at 8.4%. Claire's revenue is down 15-20% YoY inside that growing market. That is not market failure; that is execution failure, and the most expensive piece of the execution failure is not a system, it is the <em>space between systems</em>. Stores that cannot see online inventory. E-commerce that cannot read POS history. Loyalty that cannot follow a customer across channels. The CTO mandate is to close those gaps and turn fragmentation into a unified, customer-centric platform.</p>
+                            <p>I have spent thirty years closing exactly that kind of gap. As an enterprise digital-transformation leader, I have unified fragmented technology stacks, modernized legacy platforms, and built data-driven operations across healthcare, financial services, manufacturing, and hospitality. At Kaufman Hall, the information architecture I designed reduced annual IT spending by $1.2M while consolidating systems for 5,000+ users. At HIMSS, I led a multi-system modernization that improved knowledge-worker capacity by 28%. At University of Chicago Medicine, I executed a five-server-farm SharePoint migration with zero downtime in a healthcare-critical environment.</p>
+                            <p>What that experience translates to for Claire's:</p>
+                            <ul>
+                                <li><strong>Omnichannel platform unification.</strong> I have repeatedly replaced fragmented enterprise stacks with single-source-of-truth architectures that let merchandising, store operations, and digital teams work from the same data. Healthcare's complexity is a credible proxy for retail's; both reward ruthless prioritization, governance, and operational discipline.</li>
+                                <li><strong>Cybersecurity, compliance, and resilience.</strong> Most recently, I led a 60-day ransomware recovery for a confidential client (containment through threat-actor negotiation through full re-architecture). PCI, SOC 2, and disaster-recovery thinking is part of how I design, not a bolt-on.</li>
+                                <li><strong>AI where it changes margin.</strong> I currently lead an AI Adoption Program that embeds context engineering and measurable KPIs into a software-engineering organization. For Claire's, AI matters most in inventory, demand forecasting, and assortment, where it directly affects cash, turns, and markdowns.</li>
+                            </ul>
+                            <p>I would lead Claire's technology with three commitments: retire Salesforce in favor of a HubSpot-centered revenue spine that lands every transaction in Azure; reach four concrete proof points by Day 90 (Salesforce gone, omnichannel dashboards live, decision-making AI generating real buying recommendations, the 18-month plan on track); and run a $105-165M envelope against $500-800M of annualized recovery at a 60-70% probability of disciplined execution. I would welcome the chance to walk through how I would sequence the first 18 months.</p>
+                        </div>
+                        <div class="cl-sig">Respectfully, P. R. Manjee, EE, MIS</div>
+                    </div>
+
+                    <div class="cv-block">
+                        <h4 class="cv-section-head">Executive Profile</h4>
+                        <p>Technology executive with 30 years architecting and leading enterprise digital transformations across healthcare, financial services, manufacturing, and hospitality. Reduced enterprise IT spend by $1.2M annually, improved knowledge-worker capacity 28%, and executed zero-downtime migrations across five SharePoint server farms in healthcare-critical environments. Hands-on practitioner arc (factory-floor electrical engineering through C-Suite digital transformation advisory) ready to translate retail and omnichannel strategy into measurable, secure, customer-centric platforms.</p>
+
+                        <h4 class="cv-section-head">Experience</h4>
+
+                        <div class="role-block">
+                            <div class="role-head"><span class="role-co">MMR</span> &middot; AI Adoption Program Lead &middot; <span class="role-dates">Jul 2025 – Jan 2026</span></div>
+                            <ul class="role-bullets">
+                                <li>Embedded structured AI/ML practices across software engineering operations; defined KPIs linking AI adoption to measurable productivity and code-quality gains</li>
+                                <li>Established governance for context-engineering and prompt-engineering frameworks; trained engineering leadership on responsible AI deployment and ROI tracking</li>
+                                <li>Advised executive sponsors on AI roadmap, change management, and long-term strategic adoption</li>
+                            </ul>
+                        </div>
+
+                        <div class="role-block">
+                            <div class="role-head"><span class="role-co">FVK Solutions (Confidential Client)</span> &middot; Contract Incident Response &amp; Recovery Lead &middot; <span class="role-dates">Oct 2025 – Dec 2025</span></div>
+                            <ul class="role-bullets">
+                                <li>Led cross-functional incident response team through full ransomware recovery cycle (containment, negotiation, restoration) in under 60 days</li>
+                                <li>Re-architected core information systems with segmentation, monitoring, and resilience frameworks to prevent recurrence</li>
+                                <li>Delivered post-incident playbooks, business-continuity standards, and team training to harden enterprise security posture</li>
+                            </ul>
+                        </div>
+
+                        <div class="role-block">
+                            <div class="role-head"><span class="role-co">DTIG</span> &middot; UX Strategy &amp; Digital Transformation Consultant &middot; <span class="role-dates">May 2021 – Dec 2024</span></div>
+                            <ul class="role-bullets">
+                                <li>Led enterprise modernization for healthcare and business clients; aligned executive sponsors, IT leadership, and operations on multi-year transformation roadmaps</li>
+                                <li>Architected omnichannel digital workplace solutions integrating Microsoft 365, Teams, SharePoint, line-of-business systems, and analytics platforms</li>
+                                <li>Managed cloud migration programs (Azure, AWS, M365) across distributed teams; established cost-optimization, governance, and security standards</li>
+                                <li>Co-authored automated SharePoint migration toolset (Portainer, Terraform, Balena, Ansible, Docker, Kubernetes)</li>
+                            </ul>
+                        </div>
+
+                        <div class="role-block">
+                            <div class="role-head"><span class="role-co">MICAH Legal Services Inc.</span> &middot; Digital Transformation Director (Part-time advisory) &middot; <span class="role-dates">May 2020 – Present</span></div>
+                            <ul class="role-bullets">
+                                <li>Defined cloud-first technology strategy for statewide service organization; established technical standards, modernization roadmap, and security posture</li>
+                                <li>Improved IT operations, staffing, support processes, and technology governance across distributed offices</li>
+                            </ul>
+                        </div>
+
+                        <div class="role-block">
+                            <div class="role-head"><span class="role-co">Kaufman Hall</span> &middot; Senior SharePoint Architect / Office 365 Administrator &middot; <span class="role-dates">Jun 2015 – Aug 2019</span></div>
+                            <ul class="role-bullets">
+                                <li>Owned enterprise collaboration platform serving 5,000+ users; led upgrades, migrations, and integrations with Salesforce.com and ERP analytics</li>
+                                <li>Designed information architecture and consolidation strategy that reduced annual IT spending by $1.2M</li>
+                                <li>Established governance via steering committees; built automation tools and executive Power BI dashboards on AXIOM ERP and Salesforce data</li>
+                            </ul>
+                        </div>
+
+                        <div class="role-block">
+                            <div class="role-head"><span class="role-co">Tahoe Partners</span> &middot; Information Technology Solutions Architect &middot; <span class="role-dates">May 2019 – May 2021</span></div>
+                            <ul class="role-bullets">
+                                <li>Led modernization assessments and transformation strategies for healthcare clients; created standardized methodology used across 20+ engagements</li>
+                                <li>Designed SharePoint and cloud migration strategies (lift-and-shift, re-platforming) with zero operational disruption</li>
+                            </ul>
+                        </div>
+
+                        <div class="role-block">
+                            <div class="role-head"><span class="role-co">Rockit Ranch Productions</span> &middot; Director of Technology and Digital Strategy &middot; <span class="role-dates">Sep 2013 – Jul 2015</span></div>
+                            <ul class="role-bullets">
+                                <li>Led modernization of business systems supporting expansion from regional to national operations</li>
+                                <li>Implemented unified identity management; completed enterprise Microsoft 365 deployment; built dashboards and analytics tools; authored 200+ knowledgebase articles</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -1663,7 +2092,7 @@
 
     <footer>
         <div class="ft-name">P. R. Manjee</div>
-        <p>Candidate for Chief of Technology at Claire's.</p>
+        <p>Candidate for Chief of Technology at Claire's. EE, MIS.</p>
         <p style="font-size:0.82em;opacity:0.7;">Operational depth. Executive scope. Defined path.</p>
         <div class="ft-contact">
             <a href="tel:3122969067">312.296.9067</a>
