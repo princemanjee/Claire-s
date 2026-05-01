@@ -1,0 +1,3775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Strategic Brief: Claire's CTO &middot; P. R. Manjee</title>
+    <style>
+/* === SECTION: Executive Summary (from web/Claire's_Executive_Summary_1Page.html) === */
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #1f3a5f;
+            --primary-deep: #14283f;
+            --accent: #c8a14a;
+            --accent-deep: #a37418;
+            --link: #0a66c2;
+            --link-hover: #084a8e;
+            --oxblood: #6b1b2c;
+            --text: #1a1a1a;
+            --muted: #555;
+            --quiet: #777;
+            --rule: #d8d8d8;
+            --rule-light: #ececec;
+            --bg-page: #ffffff;
+            --bg-1: #dde4ee;
+            --bg-2: #c4d2e2;
+            --tint-warm: #fdf7e8;
+            --tint-cool: #eef3fa;
+            --tint-rose: #f8eef0;
+        }
+
+        body {
+            font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(ellipse 800px 500px at 18% 0%, rgba(31, 58, 95, 0.16) 0%, transparent 60%),
+                radial-gradient(ellipse 600px 500px at 88% 100%, rgba(200, 161, 74, 0.18) 0%, transparent 55%),
+                linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+            background-attachment: fixed;
+            line-height: 1.6;
+            font-size: 11.5pt;
+            min-height: 100vh;
+            padding: 32px 16px;
+            letter-spacing: -0.005em;
+        }
+
+        .top-nav {
+            max-width: 9in;
+            margin: 0 auto 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10pt;
+        }
+        .top-nav a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(31, 58, 95, 0.12);
+            transition: all 0.18s ease;
+        }
+        .top-nav a:hover { background: rgba(255, 255, 255, 0.85); }
+
+        .page {
+            max-width: 9in;
+            margin: 0 auto;
+            background: var(--bg-page);
+            box-shadow:
+                0 28px 70px -18px rgba(20, 40, 63, 0.32),
+                0 8px 24px -10px rgba(20, 40, 63, 0.18),
+                0 0 0 1px rgba(31, 58, 95, 0.05),
+                0 1px 0 rgba(255, 255, 255, 0.85) inset;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 50%, var(--primary) 100%);
+        }
+
+        .page-header {
+            padding: 48px 60px 28px;
+            border-bottom: 1px solid var(--rule-light);
+        }
+        .page-header h1 {
+            font-size: 28pt;
+            color: var(--primary);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+        }
+        .page-header .lede {
+            color: var(--accent-deep);
+            font-size: 13pt;
+            font-weight: 600;
+            letter-spacing: -0.005em;
+            margin-bottom: 14px;
+        }
+        .page-header .meta {
+            font-size: 10pt;
+            color: var(--muted);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+        .page-header .meta span { display: inline-flex; align-items: center; gap: 6px; }
+        .page-header .meta b {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            font-weight: 500;
+            color: var(--primary);
+            font-style: normal;
+        }
+
+        .stat-strip {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            background: linear-gradient(180deg, #f7f9fc 0%, #f0f4f8 100%);
+            border-bottom: 1px solid var(--rule-light);
+        }
+        .stat-cell {
+            padding: 18px 14px;
+            text-align: center;
+            border-right: 1px solid var(--rule-light);
+        }
+        .stat-cell:last-child { border-right: none; }
+        .stat-cell .v {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14pt;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+        .stat-cell .l {
+            font-size: 8.5pt;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-top: 4px;
+        }
+
+        .body-content { padding: 36px 60px 48px; }
+
+        h2 {
+            font-size: 16pt;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: -0.012em;
+            margin: 32px 0 14px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary);
+            position: relative;
+        }
+        h2::before {
+            content: counter(sec, decimal-leading-zero);
+            counter-increment: sec;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            color: var(--accent-deep);
+            position: absolute;
+            left: 0;
+            top: -14px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+        }
+        .body-content { counter-reset: sec; }
+
+        h3 {
+            font-size: 12pt;
+            color: var(--primary-deep);
+            font-weight: 700;
+            margin: 18px 0 8px;
+            letter-spacing: -0.005em;
+        }
+
+        p { margin-bottom: 12px; color: var(--text); }
+        strong, b {
+            font-weight: 600;
+            font-style: italic;
+            color: var(--primary);
+        }
+        a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        a:hover { color: var(--link-hover); }
+
+        ul, ol { margin: 10px 0 14px 22px; }
+        li { margin-bottom: 6px; line-height: 1.55; }
+        li::marker { color: var(--accent-deep); }
+
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: 18px 0 8px;
+        }
+        .pillar {
+            background: linear-gradient(180deg, #ffffff 0%, var(--tint-cool) 100%);
+            padding: 18px 16px 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(31, 58, 95, 0.1);
+            box-shadow: 0 4px 14px -8px rgba(20, 40, 63, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+        .pillar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        .pillar-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            color: var(--accent-deep);
+            font-weight: 500;
+            letter-spacing: 0.06em;
+        }
+        .pillar h4 {
+            color: var(--primary);
+            font-size: 11.5pt;
+            font-weight: 700;
+            margin: 4px 0 8px;
+            line-height: 1.2;
+            letter-spacing: -0.005em;
+        }
+        .pillar p {
+            font-size: 10pt;
+            color: var(--text);
+            line-height: 1.55;
+            margin-bottom: 0;
+        }
+
+        .callout {
+            background: linear-gradient(135deg, var(--tint-warm) 0%, #fff 100%);
+            border-left: 4px solid var(--accent);
+            padding: 16px 20px;
+            border-radius: 0 6px 6px 0;
+            margin: 16px 0;
+        }
+        .callout p { margin-bottom: 0; }
+
+        .phase-row {
+            display: grid;
+            grid-template-columns: 110px 1fr;
+            gap: 18px;
+            padding: 16px 0;
+            border-bottom: 1px dashed var(--rule);
+        }
+        .phase-row:last-child { border-bottom: none; }
+        .phase-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9.5pt;
+            font-weight: 700;
+            color: var(--accent-deep);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            line-height: 1.4;
+            padding-top: 2px;
+        }
+        .phase-body h4 {
+            font-size: 11.5pt;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: -0.005em;
+        }
+        .phase-body p {
+            font-size: 10.5pt;
+            margin-bottom: 0;
+            color: var(--text);
+        }
+
+        .fin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: 10pt;
+        }
+        .fin-table th {
+            text-align: left;
+            padding: 10px 12px;
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            font-size: 9.5pt;
+            text-transform: uppercase;
+        }
+        .fin-table th:nth-child(2), .fin-table th:nth-child(3) { text-align: right; }
+        .fin-table td {
+            padding: 9px 12px;
+            border-bottom: 1px solid var(--rule-light);
+        }
+        .fin-table td:nth-child(2), .fin-table td:nth-child(3) {
+            font-family: 'JetBrains Mono', monospace;
+            text-align: right;
+            font-weight: 500;
+            color: var(--primary);
+        }
+        .fin-table tr:nth-child(2n) td { background: #fafbfd; }
+        .fin-table .total td {
+            background: var(--tint-warm);
+            font-weight: 700;
+            border-bottom: 2px solid var(--accent);
+        }
+        .fin-table .total td:first-child { color: var(--primary); }
+
+        .ask-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 14px 0;
+        }
+        .ask-card {
+            background: linear-gradient(135deg, #ffffff 0%, var(--tint-cool) 100%);
+            border: 1px solid rgba(31, 58, 95, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 14px 18px;
+            border-radius: 0 6px 6px 0;
+        }
+        .ask-card .label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8.5pt;
+            color: var(--accent-deep);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 4px;
+        }
+        .ask-card .value {
+            font-size: 10.5pt;
+            line-height: 1.45;
+            color: var(--text);
+        }
+        .ask-card .value strong { color: var(--primary); }
+
+        .month18-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+            margin: 14px 0 4px;
+        }
+        .m18 {
+            background: linear-gradient(180deg, #ffffff 0%, var(--tint-warm) 100%);
+            border: 1px solid rgba(200, 161, 74, 0.3);
+            padding: 14px 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .m18 .v {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13pt;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+        .m18 .l {
+            font-size: 8.5pt;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 4px;
+            line-height: 1.2;
+        }
+
+        .closing {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-deep) 100%);
+            color: #f5f8fc;
+            padding: 22px 26px;
+            border-radius: 8px;
+            margin: 26px 0 0;
+            font-size: 11.5pt;
+            line-height: 1.55;
+            position: relative;
+            overflow: hidden;
+        }
+        .closing::after {
+            content: "";
+            position: absolute;
+            right: -40px; top: -40px;
+            width: 160px; height: 160px;
+            background: radial-gradient(circle, rgba(200, 161, 74, 0.18) 0%, transparent 70%);
+        }
+        .closing strong {
+            color: var(--accent);
+            font-style: normal;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                font-size: 10.5pt;
+            }
+            .top-nav { display: none; }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                max-width: 100%;
+                border-radius: 0;
+            }
+            .page::before { display: none; }
+            h2 { page-break-after: avoid; }
+            .pillar-grid, .ask-grid, .month18-grid { page-break-inside: avoid; }
+            .closing { page-break-inside: avoid; }
+        }
+
+        @media (max-width: 900px) {
+            .body-content, .page-header { padding-left: 32px; padding-right: 32px; }
+            .stat-strip { grid-template-columns: repeat(3, 1fr); }
+            .pillar-grid { grid-template-columns: 1fr; }
+            .ask-grid { grid-template-columns: 1fr; }
+            .month18-grid { grid-template-columns: repeat(3, 1fr); }
+            .page-header h1 { font-size: 22pt; }
+        }
+        @media (max-width: 540px) {
+            .stat-strip { grid-template-columns: repeat(2, 1fr); }
+            .month18-grid { grid-template-columns: repeat(2, 1fr); }
+            .phase-row { grid-template-columns: 1fr; gap: 6px; }
+        }
+    
+
+/* === SECTION: Cover Letter (from web/CoverLetter_Claires_Custom_2026-04-29.html) === */
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #1f3a5f;
+            --primary-deep: #14283f;
+            --accent: #c8a14a;
+            --accent-deep: #a37418;
+            --link: #0a66c2;
+            --link-hover: #084a8e;
+            --text: #1a1a1a;
+            --muted: #555;
+            --quiet: #777;
+            --rule: #d8d8d8;
+            --rule-light: #ececec;
+            --bg-page: #ffffff;
+            --bg-1: #dde4ee;
+            --bg-2: #c4d2e2;
+        }
+
+        body {
+            font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(ellipse 800px 500px at 18% 0%, rgba(31, 58, 95, 0.16) 0%, transparent 60%),
+                radial-gradient(ellipse 600px 500px at 88% 100%, rgba(200, 161, 74, 0.18) 0%, transparent 55%),
+                linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+            background-attachment: fixed;
+            line-height: 1.6;
+            font-size: 11.5pt;
+            min-height: 100vh;
+            padding: 32px 16px;
+            position: relative;
+            letter-spacing: -0.005em;
+        }
+
+        .page {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.75in 0.9in;
+            background: var(--bg-page);
+            box-shadow:
+                0 28px 70px -18px rgba(20, 40, 63, 0.32),
+                0 8px 24px -10px rgba(20, 40, 63, 0.18),
+                0 0 0 1px rgba(31, 58, 95, 0.05),
+                0 1px 0 rgba(255, 255, 255, 0.85) inset;
+            border-radius: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 60%, var(--primary) 100%);
+            border-radius: 8px 8px 0 0;
+        }
+
+        .header-block {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 14px;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 18pt;
+            color: var(--primary);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.012em;
+        }
+
+        .headline {
+            color: var(--accent-deep);
+            font-size: 11pt;
+            font-weight: 600;
+            margin-top: 5px;
+            letter-spacing: -0.005em;
+        }
+
+        .audience-tag {
+            font-size: 9.5pt;
+            color: var(--muted);
+            font-style: italic;
+            margin-top: 4px;
+        }
+
+        .contact {
+            font-size: 9.5pt;
+            color: var(--muted);
+            margin-top: 8px;
+        }
+        .contact a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            font-weight: 500;
+            transition: color 0.18s ease;
+        }
+        .contact a:hover { color: var(--link-hover); }
+
+        .date-line {
+            font-size: 11pt;
+            color: var(--muted);
+            margin-bottom: 22px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .recipient {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 18px;
+            letter-spacing: -0.005em;
+        }
+
+        p {
+            margin-bottom: 14px;
+            color: var(--text);
+        }
+
+        /* Bold-italic emphasis for scannable keywords */
+        strong, b {
+            font-weight: 600;
+            font-style: italic;
+            color: var(--primary);
+        }
+
+        a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            transition: color 0.18s ease;
+        }
+        a:hover { color: var(--link-hover); }
+
+        ol { margin-left: 24px; margin-bottom: 14px; }
+        ol li { margin-bottom: 9px; line-height: 1.6; }
+        ul { margin-left: 24px; margin-bottom: 14px; }
+        ul li { margin-bottom: 9px; line-height: 1.6; }
+        li::marker { color: var(--accent-deep); }
+
+        .signature { margin-top: 26px; }
+        .signature-name {
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.005em;
+        }
+        .signature-contact {
+            font-size: 10pt;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                padding: 0.6in 0.8in;
+                max-width: 100%;
+                border-radius: 0;
+            }
+            .page::before { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 14px 8px; font-size: 12pt; }
+            .page { padding: 32px 22px; }
+            h1 { font-size: 17pt; }
+        }
+    
+
+/* === SECTION: Resume (from web/Resume_Claires_Custom_2026-04-29.html) === */
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #1f3a5f;
+            --primary-deep: #14283f;
+            --accent: #c8a14a;
+            --accent-deep: #a37418;
+            --link: #0a66c2;
+            --link-hover: #084a8e;
+            --text: #1a1a1a;
+            --muted: #555;
+            --quiet: #777;
+            --rule: #d8d8d8;
+            --rule-light: #ececec;
+            --bg-page: #ffffff;
+            --bg-1: #dde4ee;
+            --bg-2: #c4d2e2;
+        }
+
+        body {
+            font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(ellipse 800px 500px at 18% 0%, rgba(31, 58, 95, 0.16) 0%, transparent 60%),
+                radial-gradient(ellipse 600px 500px at 88% 100%, rgba(200, 161, 74, 0.18) 0%, transparent 55%),
+                linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+            background-attachment: fixed;
+            line-height: 1.5;
+            font-size: 11pt;
+            min-height: 100vh;
+            padding: 32px 16px;
+            position: relative;
+            letter-spacing: -0.005em;
+        }
+
+        .page {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.6in 0.7in 0.55in;
+            background: var(--bg-page);
+            box-shadow:
+                0 28px 70px -18px rgba(20, 40, 63, 0.32),
+                0 8px 24px -10px rgba(20, 40, 63, 0.18),
+                0 0 0 1px rgba(31, 58, 95, 0.05),
+                0 1px 0 rgba(255, 255, 255, 0.85) inset;
+            border-radius: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 60%, var(--primary) 100%);
+            border-radius: 8px 8px 0 0;
+        }
+
+        header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 22pt;
+            color: var(--primary);
+            letter-spacing: -0.012em;
+            font-weight: 800;
+            line-height: 1.05;
+        }
+
+        .headline {
+            color: var(--accent-deep);
+            font-size: 11.5pt;
+            font-weight: 600;
+            margin-top: 5px;
+            margin-bottom: 7px;
+            letter-spacing: -0.005em;
+        }
+
+        .contact {
+            font-size: 9.5pt;
+            color: var(--muted);
+        }
+
+        .contact a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            font-weight: 500;
+            transition: color 0.18s ease;
+        }
+        .contact a:hover { color: var(--link-hover); }
+
+        h2 {
+            font-size: 11pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--rule);
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 10.5pt;
+            color: var(--primary);
+            margin-top: 10px;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+
+        h4 {
+            font-size: 10pt;
+            color: var(--primary);
+            margin-top: 12px;
+            margin-bottom: 4px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+        }
+
+        .summary {
+            font-size: 10.5pt;
+            color: var(--text);
+            margin-bottom: 6px;
+            line-height: 1.55;
+        }
+
+        /* Bold-italic emphasis for scannable keywords */
+        strong, b {
+            font-weight: 600;
+            font-style: italic;
+            color: var(--primary);
+        }
+
+        /* Body / generic links */
+        a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            transition: color 0.18s ease;
+        }
+        a:hover { color: var(--link-hover); }
+
+        .role { margin-bottom: 13px; }
+        .role-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 3px;
+            flex-wrap: wrap;
+            gap: 6px 12px;
+        }
+        .role-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 11pt;
+            letter-spacing: -0.005em;
+        }
+        .role-position {
+            font-style: italic;
+            color: var(--text);
+            font-size: 10.5pt;
+        }
+        .role-dates {
+            color: var(--muted);
+            font-size: 10pt;
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
+        }
+
+        ul { margin-left: 18px; margin-top: 5px; }
+        li {
+            font-size: 10.5pt;
+            line-height: 1.55;
+            margin-bottom: 4px;
+            color: var(--text);
+        }
+        li::marker { color: var(--accent-deep); }
+
+        .skills-block { margin-bottom: 6px; }
+        .skills-block p {
+            font-size: 10.5pt;
+            line-height: 1.55;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .project { margin-bottom: 12px; }
+        .project-name {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 10.5pt;
+            letter-spacing: -0.005em;
+        }
+        .project-desc {
+            font-size: 10.5pt;
+            line-height: 1.55;
+            color: var(--text);
+            margin-top: 2px;
+        }
+
+        .cert-item, .lang-item, .interest-item {
+            font-size: 10.5pt;
+            margin-bottom: 5px;
+            line-height: 1.5;
+        }
+        .cert-item strong,
+        .interest-item strong {
+            color: var(--primary);
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .award { margin-bottom: 9px; }
+        .award-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 10.5pt;
+            letter-spacing: -0.005em;
+        }
+        .award-desc {
+            font-size: 10.5pt;
+            line-height: 1.55;
+            color: var(--text);
+            margin-top: 2px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                padding: 0.4in 0.5in;
+                max-width: 100%;
+                border-radius: 0;
+            }
+            .page::before { display: none; }
+            a { color: var(--text); text-decoration: none; }
+            .contact a { color: var(--link); text-decoration: underline; }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 16px 10px; font-size: 12pt; }
+            .page { padding: 28px 22px; }
+            h1 { font-size: 20pt; }
+            .role-header { gap: 4px; }
+            .role-dates { font-size: 9.5pt; }
+        }
+    
+
+/* === SECTION: 90-Day Tactical Plan (from web/Claire's_90Day_Tactical_Plan.html) === */
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #1f3a5f;
+            --primary-deep: #14283f;
+            --accent: #c8a14a;
+            --accent-deep: #a37418;
+            --link: #0a66c2;
+            --link-hover: #084a8e;
+            --oxblood: #6b1b2c;
+            --text: #1a1a1a;
+            --muted: #555;
+            --quiet: #777;
+            --rule: #d8d8d8;
+            --rule-light: #ececec;
+            --bg-page: #ffffff;
+            --bg-1: #dde4ee;
+            --bg-2: #c4d2e2;
+            --tint-warm: #fdf7e8;
+            --tint-cool: #eef3fa;
+            --tint-rose: #f8eef0;
+            --green: #2f7d4f;
+        }
+
+        body {
+            font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(ellipse 800px 500px at 18% 0%, rgba(31, 58, 95, 0.16) 0%, transparent 60%),
+                radial-gradient(ellipse 600px 500px at 88% 100%, rgba(200, 161, 74, 0.18) 0%, transparent 55%),
+                linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+            background-attachment: fixed;
+            line-height: 1.62;
+            font-size: 11.5pt;
+            min-height: 100vh;
+            padding: 32px 16px;
+            letter-spacing: -0.005em;
+        }
+
+        .top-nav {
+            max-width: 9.5in;
+            margin: 0 auto 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10pt;
+        }
+        .top-nav a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(31, 58, 95, 0.12);
+            transition: all 0.18s ease;
+        }
+        .top-nav a:hover { background: rgba(255, 255, 255, 0.85); }
+
+        .page {
+            max-width: 9.5in;
+            margin: 0 auto;
+            background: var(--bg-page);
+            box-shadow:
+                0 28px 70px -18px rgba(20, 40, 63, 0.32),
+                0 8px 24px -10px rgba(20, 40, 63, 0.18),
+                0 0 0 1px rgba(31, 58, 95, 0.05),
+                0 1px 0 rgba(255, 255, 255, 0.85) inset;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 50%, var(--primary) 100%);
+        }
+
+        .page-header {
+            padding: 48px 64px 28px;
+            border-bottom: 1px solid var(--rule-light);
+        }
+        .page-header h1 {
+            font-size: 26pt;
+            color: var(--primary);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+        }
+        .page-header .lede {
+            color: var(--accent-deep);
+            font-size: 13pt;
+            font-weight: 600;
+            letter-spacing: -0.005em;
+            margin-bottom: 16px;
+        }
+        .page-header .meta {
+            font-size: 10pt;
+            color: var(--muted);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-bottom: 16px;
+        }
+        .page-header .meta span { display: inline-flex; align-items: center; gap: 6px; }
+        .page-header .meta b {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            font-weight: 500;
+            color: var(--primary);
+            font-style: normal;
+        }
+        .page-header .premise {
+            font-size: 11pt;
+            color: var(--text);
+            line-height: 1.6;
+            background: linear-gradient(135deg, var(--tint-warm) 0%, #fff 100%);
+            border-left: 4px solid var(--accent);
+            padding: 14px 18px;
+            border-radius: 0 6px 6px 0;
+        }
+        .page-header .premise strong { color: var(--primary); }
+
+        .body-content {
+            padding: 36px 64px 48px;
+            counter-reset: phase;
+        }
+
+        .phase-block {
+            margin: 36px 0;
+            padding: 24px 26px 22px;
+            background: linear-gradient(180deg, #fafbfd 0%, #ffffff 60%);
+            border: 1px solid rgba(31, 58, 95, 0.1);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            counter-increment: phase;
+        }
+        .phase-block::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+        }
+        .phase-head {
+            display: flex;
+            align-items: baseline;
+            gap: 18px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+        .phase-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10pt;
+            color: var(--accent-deep);
+            font-weight: 500;
+            letter-spacing: 0.08em;
+        }
+        .phase-block h2 {
+            font-size: 18pt;
+            color: var(--primary);
+            font-weight: 800;
+            letter-spacing: -0.015em;
+            line-height: 1.1;
+            margin: 0;
+        }
+        .phase-job {
+            font-size: 10.5pt;
+            color: var(--accent-deep);
+            font-weight: 600;
+            font-style: italic;
+            margin-bottom: 16px;
+            margin-top: 4px;
+        }
+
+        .week-track {
+            margin: 16px 0 8px;
+            padding: 14px 16px;
+            background: #ffffff;
+            border: 1px solid var(--rule-light);
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+        }
+        .week-track h3 {
+            font-size: 12pt;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.005em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .week-track h3 .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            color: var(--accent-deep);
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            padding: 3px 8px;
+            background: var(--tint-warm);
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+        .week-track ul { margin: 8px 0 8px 22px; }
+        .week-track li {
+            margin-bottom: 6px;
+            line-height: 1.55;
+            font-size: 10.5pt;
+        }
+        .week-track li::marker { color: var(--accent-deep); }
+        .week-track .deliv {
+            margin-top: 10px;
+            font-size: 10pt;
+            padding: 8px 12px;
+            background: var(--tint-cool);
+            border-radius: 5px;
+            color: var(--primary-deep);
+        }
+        .week-track .deliv .l {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8.5pt;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent-deep);
+            margin-right: 6px;
+        }
+
+        .proof-banner {
+            margin: 14px 0;
+            padding: 14px 18px;
+            background: linear-gradient(135deg, #18404f 0%, var(--primary-deep) 100%);
+            color: #f5f8fc;
+            border-radius: 8px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+        .proof-banner .ico {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 9pt;
+            letter-spacing: 0.08em;
+            white-space: nowrap;
+            padding-top: 2px;
+        }
+        .proof-banner p { margin: 0; font-size: 10.5pt; line-height: 1.55; color: #f5f8fc; }
+        .proof-banner strong { color: var(--accent); font-style: normal; }
+
+        h2.section-h {
+            font-size: 17pt;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: -0.012em;
+            margin: 38px 0 14px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        p { margin-bottom: 12px; color: var(--text); }
+        strong, b {
+            font-weight: 600;
+            font-style: italic;
+            color: var(--primary);
+        }
+        a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        a:hover { color: var(--link-hover); }
+        ul, ol { margin: 10px 0 14px 22px; }
+        li { margin-bottom: 6px; line-height: 1.55; }
+        li::marker { color: var(--accent-deep); }
+
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin: 14px 0;
+            counter-reset: proof;
+        }
+        .proof-card {
+            background: linear-gradient(180deg, #ffffff 0%, var(--tint-cool) 100%);
+            border: 1px solid rgba(31, 58, 95, 0.12);
+            padding: 18px 18px 16px;
+            border-radius: 8px;
+            position: relative;
+        }
+        .proof-card::before {
+            content: counter(proof, decimal-leading-zero);
+            counter-increment: proof;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 32pt;
+            font-weight: 700;
+            color: var(--accent);
+            opacity: 0.18;
+            position: absolute;
+            right: 14px;
+            top: 6px;
+            line-height: 1;
+        }
+        .proof-card h4 {
+            font-size: 11.5pt;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.005em;
+            position: relative;
+            z-index: 1;
+        }
+        .proof-card p {
+            font-size: 10pt;
+            line-height: 1.55;
+            margin-bottom: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .risk-row {
+            display: grid;
+            grid-template-columns: 130px 1fr 1.4fr;
+            gap: 14px;
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--rule);
+            align-items: start;
+        }
+        .risk-row:last-child { border-bottom: none; }
+        .risk-row .num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            color: var(--accent-deep);
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding-top: 2px;
+        }
+        .risk-row .name {
+            font-size: 10.5pt;
+            color: var(--primary);
+            font-weight: 700;
+            line-height: 1.35;
+        }
+        .risk-row .mitig {
+            font-size: 10pt;
+            color: var(--text);
+            line-height: 1.55;
+        }
+
+        .cadence-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 14px 0;
+        }
+        .cadence {
+            background: #ffffff;
+            border: 1px solid var(--rule-light);
+            border-left: 3px solid var(--accent);
+            padding: 12px 16px;
+            border-radius: 0 6px 6px 0;
+        }
+        .cadence .when {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            color: var(--accent-deep);
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        .cadence .what {
+            font-size: 10.5pt;
+            color: var(--text);
+            line-height: 1.5;
+        }
+        .cadence .what strong { color: var(--primary); }
+
+        .closing {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-deep) 100%);
+            color: #f5f8fc;
+            padding: 24px 28px;
+            border-radius: 10px;
+            margin: 32px 0 0;
+            font-size: 11.5pt;
+            line-height: 1.6;
+            position: relative;
+            overflow: hidden;
+        }
+        .closing::after {
+            content: "";
+            position: absolute;
+            right: -50px; top: -50px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(200, 161, 74, 0.2) 0%, transparent 70%);
+        }
+        .closing strong { color: var(--accent); font-style: normal; }
+        .closing p { margin-bottom: 0; color: #f5f8fc; }
+
+        @media print {
+            body { background: white; padding: 0; font-size: 10pt; }
+            .top-nav { display: none; }
+            .page { box-shadow: none; max-width: 100%; border-radius: 0; }
+            .page::before { display: none; }
+            .phase-block, .proof-grid, .closing, .week-track { page-break-inside: avoid; }
+            h2, h2.section-h { page-break-after: avoid; }
+        }
+
+        @media (max-width: 900px) {
+            .body-content, .page-header { padding-left: 32px; padding-right: 32px; }
+            .proof-grid, .cadence-grid { grid-template-columns: 1fr; }
+            .risk-row { grid-template-columns: 1fr; gap: 4px; }
+            .page-header h1 { font-size: 22pt; }
+        }
+    
+
+/* === SECTION: Strategic Intelligence Report (from web/Claire's_Comprehensive_Strategic_Intelligence_Report.html) === */
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #1f3a5f;
+            --primary-deep: #14283f;
+            --accent: #c8a14a;
+            --accent-deep: #a37418;
+            --link: #0a66c2;
+            --link-hover: #084a8e;
+            --oxblood: #6b1b2c;
+            --oxblood-tint: #f4e8eb;
+            --green: #2f7d4f;
+            --green-tint: #e8f3eb;
+            --text: #1a1a1a;
+            --muted: #555;
+            --quiet: #777;
+            --rule: #d8d8d8;
+            --rule-light: #ececec;
+            --bg-page: #ffffff;
+            --bg-1: #dde4ee;
+            --bg-2: #c4d2e2;
+            --tint-warm: #fdf7e8;
+            --tint-cool: #eef3fa;
+        }
+
+        body {
+            font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(ellipse 800px 500px at 18% 0%, rgba(31, 58, 95, 0.16) 0%, transparent 60%),
+                radial-gradient(ellipse 600px 500px at 88% 100%, rgba(200, 161, 74, 0.18) 0%, transparent 55%),
+                linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+            background-attachment: fixed;
+            line-height: 1.62;
+            font-size: 11.5pt;
+            min-height: 100vh;
+            padding: 32px 16px;
+            letter-spacing: -0.005em;
+        }
+
+        .top-nav {
+            max-width: 9.5in;
+            margin: 0 auto 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10pt;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .top-nav a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(31, 58, 95, 0.12);
+            transition: all 0.18s ease;
+        }
+        .top-nav a:hover { background: rgba(255, 255, 255, 0.85); }
+
+        .page {
+            max-width: 9.5in;
+            margin: 0 auto;
+            background: var(--bg-page);
+            box-shadow:
+                0 28px 70px -18px rgba(20, 40, 63, 0.32),
+                0 8px 24px -10px rgba(20, 40, 63, 0.18),
+                0 0 0 1px rgba(31, 58, 95, 0.05),
+                0 1px 0 rgba(255, 255, 255, 0.85) inset;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 50%, var(--primary) 100%);
+        }
+
+        .page-header {
+            padding: 56px 64px 32px;
+            border-bottom: 1px solid var(--rule-light);
+            background: linear-gradient(180deg, #fcfdfe 0%, #ffffff 100%);
+        }
+        .page-header .doc-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8.5pt;
+            color: var(--accent-deep);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+        .page-header h1 {
+            font-size: 30pt;
+            color: var(--primary);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 10px;
+        }
+        .page-header .lede {
+            color: var(--accent-deep);
+            font-size: 13pt;
+            font-weight: 600;
+            letter-spacing: -0.005em;
+            margin-bottom: 22px;
+            line-height: 1.4;
+        }
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            font-size: 10pt;
+        }
+        .meta-grid .item {
+            border-left: 2px solid var(--accent);
+            padding-left: 12px;
+        }
+        .meta-grid .l {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8pt;
+            color: var(--accent-deep);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 2px;
+        }
+        .meta-grid .v {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 10.5pt;
+        }
+
+        .stat-strip {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            background: linear-gradient(180deg, #f7f9fc 0%, #f0f4f8 100%);
+            border-bottom: 1px solid var(--rule-light);
+        }
+        .stat-cell {
+            padding: 18px 14px;
+            text-align: center;
+            border-right: 1px solid var(--rule-light);
+        }
+        .stat-cell:last-child { border-right: none; }
+        .stat-cell .v {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14pt;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+        .stat-cell .l {
+            font-size: 8.5pt;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-top: 4px;
+        }
+
+        .body-content { padding: 40px 64px 48px; }
+
+        .exec-summary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-deep) 100%);
+            color: #f5f8fc;
+            padding: 26px 32px;
+            border-radius: 10px;
+            margin-bottom: 38px;
+            position: relative;
+            overflow: hidden;
+        }
+        .exec-summary::after {
+            content: "";
+            position: absolute;
+            right: -50px; top: -50px;
+            width: 200px; height: 200px;
+            background: radial-gradient(circle, rgba(200, 161, 74, 0.2) 0%, transparent 70%);
+        }
+        .exec-summary .label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .exec-summary p {
+            font-size: 11.5pt;
+            line-height: 1.65;
+            color: #f5f8fc;
+            margin: 0;
+        }
+        .exec-summary strong { color: var(--accent); font-style: normal; }
+
+        h2 {
+            font-size: 18pt;
+            color: var(--primary);
+            font-weight: 800;
+            letter-spacing: -0.015em;
+            margin: 38px 0 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+            position: relative;
+            line-height: 1.15;
+        }
+        h2 .roman {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11pt;
+            color: var(--accent-deep);
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            display: block;
+            margin-bottom: 4px;
+        }
+        h3 {
+            font-size: 13pt;
+            color: var(--primary);
+            font-weight: 700;
+            margin: 22px 0 10px;
+            letter-spacing: -0.005em;
+        }
+        h4 {
+            font-size: 11.5pt;
+            color: var(--primary-deep);
+            font-weight: 700;
+            margin: 14px 0 6px;
+            letter-spacing: -0.003em;
+        }
+
+        p { margin-bottom: 12px; color: var(--text); }
+        strong, b {
+            font-weight: 600;
+            font-style: italic;
+            color: var(--primary);
+        }
+        a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        a:hover { color: var(--link-hover); }
+        ul, ol { margin: 10px 0 14px 22px; }
+        li { margin-bottom: 6px; line-height: 1.55; }
+        li::marker { color: var(--accent-deep); }
+
+        .competitor-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0 22px;
+            font-size: 10pt;
+        }
+        .competitor-table th {
+            text-align: left;
+            padding: 11px 14px;
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+            font-size: 9.5pt;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+        .competitor-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--rule-light);
+            line-height: 1.4;
+        }
+        .competitor-table tr:nth-child(2n) td { background: #fafbfd; }
+        .competitor-table .signet td:first-child { color: var(--green); font-weight: 700; }
+        .competitor-table .claires td:first-child { color: var(--oxblood); font-weight: 700; }
+        .competitor-table td.num {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .path-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin: 14px 0 18px;
+        }
+        .path-card {
+            background: #ffffff;
+            border: 1px solid var(--rule-light);
+            border-radius: 8px;
+            padding: 16px 18px;
+            position: relative;
+            border-left: 4px solid var(--rule);
+        }
+        .path-card.path-a { border-left-color: var(--oxblood); background: linear-gradient(180deg, #ffffff 0%, var(--oxblood-tint) 100%); }
+        .path-card.path-b { border-left-color: var(--green); background: linear-gradient(180deg, #ffffff 0%, var(--green-tint) 100%); }
+        .path-card .label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8.5pt;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .path-card.path-a .label { color: var(--oxblood); }
+        .path-card.path-b .label { color: var(--green); }
+        .path-card h5 {
+            font-size: 11pt;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+        .path-card p {
+            font-size: 10pt;
+            line-height: 1.55;
+            margin-bottom: 0;
+            color: var(--text);
+        }
+
+        .callout {
+            background: linear-gradient(135deg, var(--tint-warm) 0%, #fff 100%);
+            border-left: 4px solid var(--accent);
+            padding: 14px 18px;
+            border-radius: 0 6px 6px 0;
+            margin: 14px 0;
+        }
+        .callout p { margin-bottom: 0; }
+
+        .diagnosis-box {
+            background: linear-gradient(135deg, var(--tint-cool) 0%, #fff 100%);
+            border: 1px solid rgba(31, 58, 95, 0.15);
+            border-left: 4px solid var(--primary);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+            font-size: 12pt;
+            font-weight: 500;
+            color: var(--primary-deep);
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: 16px 0;
+        }
+        .pillar {
+            background: linear-gradient(180deg, #ffffff 0%, var(--tint-cool) 100%);
+            border: 1px solid rgba(31, 58, 95, 0.1);
+            padding: 16px 16px 14px;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        .pillar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        .pillar .num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8.5pt;
+            color: var(--accent-deep);
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+        .pillar h5 {
+            color: var(--primary);
+            font-size: 11pt;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+        .pillar p {
+            font-size: 9.5pt;
+            color: var(--text);
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        .cap-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: 10pt;
+        }
+        .cap-table th {
+            text-align: left;
+            padding: 10px 12px;
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+            font-size: 9.5pt;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+        .cap-table th:nth-child(2),
+        .cap-table th:nth-child(3) { text-align: right; }
+        .cap-table td { padding: 9px 12px; border-bottom: 1px solid var(--rule-light); }
+        .cap-table td:nth-child(2),
+        .cap-table td:nth-child(3) {
+            font-family: 'JetBrains Mono', monospace;
+            text-align: right;
+            font-weight: 500;
+            color: var(--primary);
+        }
+        .cap-table tr:nth-child(2n) td { background: #fafbfd; }
+        .cap-table tr.total td {
+            background: var(--tint-warm);
+            font-weight: 700;
+            border-bottom: 2px solid var(--accent);
+        }
+        .cap-table tr.recovery td {
+            background: var(--green-tint);
+            color: var(--green);
+            font-weight: 700;
+        }
+        .cap-table tr.recovery td:nth-child(2),
+        .cap-table tr.recovery td:nth-child(3) { color: var(--green); }
+
+        .risk-row {
+            display: grid;
+            grid-template-columns: 130px 1fr 1.4fr;
+            gap: 14px;
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--rule);
+            align-items: start;
+        }
+        .risk-row:last-child { border-bottom: none; }
+        .risk-row .num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            color: var(--accent-deep);
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding-top: 2px;
+        }
+        .risk-row .name {
+            font-size: 10.5pt;
+            color: var(--primary);
+            font-weight: 700;
+            line-height: 1.35;
+        }
+        .risk-row .mitig {
+            font-size: 10pt;
+            color: var(--text);
+            line-height: 1.55;
+        }
+
+        .day-row {
+            display: grid;
+            grid-template-columns: 110px 1fr;
+            gap: 16px;
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--rule);
+        }
+        .day-row:last-child { border-bottom: none; }
+        .day-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9.5pt;
+            font-weight: 700;
+            color: var(--accent-deep);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            padding-top: 2px;
+        }
+        .day-body p { margin-bottom: 0; font-size: 10.5pt; line-height: 1.55; }
+
+        .process-summary {
+            margin-top: 36px;
+            padding: 24px 28px;
+            background: #f8f9fb;
+            border: 1px solid var(--rule-light);
+            border-radius: 8px;
+        }
+        .process-summary h2 {
+            margin-top: 0;
+            font-size: 14pt;
+            border-bottom: 1px solid var(--rule);
+        }
+        .process-summary h2 .roman { font-size: 9pt; }
+        .process-summary h4 { margin-top: 14px; }
+        .process-summary p { font-size: 10.5pt; }
+
+        .closing {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-deep) 100%);
+            color: #f5f8fc;
+            padding: 24px 28px;
+            border-radius: 10px;
+            margin-top: 28px;
+            font-size: 12pt;
+            line-height: 1.6;
+            position: relative;
+            overflow: hidden;
+        }
+        .closing::after {
+            content: "";
+            position: absolute;
+            right: -50px; top: -50px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(200, 161, 74, 0.2) 0%, transparent 70%);
+        }
+        .closing strong { color: var(--accent); font-style: normal; }
+        .closing p { margin-bottom: 0; color: #f5f8fc; }
+
+        @media print {
+            body { background: white; padding: 0; font-size: 10pt; }
+            .top-nav { display: none; }
+            .page { box-shadow: none; max-width: 100%; border-radius: 0; }
+            .page::before { display: none; }
+            .pillar-grid, .path-grid, .closing, .exec-summary, .process-summary { page-break-inside: avoid; }
+            h2, h3 { page-break-after: avoid; }
+        }
+
+        @media (max-width: 900px) {
+            .body-content, .page-header { padding-left: 32px; padding-right: 32px; }
+            .stat-strip { grid-template-columns: repeat(3, 1fr); }
+            .meta-grid { grid-template-columns: repeat(2, 1fr); }
+            .pillar-grid { grid-template-columns: 1fr; }
+            .path-grid { grid-template-columns: 1fr; }
+            .risk-row, .day-row { grid-template-columns: 1fr; gap: 4px; }
+            .page-header h1 { font-size: 24pt; }
+        }
+    
+
+/* === SECTION: Decision-Making AI Implementation Guide (from web/Claire's_Decision_AI_Implementation_Guide.html) === */
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #1f3a5f;
+            --primary-deep: #14283f;
+            --accent: #c8a14a;
+            --accent-deep: #a37418;
+            --link: #0a66c2;
+            --link-hover: #084a8e;
+            --oxblood: #6b1b2c;
+            --green: #2f7d4f;
+            --green-tint: #e8f3eb;
+            --text: #1a1a1a;
+            --muted: #555;
+            --quiet: #777;
+            --rule: #d8d8d8;
+            --rule-light: #ececec;
+            --bg-page: #ffffff;
+            --bg-1: #dde4ee;
+            --bg-2: #c4d2e2;
+            --tint-warm: #fdf7e8;
+            --tint-cool: #eef3fa;
+            --code-bg: #1a2a40;
+            --code-text: #e8edf2;
+        }
+
+        body {
+            font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(ellipse 800px 500px at 18% 0%, rgba(31, 58, 95, 0.16) 0%, transparent 60%),
+                radial-gradient(ellipse 600px 500px at 88% 100%, rgba(200, 161, 74, 0.18) 0%, transparent 55%),
+                linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+            background-attachment: fixed;
+            line-height: 1.62;
+            font-size: 11.5pt;
+            min-height: 100vh;
+            padding: 32px 16px;
+            letter-spacing: -0.005em;
+        }
+
+        .top-nav {
+            max-width: 9.5in;
+            margin: 0 auto 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10pt;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .top-nav a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(31, 58, 95, 0.12);
+            transition: all 0.18s ease;
+        }
+        .top-nav a:hover { background: rgba(255, 255, 255, 0.85); }
+
+        .page {
+            max-width: 9.5in;
+            margin: 0 auto;
+            background: var(--bg-page);
+            box-shadow:
+                0 28px 70px -18px rgba(20, 40, 63, 0.32),
+                0 8px 24px -10px rgba(20, 40, 63, 0.18),
+                0 0 0 1px rgba(31, 58, 95, 0.05),
+                0 1px 0 rgba(255, 255, 255, 0.85) inset;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 50%, var(--primary) 100%);
+        }
+
+        .page-header {
+            padding: 48px 64px 28px;
+            border-bottom: 1px solid var(--rule-light);
+        }
+        .page-header .doc-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8.5pt;
+            color: var(--accent-deep);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .page-header h1 {
+            font-size: 26pt;
+            color: var(--primary);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+        }
+        .page-header .lede {
+            color: var(--accent-deep);
+            font-size: 13pt;
+            font-weight: 600;
+            letter-spacing: -0.005em;
+            margin-bottom: 14px;
+        }
+        .page-header .meta {
+            font-size: 10pt;
+            color: var(--muted);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+        .page-header .meta span { display: inline-flex; align-items: center; gap: 6px; }
+        .page-header .meta b {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            font-weight: 500;
+            color: var(--primary);
+            font-style: normal;
+        }
+
+        .body-content { padding: 36px 64px 48px; counter-reset: sec; }
+
+        h2 {
+            font-size: 17pt;
+            color: var(--primary);
+            font-weight: 800;
+            letter-spacing: -0.012em;
+            margin: 36px 0 14px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary);
+            position: relative;
+            line-height: 1.15;
+        }
+        h2::before {
+            content: counter(sec, decimal-leading-zero);
+            counter-increment: sec;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            color: var(--accent-deep);
+            position: absolute;
+            left: 0;
+            top: -14px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+        }
+
+        h3 {
+            font-size: 12.5pt;
+            color: var(--primary);
+            font-weight: 700;
+            margin: 20px 0 10px;
+            letter-spacing: -0.005em;
+        }
+        h4 {
+            font-size: 11pt;
+            color: var(--primary-deep);
+            font-weight: 700;
+            margin: 14px 0 6px;
+            letter-spacing: -0.003em;
+        }
+
+        p { margin-bottom: 12px; color: var(--text); }
+        strong, b {
+            font-weight: 600;
+            font-style: italic;
+            color: var(--primary);
+        }
+        a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        a:hover { color: var(--link-hover); }
+        ul, ol { margin: 10px 0 14px 22px; }
+        li { margin-bottom: 6px; line-height: 1.55; }
+        li::marker { color: var(--accent-deep); }
+
+        .thesis {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-deep) 100%);
+            color: #f5f8fc;
+            padding: 24px 28px;
+            border-radius: 10px;
+            margin: 0 0 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .thesis::after {
+            content: "";
+            position: absolute;
+            right: -50px; top: -50px;
+            width: 200px; height: 200px;
+            background: radial-gradient(circle, rgba(200, 161, 74, 0.2) 0%, transparent 70%);
+        }
+        .thesis .label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .thesis p { margin: 0 0 10px; color: #f5f8fc; font-size: 11.5pt; line-height: 1.6; }
+        .thesis p:last-child { margin: 0; }
+        .thesis strong { color: var(--accent); font-style: normal; }
+
+        .opportunity-box {
+            background: linear-gradient(135deg, var(--green-tint) 0%, #fff 100%);
+            border-left: 4px solid var(--green);
+            padding: 14px 18px;
+            border-radius: 0 6px 6px 0;
+            margin: 14px 0 18px;
+        }
+        .opportunity-box strong { color: var(--green); }
+
+        .data-field {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9.5pt;
+            line-height: 1.6;
+            margin: 10px 0;
+            border-left: 3px solid var(--accent);
+        }
+        .data-field strong {
+            color: var(--accent);
+            font-style: normal;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 8.5pt;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-weight: 600;
+        }
+
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 14px 0 18px;
+        }
+        .matrix-cell {
+            background: linear-gradient(180deg, #ffffff 0%, var(--tint-cool) 100%);
+            border: 1px solid rgba(31, 58, 95, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 14px 16px;
+            border-radius: 0 6px 6px 0;
+        }
+        .matrix-cell .label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            color: var(--accent-deep);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .matrix-cell p {
+            font-size: 10pt;
+            color: var(--text);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .phase-block {
+            margin: 16px 0;
+            padding: 18px 20px;
+            background: linear-gradient(180deg, #fafbfd 0%, #ffffff 80%);
+            border: 1px solid rgba(31, 58, 95, 0.1);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+        .phase-block h4 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0 0 10px;
+            font-size: 12.5pt;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: -0.005em;
+        }
+        .phase-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11pt;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 0;
+        }
+
+        .example-box {
+            background: var(--tint-warm);
+            border-left: 3px solid var(--accent);
+            padding: 12px 14px;
+            border-radius: 0 6px 6px 0;
+            margin: 10px 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9.5pt;
+            line-height: 1.65;
+            color: var(--primary-deep);
+        }
+        .example-box strong {
+            color: var(--accent-deep);
+            font-style: normal;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 8.5pt;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .example-box br + strong { margin-top: 4px; }
+
+        .metric-box {
+            background: linear-gradient(135deg, #ffffff 0%, var(--green-tint) 100%);
+            border: 1px solid rgba(47, 125, 79, 0.25);
+            border-left: 3px solid var(--green);
+            padding: 14px 16px;
+            border-radius: 0 6px 6px 0;
+            margin: 12px 0;
+            font-size: 10pt;
+            line-height: 1.7;
+        }
+        .metric-box strong { color: var(--green); }
+
+        .timeline {
+            border-left: 2px solid var(--accent);
+            padding-left: 22px;
+            margin: 16px 0 16px 8px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 16px;
+            padding-bottom: 4px;
+        }
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -28px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+        .timeline-label {
+            font-size: 11pt;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .timeline-item p {
+            font-size: 10pt;
+            color: var(--text);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .risk-box {
+            background: #fff;
+            border: 1px solid var(--rule-light);
+            border-left: 3px solid var(--oxblood);
+            padding: 12px 16px;
+            border-radius: 0 6px 6px 0;
+            margin: 10px 0;
+            font-size: 10pt;
+            line-height: 1.55;
+        }
+        .risk-box strong { color: var(--oxblood); }
+        .risk-box strong + br + strong { color: var(--primary); }
+
+        .success-box {
+            background: linear-gradient(135deg, var(--tint-cool) 0%, #fff 100%);
+            border: 1px solid rgba(31, 58, 95, 0.12);
+            border-left: 3px solid var(--accent);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 12px 0;
+        }
+        .success-box h4 {
+            color: var(--primary);
+            font-size: 11.5pt;
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+        .success-box ul { margin: 6px 0 0 22px; }
+        .success-box .check {
+            color: var(--green);
+            font-weight: 700;
+            margin-right: 6px;
+        }
+
+        .closing {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-deep) 100%);
+            color: #f5f8fc;
+            padding: 24px 28px;
+            border-radius: 10px;
+            margin: 32px 0 0;
+            font-size: 12pt;
+            line-height: 1.6;
+            position: relative;
+            overflow: hidden;
+        }
+        .closing::after {
+            content: "";
+            position: absolute;
+            right: -50px; top: -50px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(200, 161, 74, 0.2) 0%, transparent 70%);
+        }
+        .closing strong { color: var(--accent); font-style: normal; }
+        .closing p { margin: 0 0 10px; color: #f5f8fc; }
+        .closing p:last-child { margin: 0; }
+
+        @media print {
+            body { background: white; padding: 0; font-size: 10pt; }
+            .top-nav { display: none; }
+            .page { box-shadow: none; max-width: 100%; border-radius: 0; }
+            .page::before { display: none; }
+            .phase-block, .closing, .thesis, .timeline, .success-box, .risk-box { page-break-inside: avoid; }
+            h2, h3 { page-break-after: avoid; }
+        }
+
+        @media (max-width: 900px) {
+            .body-content, .page-header { padding-left: 32px; padding-right: 32px; }
+            .matrix-grid { grid-template-columns: 1fr; }
+            .page-header h1 { font-size: 22pt; }
+        }
+    
+
+        /* ============================================================
+           PRINT MASTER OVERRIDES
+           ============================================================ */
+
+        /* Preserve background colors and gradients in print */
+        * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        /* Each .page section forces a new page when printing */
+        @media print {
+            body {
+                padding: 0 !important;
+                background: white !important;
+            }
+            .top-nav { display: none !important; }
+            .page {
+                page-break-after: always;
+                margin: 0 auto !important;
+                max-width: 100% !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+            }
+            .page:last-child { page-break-after: auto; }
+        }
+
+        /* Fix dark-on-dark text contrast: force light color inside ACTUALLY dark blocks.
+           Verified against source CSS:
+             .exec-summary  -> dark navy gradient (Strategic Intelligence Report)
+             .proof-banner  -> dark navy gradient (90-Day Tactical Plan)
+             .thesis        -> dark navy gradient (Decision AI Guide)
+             .closing       -> dark navy gradient (all 4 strategy reports)
+             .data-field    -> #1a2a40 dark navy code block (Decision AI Guide)
+           Light blocks (.ask-card, .m18, .matrix-cell, etc.) deliberately NOT in this list. */
+        .exec-summary, .exec-summary p, .exec-summary li, .exec-summary span,
+        .exec-summary h2, .exec-summary h3, .exec-summary h4, .exec-summary div,
+        .proof-banner, .proof-banner p, .proof-banner li, .proof-banner span,
+        .proof-banner h3, .proof-banner h4, .proof-banner div,
+        .thesis, .thesis p, .thesis li, .thesis span, .thesis div,
+        .thesis h2, .thesis h3, .thesis h4, .thesis .label,
+        .closing, .closing p, .closing li, .closing span, .closing div,
+        .closing h2, .closing h3, .closing h4,
+        .data-field, .data-field * {
+            color: rgba(255, 255, 255, 0.94) !important;
+        }
+
+        /* Inside dark blocks, strong/b/em use gold for emphasis instead of inherited dark navy */
+        .exec-summary strong, .exec-summary b, .exec-summary em,
+        .proof-banner strong, .proof-banner b, .proof-banner em,
+        .thesis strong, .thesis b, .thesis em,
+        .closing strong, .closing b, .closing em {
+            color: #f0d4a0 !important;
+            font-weight: 700;
+        }
+
+        /* Cover page */
+        .cover-page {
+            min-height: 10in;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1.4in 1in 1in !important;
+        }
+        .cover-page .cover-eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11pt;
+            color: var(--accent-deep);
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+        .cover-page .cover-title {
+            font-size: 38pt;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 22px;
+            max-width: 7.2in;
+        }
+        .cover-page .cover-title em {
+            color: var(--accent-deep);
+            font-style: normal;
+        }
+        .cover-page .cover-sub {
+            font-size: 15pt;
+            color: var(--muted);
+            font-weight: 500;
+            max-width: 6.2in;
+            line-height: 1.4;
+            margin-bottom: 36px;
+        }
+        .cover-page .cover-meta {
+            font-size: 11pt;
+            color: var(--muted);
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 56px;
+            line-height: 1.8;
+        }
+        .cover-page .cover-meta strong {
+            color: var(--primary);
+            font-style: normal;
+        }
+        .cover-page .toc-block {
+            border-top: 2px solid var(--primary);
+            padding-top: 22px;
+            margin-top: auto;
+        }
+        .cover-page .toc-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9.5pt;
+            font-weight: 700;
+            color: var(--accent-deep);
+            letter-spacing: 2.4px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+        .cover-page .toc-list {
+            list-style: none;
+            counter-reset: toc;
+            margin: 0;
+            padding: 0;
+        }
+        .cover-page .toc-list li {
+            counter-increment: toc;
+            display: flex;
+            align-items: baseline;
+            gap: 14px;
+            padding: 8px 0;
+            border-bottom: 1px dotted var(--rule);
+            font-size: 12pt;
+            color: var(--text);
+        }
+        .cover-page .toc-list li::before {
+            content: counter(toc, decimal-leading-zero);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: var(--accent-deep);
+            font-size: 10pt;
+            min-width: 32px;
+        }
+        .cover-page .toc-list li .toc-title {
+            flex: 1;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .cover-page .toc-list li .toc-meta {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9.5pt;
+            color: var(--quiet);
+        }
+        .cover-page .cover-foot {
+            margin-top: 24px;
+            padding-top: 18px;
+            border-top: 1px solid var(--rule-light);
+            font-size: 9.5pt;
+            color: var(--quiet);
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.4px;
+        }
+
+        /* Section divider page (for between identity docs and strategic analysis) */
+        .divider-page {
+            min-height: 10in;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2in 1in !important;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-deep) 100%) !important;
+            color: white !important;
+        }
+        .divider-page::before { display: none !important; }
+        .divider-page .div-eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10pt;
+            color: var(--accent) !important;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+        .divider-page .div-title {
+            font-size: 44pt;
+            font-weight: 800;
+            color: white !important;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 18px;
+            max-width: 7.5in;
+        }
+        .divider-page .div-sub {
+            font-size: 14pt;
+            color: rgba(255, 255, 255, 0.82) !important;
+            max-width: 5.5in;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        /* ============================================================
+           PAGE-FLOW FIX (final, wins by source order)
+           Symptom being fixed: half-empty pages caused by source-file
+           print rules forcing `page-break-inside: avoid` on large
+           sections. When a tall block does not fit, it jumps to the
+           next page and leaves the current page short. Fix: allow
+           large blocks to break naturally; only keep small atomic
+           units together (cards, headings + their next paragraph).
+           ============================================================ */
+
+        @media print {
+            /* Letter size, modest margins */
+            @page {
+                size: letter portrait;
+                margin: 0.5in 0.55in;
+            }
+
+            /* Kill screen-oriented sizing that pollutes print layout */
+            html, body {
+                min-height: 0 !important;
+                height: auto !important;
+                background: white !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            /* Section wrappers: no card chrome, no min-height, no max-width clamp */
+            .page, article.page {
+                min-height: 0 !important;
+                height: auto !important;
+                max-width: 100% !important;
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0.05in 0.1in !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                background: transparent !important;
+                page-break-after: always !important;
+            }
+            .page:last-of-type { page-break-after: auto !important; }
+
+            /* The cover and divider pages SHOULD fill a printed page */
+            .cover-page, .divider-page {
+                min-height: 9.7in !important;
+                padding: 0.8in 0.8in !important;
+                page-break-after: always !important;
+            }
+
+            /* Allow LARGE sections to break naturally across pages.
+               These are the offenders that were forcing half-empty pages. */
+            .ask-grid, .month18-grid, .stat-strip,
+            .pillar-grid, .path-grid, .phase-grid, .proof-grid,
+            .week-track, .phase-block, .timeline,
+            .closing, .exec-summary, .process-summary,
+            .thesis, .success-box, .body-content,
+            section, article, ol, ul, .role-block + .role-block {
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            /* Keep SMALL atomic units together: individual cards, single rows */
+            .ask-card, .m18, .stat-cell, .pillar,
+            .role-block, .accordion, details,
+            .day-row, .risk-row, .cap-row,
+            .proof-grid > div, .matrix-cell, .week-track > div {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            /* Headings stay with their following content */
+            h1, h2, h3, h4, h5 {
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            /* Prevent isolated lines at top or bottom of pages */
+            p, li, dd { orphans: 3; widows: 3; }
+
+            /* Disable any backdrop-filter / blur that print engines mis-render */
+            * {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
+
+            /* Ambient blob decorations cause print artifacts; suppress */
+            .ambient, [class*="ambient"] { display: none !important; }
+
+            /* Hide top-nav (cross-doc nav, irrelevant in a single brief) */
+            .top-nav { display: none !important; }
+
+            /* Tables: allow row breaks if needed but keep header + first row together */
+            table { page-break-inside: auto !important; }
+            thead { display: table-header-group; }
+            tr, td, th { page-break-inside: avoid !important; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="page cover-page">
+        <div>
+            <div class="cover-eyebrow">Strategic Brief // Confidential</div>
+            <h1 class="cover-title">Claire's <em>Chief Technology Officer</em></h1>
+            <div class="cover-sub">A complete diagnostic, transformation roadmap, and operational plan, prepared for the Office of the CEO and Ames Watson leadership.</div>
+            <div class="cover-meta">
+                <strong>Prepared by:</strong> P. R. Manjee, EE, MIS<br>
+                <strong>Date:</strong> April 29, 2026<br>
+                <strong>For:</strong> Office of the CEO, Claire's Inc. &middot; Ames Watson Leadership<br>
+                <strong>Contact:</strong> princemanjee@gmail.com &middot; 312.296.9067
+            </div>
+        </div>
+        <div class="toc-block">
+            <div class="toc-label">Contents</div>
+            <ol class="toc-list">
+                <li><span class="toc-title">Executive Summary</span><span class="toc-meta">1 page</span></li>
+                <li><span class="toc-title">Cover Letter</span><span class="toc-meta">~1 page</span></li>
+                <li><span class="toc-title">Resume (Custom Executive)</span><span class="toc-meta">~4 pages</span></li>
+                <li><span class="toc-title">90-Day Tactical Plan</span><span class="toc-meta">~5 pages</span></li>
+                <li><span class="toc-title">Strategic Intelligence Report</span><span class="toc-meta">~10 pages</span></li>
+                <li><span class="toc-title">Decision-Making AI Implementation Guide</span><span class="toc-meta">~7 pages</span></li>
+            </ol>
+            <div class="cover-foot">https://cv.princerehman.com/Claire-s/ &middot; Audience-tailored brief, full dependency map and financial detail at the URL.</div>
+        </div>
+    </div>
+
+
+    <!-- ============ Executive Summary ============ -->
+<article class="page">
+        <header class="page-header">
+            <h1>Claire's Turnaround: Executive Summary</h1>
+            <div class="lede">A defined playbook with named decisions, dated milestones, quantified outcomes, and a stated probability.</div>
+            <div class="meta">
+                <span>For <b>CEO, CFO, Board</b></span>
+                <span>By <b>P. R. Manjee, CTO/CIO Candidate</b></span>
+                <span>Read time <b>5 min</b></span>
+                <span>Horizon <b>18 months</b></span>
+            </div>
+        </header>
+
+        <div class="stat-strip">
+            <div class="stat-cell"><div class="v">$580.7B</div><div class="l">Jewelry market by 2033</div></div>
+            <div class="stat-cell"><div class="v">8.4%</div><div class="l">N. America CAGR</div></div>
+            <div class="stat-cell"><div class="v">-15-20%</div><div class="l">Claire's YoY revenue</div></div>
+            <div class="stat-cell"><div class="v">1,326</div><div class="l">US stores at risk</div></div>
+            <div class="stat-cell"><div class="v">$105-165M</div><div class="l">Investment envelope</div></div>
+            <div class="stat-cell"><div class="v">$500-800M</div><div class="l">Annualized recovery</div></div>
+        </div>
+
+        <div class="body-content">
+            <h2>The Opportunity</h2>
+            <p>Claire's filed Chapter 11 in August 2025 inside a growing market. The global specialty jewelry market is moving from <strong>$365.9B in 2024 to $580.7B in 2033 at 5-8% CAGR</strong>, with North America compounding at 8.4%. Claire's revenue is down 15-20% YoY across 2025 and 1,326 US stores are at risk. This is the <strong>second bankruptcy in seven years inside a market that is expanding</strong>. That is the entire thesis: <strong>this is execution failure, not market failure, and execution failure is fixable</strong>.</p>
+
+            <h2>The Diagnosis</h2>
+            <p>Three root causes explain the gap.</p>
+
+            <div class="pillar-grid">
+                <div class="pillar">
+                    <div class="pillar-num">ROOT CAUSE 01</div>
+                    <h4>Technology spine fragmented</h4>
+                    <p>Salesforce CRM and Salesforce Commerce Cloud sitting on top of fragmented store POS makes a single source of truth for revenue, customer, and inventory <em>impossible</em>. Without that, real omnichannel is impossible, decision-making AI is impossible, and operational decision speed is impossible. Signet runs at <strong>23% digital penetration</strong>; Claire's runs <strong>below 15%</strong>.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-num">ROOT CAUSE 02</div>
+                    <h4>Store and brand experience missed Gen Z</h4>
+                    <p>Cluttered, dated stores have lost Gen Z to Etsy and Depop (40-50% of the loss combined), to Ulta Beauty's piercing entry across <strong>1,500+ locations</strong>, to Amazon convenience, and to independent piercers. The product is still relevant; the delivery mechanism is wrong. <strong>20-30 years of dormant brand equity in mothers and grandmothers has not been monetized</strong>.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-num">ROOT CAUSE 03</div>
+                    <h4>Capital allocation funded preservation, not transformation</h4>
+                    <p><strong>$575M of restructuring capital after the 2018 bankruptcy was spent on cash preservation and debt service rather than transformation</strong>. By 2025, $700M of new debt has been added with no operational breakthrough. The transformation window was open between 2018 and 2025; it was squandered.</p>
+                </div>
+            </div>
+
+            <h2>The Strategy: Three Integrated Pillars</h2>
+
+            <h3>Pillar 1 &middot; HubSpot-centered Technology Spine</h3>
+            <p>Eliminate Salesforce. Stand up <strong>HubSpot as the single CRM and revenue brain</strong> at 50-60% lower TCO. Replatform to <strong>Shopify or BigCommerce</strong> on the front end, roll <strong>Lightspeed Retail</strong> (or equivalent cloud POS with a HubSpot connector) to stores, land every transaction in <strong>Azure</strong>. Layer Power BI dashboards and a decision-making AI loop on top: forecast, optimize, propose, human review, execute, learn. <strong>Not chatbots; AI making real buying and allocation calls under merchant governance</strong>, starting with earrings in the Midwest at Day 90 and scaling to 60% of assortment by Month 12.</p>
+
+            <h3>Pillar 2 &middot; Generations + Princesses Brand and Loyalty</h3>
+            <p><strong>Generations</strong> is the multigenerational ritual program: mother-daughter-grandmother family clusters in HubSpot, monthly "Generations Day" in stores, co-branded Sunday afternoon tea partnerships at hotels with destination charms and a same-day Claire's CTA. <strong>Princesses</strong> is the tween-led entry expression that turns "first piercing" into a defined ritual: appointment, parental moment, photo, certificate, anniversary outreach the following year. Together they reposition Claire's from <strong>single-generation tween chain to multigenerational ritual brand</strong>, with the technology wired to attribute generational lifetime value, not just individual CLV.</p>
+
+            <h3>Pillar 3 &middot; Store Modernization with Real Omnichannel</h3>
+            <p><strong>300+ remodels by Month 18</strong> in a curated, minimal format with integrated piercing flow and live inventory at the till. Real omnichannel fulfillment (ship-from-store, BOPIS optimization, unified returns). The Walmart wholesale shop-in-shop stays capped as a tactical Princesses discovery channel, not a strategy; <strong>wholesale dilutes price, brand control, and the data signal AI needs</strong>, so the direct-to-consumer spine stays the center of gravity.</p>
+
+            <h2>The Financial Model</h2>
+
+            <table class="fin-table">
+                <thead>
+                    <tr><th>Line item</th><th>Spend</th><th>Outcome</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Platform migration</td><td>$30-50M</td><td>Salesforce out, HubSpot in</td></tr>
+                    <tr><td>Store remodels (300 stores)</td><td>$15-25M</td><td>Curated, Gen Z format</td></tr>
+                    <tr><td>E-commerce replatform</td><td>$10-15M</td><td>Off Salesforce Commerce Cloud</td></tr>
+                    <tr><td>Cloud POS deployment</td><td>$10-15M</td><td>Lightspeed across fleet</td></tr>
+                    <tr><td>Data + decision AI</td><td>$5-10M</td><td>Forecast, allocate, optimize</td></tr>
+                    <tr><td>Integration engineering</td><td>$10-15M</td><td>Connectors and pipelines</td></tr>
+                    <tr><td>Team and staffing</td><td>$20-30M</td><td>Engineers, PM, design, data</td></tr>
+                    <tr><td>Contingency (10%)</td><td>$5-10M</td><td>Unknowns at peak migration</td></tr>
+                    <tr class="total"><td>Total 18-month investment</td><td>$105-165M</td><td>Returns below</td></tr>
+                </tbody>
+            </table>
+
+            <p><strong>Revenue recovery</strong> is $500-800M annualized. E-commerce penetration moving from below 15% to 25%+ delivers $300-500M; same-store sales moving from -15% to +2-3% delivers another $200-300M of prevention-and-recovery value. <strong>Cost takeout</strong> is $30-65M annualized: Salesforce decommission ($10-15M), inventory turns release ($30-50M of working capital), AI-driven margin (+$20-30M annual).</p>
+
+            <div class="callout">
+                <p><strong>Payback 2-3 years.</strong> EBITDA moves from a -$500M+ annual loss to break-even or positive by Month 18. <strong>Success probability is 60-70%</strong> with disciplined execution. The principal risks (organizational change, data migration complexity, holiday-season cutover, market downturn) are all named, sequenced around, and managed by phased rollout.</p>
+            </div>
+
+            <h2>The 90-Day Critical Path</h2>
+
+            <div class="phase-row">
+                <div class="phase-tag">Days 1-30</div>
+                <div class="phase-body">
+                    <h4>Freeze Salesforce, lock the architecture</h4>
+                    <p>Day 1 directive: no new objects, automations, or integrations on Salesforce. Architecture locked by Day 30: <strong>HubSpot, Shopify or BigCommerce, Lightspeed Retail, Azure</strong>. Dependency map, data mapping workbook, and dashboard spec board-approved.</p>
+                </div>
+            </div>
+
+            <div class="phase-row">
+                <div class="phase-tag">Days 31-60</div>
+                <div class="phase-body">
+                    <h4>Stand up the spine</h4>
+                    <p>HubSpot in production. <strong>Live e-commerce orders by Day 45</strong>. POS connector running in pilot stores. <strong>First unified revenue dashboard live by Day 60</strong>, single source of truth for performance reviews. Salesforce migration piloted on a controlled slice.</p>
+                </div>
+            </div>
+
+            <div class="phase-row">
+                <div class="phase-tag">Days 61-90</div>
+                <div class="phase-body">
+                    <h4>Cut over and launch decision-making AI</h4>
+                    <p>Full Salesforce cutover. <strong>Read-only by Day 90, $10-15M run-rate exiting</strong>. Decision-making AI pilot live for earrings in the Midwest with merchants approving or overriding daily and the model learning from human decisions. Operational AI, not a chatbot.</p>
+                </div>
+            </div>
+
+            <h2>The Ask</h2>
+
+            <div class="ask-grid">
+                <div class="ask-card">
+                    <div class="label">Capital</div>
+                    <div class="value"><strong>$105-165M committed over 18 months</strong>, contractually gated rather than re-litigated each quarter.</div>
+                </div>
+                <div class="ask-card">
+                    <div class="label">Authority</div>
+                    <div class="value"><strong>CTO with P&amp;L accountability</strong> for technology transformation and operational turnaround.</div>
+                </div>
+                <div class="ask-card">
+                    <div class="label">Governance</div>
+                    <div class="value"><strong>Monthly board review against defined milestones</strong> (Day 90, Month 6, Month 12, Month 18). No surprise management.</div>
+                </div>
+                <div class="ask-card">
+                    <div class="label">Mandate</div>
+                    <div class="value">Full ownership of CRM, e-commerce, POS, data, and the decision-making AI program with explicit authority to retire Salesforce.</div>
+                </div>
+            </div>
+
+            <h2>Success Metrics at Month 18</h2>
+            <div class="month18-grid">
+                <div class="m18"><div class="v">25%+</div><div class="l">E-commerce penetration</div></div>
+                <div class="m18"><div class="v">+2-3%</div><div class="l">Same-store sales</div></div>
+                <div class="m18"><div class="v">Break-even+</div><div class="l">EBITDA</div></div>
+                <div class="m18"><div class="v">300+</div><div class="l">Stores remodeled</div></div>
+                <div class="m18"><div class="v">2M+</div><div class="l">Generations members</div></div>
+                <div class="m18"><div class="v">$500-800M</div><div class="l">Annualized revenue</div></div>
+            </div>
+
+            <div class="closing">
+                <p>This is a defined playbook with <strong>named decisions, dated milestones, quantified outcomes, and a stated probability</strong>. The window is 18 months. The market is open. <strong>The capital and the authority to execute are the two questions remaining.</strong></p>
+            </div>
+        </div>
+    </article>
+
+    <!-- ============ Cover Letter ============ -->
+<div class="page">
+        <div class="header-block">
+            <h1>P. R. Manjee, EE, MIS</h1>
+            <div class="headline">Chief Technology Officer · Digital Transformation &amp; Omnichannel Modernization</div>
+            <div class="audience-tag">Executive variant - written for the CEO / Board / Senior Leadership</div>
+            <div class="contact">Chicago, IL · <a href="tel:3122969067">312.296.9067</a> · <a href="mailto:princemanjee@gmail.com">princemanjee@gmail.com</a> · <a href="https://www.linkedin.com/in/princemanjee">linkedin.com/in/princemanjee</a></div>
+        </div>
+
+        <div class="date-line">April 29, 2026</div>
+        <div class="recipient">To the Claire's CEO and Executive Leadership Team</div>
+
+        <p>The jewelry market is moving from <strong>$365.9B (2024) toward $580.7B (2033)</strong> at 5-8% globally; North America compounds at 8.4%. Claire's revenue is down <strong>15-20% YoY</strong> inside that growing market. Claire's is not in trouble because the market disappeared. Claire's is in trouble because its operational and technology delivery has fallen out of alignment with how its customer wants to shop, and because <strong>$575M of restructuring capital after the 2018 bankruptcy was spent on cash preservation rather than transformation</strong>. That is a fixable problem, and the fix is structural rather than tactical. The CTO mandate here is to rebuild the technology foundation that lets every other business decision compound.</p>
+
+        <p>I am writing to be considered for that role.</p>
+
+        <p>My case in three lines:</p>
+
+        <ol>
+            <li><strong>Thirty-year operational arc</strong> - factory floor through C-Suite advisory - has taught me how to turn strategic ambition into measurable outcomes without losing either side.</li>
+            <li><strong>Track record of unifying fragmented enterprise stacks</strong> in healthcare, finance, and hospitality - environments at least as complex as omnichannel retail - with quantified results: $1.2M annual IT spend reduction, 28% knowledge-worker capacity improvement, zero-downtime migrations of five-farm enterprise platforms.</li>
+            <li><strong>Proven crisis leadership</strong> - most recently, a 60-day ransomware recovery from breach through full re-architecture - that gives me the operational muscle a turnaround company needs in its first technology executive.</li>
+        </ol>
+
+        <p>The 18-month plan I would bring sits on three integrated pillars and a defined financial envelope:</p>
+
+        <ul>
+            <li><strong>Technology spine.</strong> Retire Salesforce and stand up HubSpot as the single CRM and revenue brain at <em>50-60% lower TCO</em>. Replatform e-commerce to Shopify or BigCommerce, roll Lightspeed Retail to stores, land every transaction in Azure. Layer decision-making AI on top: forecast, optimize, propose, human review, execute, learn. <em>Operational AI under merchant governance, not chatbots.</em></li>
+            <li><strong>Brand and loyalty (Generations + Princesses).</strong> Reactivate <em>20-30 years of dormant brand equity</em> in mothers and grandmothers through multigenerational family clusters in CRM, monthly Generations Days, and tea-house partnerships. Reframe "first piercing" as a defined Princesses ritual that brings the next generation in early. <em>Ritual brand, not a discount card.</em></li>
+            <li><strong>Store modernization with real omnichannel.</strong> 300+ remodels by Month 18 in a curated, Gen Z-aligned format, with ship-from-store, BOPIS optimization, and unified returns built on the new spine. Walmart wholesale stays capped as a tactical Princesses discovery channel; <em>the brand is not for rent.</em></li>
+        </ul>
+
+        <p>The math is <strong>$105-165M of investment recovering $500-800M of annualized revenue</strong> and $30-65M of cost takeout, payback 2-3 years, EBITDA from -$500M to break-even or positive by Month 18, success probability <strong>60-70% with disciplined execution</strong>. Day 90 carries four concrete proof points: Salesforce read-only, omnichannel dashboards in production, decision-making AI generating real buying recommendations for earrings in the Midwest, and the 18-month plan defended by operating evidence rather than promises.</p>
+
+        <p>The next 18 months will determine whether Claire's re-emerges as a destination for a new generation of customers or quietly manages decline. I would welcome the opportunity to discuss how I would lead the technology side of that decision with you, the board, and the executive team.</p>
+
+        <p>Respectfully,</p>
+
+        <div class="signature">
+            <div class="signature-name">P. R. Manjee, EE, MIS</div>
+            <div class="signature-contact">princemanjee@gmail.com · <a href="tel:3122969067">312.296.9067</a> · <a href="https://www.linkedin.com/in/princemanjee">linkedin.com/in/princemanjee</a></div>
+        </div>
+    </div>
+
+    <!-- ============ Resume ============ -->
+<div class="page">
+        <header>
+            <h1>P. R. Manjee, EE, MIS</h1>
+            <div class="headline">Chief Technology Officer · Digital Transformation &amp; Omnichannel Modernization</div>
+            <div class="contact">Chicago, IL · <a href="tel:3122969067">312.296.9067</a> · <a href="mailto:princemanjee@gmail.com">princemanjee@gmail.com</a> · <a href="https://www.linkedin.com/in/princemanjee">linkedin.com/in/princemanjee</a> · <a href="../">cv.princerehman.com</a></div>
+        </header>
+
+        <h2>Executive Profile</h2>
+        <p class="summary">Technology executive with 30 years architecting and leading enterprise digital transformations across healthcare, financial services, manufacturing, and hospitality. Hands-on practitioner from factory-floor electrical engineering through C-Suite digital transformation advisory; has personally built, migrated, secured, and modernized enterprise systems at scale. Led multi-year platform migrations, cloud adoption strategies, and legacy-to-microservices transitions while managing distributed teams and multi-million-dollar budgets. Reduced enterprise IT costs by $1.2M annually, improved knowledge-worker capacity 28%, and led 60-day ransomware recovery - pairs strategic vision with operational credibility because both have been executed at scale, under pressure.</p>
+
+        <h2>Experience</h2>
+        <div class="role"><div class="role-header"><span><span class="role-title">MMR - Modern Workplace Consultant</span> · <span class="role-position">AI Adoption Program Lead</span></span><span class="role-dates">Jul 2025 – Jan 2026</span></div>
+        <ul><li>Embedded structured AI/ML practices across software engineering operations; transitioned teams from ad-hoc prompting to reusable context-engineering frameworks</li>
+        <li>Defined KPIs linking AI adoption to measurable productivity and code-quality outcomes; established governance for responsible AI deployment</li>
+        <li>Advised executive sponsors on AI roadmap, change management, ethical AI, and long-term strategic adoption</li></ul></div>
+
+        <div class="role"><div class="role-header"><span><span class="role-title">FVK Solutions (Confidential Client)</span> · <span class="role-position">Contract Incident Response &amp; Recovery Lead</span></span><span class="role-dates">Oct 2025 – Dec 2025</span></div>
+        <ul><li>Led cross-functional incident response team through full ransomware recovery cycle (threat assessment, containment, negotiation, restoration) in under 60 days</li>
+        <li>Re-architected core information systems with segmentation, monitoring, and resilience frameworks to prevent recurrence</li>
+        <li>Delivered post-incident playbooks, business-continuity standards, and team training to harden enterprise security posture</li></ul></div>
+
+        <div class="role"><div class="role-header"><span><span class="role-title">DTIG</span> · <span class="role-position">UX Strategy &amp; Digital Transformation Consultant</span></span><span class="role-dates">May 2021 – Dec 2024</span></div>
+        <ul><li>Led enterprise modernization for healthcare and business clients; aligned executive sponsors, IT leadership, and operations on multi-year transformation roadmaps</li>
+        <li>Architected omnichannel digital workplace solutions integrating Microsoft 365, Teams, SharePoint, line-of-business systems, and analytics platforms</li>
+        <li>Managed cloud migration programs (Azure, AWS, M365) across distributed teams; established cost-optimization, governance, and security standards</li>
+        <li>Co-authored automated SharePoint migration toolset using Portainer, Terraform, Balena, Ansible, Docker, and Kubernetes</li></ul></div>
+
+        <div class="role"><div class="role-header"><span><span class="role-title">MICAH Legal Services Inc.</span> · <span class="role-position">Digital Transformation Director (Part-time advisory)</span></span><span class="role-dates">May 2020 – Present</span></div>
+        <ul><li>Defined cloud-first technology strategy for statewide service organization; established technical standards, modernization roadmap, and security posture</li>
+        <li>Improved IT operations, staffing, support processes, and technology governance across distributed offices</li></ul></div>
+
+        <div class="role"><div class="role-header"><span><span class="role-title">Kaufman Hall</span> · <span class="role-position">Senior SharePoint Architect / Office 365 Administrator</span></span><span class="role-dates">Jun 2015 – Aug 2019</span></div>
+        <ul><li>Owned enterprise collaboration platform serving 5,000+ users; led upgrades, migrations, and integrations with Salesforce.com and ERP analytics</li>
+        <li>Designed information architecture and consolidation strategy that reduced annual IT spending by $1.2M</li>
+        <li>Established governance via steering committees; built automation tools and executive Power BI dashboards on AXIOM ERP and Salesforce data</li></ul></div>
+
+        <div class="role"><div class="role-header"><span><span class="role-title">Tahoe Partners</span> · <span class="role-position">Information Technology Solutions Architect</span></span><span class="role-dates">May 2019 – May 2021</span></div>
+        <ul><li>Led modernization assessments and transformation strategies for healthcare clients; created standardized methodology used across 20+ engagements</li>
+        <li>Designed SharePoint and cloud migration strategies (lift-and-shift, re-platforming) with zero operational disruption</li></ul></div>
+
+        <div class="role"><div class="role-header"><span><span class="role-title">Rockit Ranch Productions</span> · <span class="role-position">Director of Technology and Digital Strategy</span></span><span class="role-dates">Sep 2013 – Jul 2015</span></div>
+        <ul><li>Led modernization of business systems supporting expansion from regional to national operations</li>
+        <li>Implemented unified identity management; completed enterprise Microsoft 365 deployment; built dashboards and analytics tools; authored 200+ knowledgebase articles</li></ul></div>
+
+        <div class="role"><div class="role-header"><span><span class="role-title">Groove Science Studios, Inc.</span> · <span class="role-position">Member of the Board of Advisors (Co-Founder)</span></span><span class="role-dates">Jun 2014 – Present</span></div>
+        <ul><li>Co-founded and serve on the Board of Advisors for Soundscape VR; own product roadmaps and strategic planning cycles</li>
+        <li>Develop partnership strategies with industry stakeholders; align hardware/software initiatives with business goals; support solution delivery and best practices</li></ul></div>
+
+        <h2>Skills</h2>
+        <div class="skills-block">
+            <h3>Retail &amp; Omnichannel Platforms</h3><p>Point-of-Sale (Lightspeed Retail evaluation) · E-Commerce (Shopify, BigCommerce evaluation) · Order Management Systems (OMS) · Inventory Visibility · Customer Experience Platforms · Loyalty &amp; Identity Platforms</p>
+            <h3>Enterprise Architecture &amp; Modernization</h3><p>HubSpot · Salesforce · Microsoft Dynamics · Zoho · Microsoft 365 · SharePoint · Teams · ERP Integration · Microservices · API Strategy</p>
+            <h3>Cloud &amp; Infrastructure</h3><p>Azure · AWS · Google Cloud · Hyper-V · VMware · Docker · Kubernetes · Terraform · Ansible · CI/CD · Infrastructure as Code</p>
+            <h3>Data, Analytics &amp; BI</h3><p>Azure Data Warehouse · Power BI · Tableau · SQL Server · MySQL · PostgreSQL · MongoDB · Cosmos DB · ETL Pipelines · Real-Time Dashboards</p>
+            <h3>AI / ML &amp; Emerging Tech</h3><p>AI Adoption Frameworks · Context Engineering · Prompt Engineering · LLM Integration · Power Automate · UiPath · RPA</p>
+            <h3>Cybersecurity, Risk &amp; Compliance</h3><p>HIPAA · PCI · SOC 2 · GDPR · ISO 27001 · Zero Trust · IAM · MFA · SSO · Disaster Recovery · Business Continuity · Incident Response</p>
+            <h3>Software Engineering &amp; SDLC</h3><p>Agile · Scrum · CI/CD · REST APIs · Microservices · LAMP · Node.js · React · TypeScript · Python · PowerShell · Bash</p>
+            <h3>Financial &amp; Vendor Management</h3><p>IT Budget Ownership · SaaS Strategy · Cloud Cost Optimization (FinOps) · ROI Tracking · Strategic Partnerships · Systems Integrators</p>
+        </div>
+
+        <h2>Selected Projects</h2>
+        <div class="project"><div class="project-name">AI Adoption Program - MMR Engineering Transformation (2025)</div><p class="project-desc">Modernized software engineering operations by embedding AI into the development lifecycle. Transitioned teams from ad-hoc "vibe coding" to structured context-engineering frameworks; built training, KPIs, and measurement systems linking AI usage directly to measurable performance gains.</p></div>
+        <div class="project"><div class="project-name">Ransomware Incident Response - FVK Solutions / Cognesense (2025)</div><p class="project-desc">Led on-site emergency response team after a ransomware attack. Directed containment, threat-actor negotiation, forensic analysis, and full-system restoration. Re-architected hardened infrastructure - full recovery delivered in under 60 days.</p></div>
+        <div class="project"><div class="project-name">HIMSS Information Architecture Modernization - DTIG (2020)</div><p class="project-desc">Redesigned and deployed modern information architecture for a healthcare-information-management governing body. Built logical single-source-of-truth on SharePoint and Dataverse - <strong>28% improvement in knowledge-worker capacity</strong>.</p></div>
+        <div class="project"><div class="project-name">University of Chicago Medicine Multi-Farm Migration - DTIG (2020-2021)</div><p class="project-desc"><strong>Zero-downtime migration of five SharePoint server farms</strong> with zero interruption to emergency-care operations.</p></div>
+        <div class="project"><div class="project-name">Reyes Holdings SharePoint Migration &amp; PMO Analytics - DTIG (2020-2021)</div><p class="project-desc">Defined KPIs for migration PMO and designed Power BI reports for real-time decision-making and stakeholder communication.</p></div>
+        <div class="project"><div class="project-name">Heitman Financial SharePoint Upgrade &amp; Executive Analytics - Heitman (2019)</div><p class="project-desc">Delivered SharePoint 2013 → Online + 2016 hybrid migration. Built standard + executive Power BI dashboards backed by Salesforce.com data.</p></div>
+        <div class="project"><div class="project-name">DTIG Automated SharePoint Migration Toolset (Co-Author) - DTIG (2021)</div><p class="project-desc">Contributed to design, development, and deployment of orchestration and automation library using Portainer, Terraform, Balena, Ansible, Chef, Docker, and Kubernetes.</p></div>
+        <div class="project"><div class="project-name">Rockit Ranch Cloud &amp; Identity Migration - Rockit Ranch Productions (2014)</div><p class="project-desc">Migrated on-premise file servers and Windows Active Directory to SharePoint and Azure AD. Designed and deployed BPM workflow automation.</p></div>
+
+        <h2>Certifications</h2>
+        <div class="cert-item"><strong>Certified HIPAA Security Professional</strong> - 4Med</div>
+        <div class="cert-item"><strong>Microsoft Certified Systems Engineer</strong> - Productivity Point</div>
+        <div class="cert-item">Context Engineering &amp; Prompt Engineering practitioner (OpenAI, Anthropic frameworks)</div>
+
+        <h2>Languages</h2>
+        <div class="lang-item">English - Native speaker</div>
+
+        <h2>Interests &amp; Service</h2>
+        <div class="interest-item"><strong>Founder, Friends of Fur</strong> (2018 – Present) - Animal welfare organization focused on rescue, medical support, and adoption services</div>
+        <div class="interest-item"><strong>Pet Therapy, Village Senior Care</strong> (2004 – 2007) - Trained and managed therapeutic animals for senior care facilities</div>
+        <div class="interest-item"><strong>Animal Care Volunteer, PAWS Chicago</strong> (2004 – 2009) - Care and support for shelter animals</div>
+        <div class="interest-item"><strong>Civic Tech Participant, Random Hacks of Kindness</strong> - Supported the Sohana Project for Chicago's CERT Team</div>
+        </div>
+
+    <div class="page divider-page">
+        <div class="div-eyebrow">Section Two</div>
+        <h2 class="div-title">Strategic Analysis</h2>
+        <div class="div-sub">The diagnostic, the 90-day tactical plan, the strategic intelligence report, and the decision-AI implementation guide that the executive summary, cover letter, and resume above are built on.</div>
+    </div>
+
+
+    <!-- ============ 90-Day Tactical Plan ============ -->
+<article class="page">
+        <header class="page-header">
+            <h1>Claire's CTO: 90-Day Priorities</h1>
+            <div class="lede">By Day 90 the board sees Salesforce gone, HubSpot live, the first unified revenue dashboard in production, and decision-making AI generating actual buying recommendations.</div>
+            <div class="meta">
+                <span>For <b>CEO, CFO, EVP Operations, EVP Merchandising, Board</b></span>
+                <span>By <b>P. R. Manjee, CTO/CIO Candidate</b></span>
+            </div>
+            <div class="premise">
+                <strong>Premise.</strong> The first 90 days are the proof point. Everything else in the 18-month plan depends on this. The plan below is week-by-week with named decisions, deliverables, and the four board-ready proof points at Day 90. It assumes full CTO authority on CRM, e-commerce, POS, and data, and that the board has pre-aligned on the Salesforce-out, HubSpot-in direction.
+            </div>
+        </header>
+
+        <div class="body-content">
+
+            <div class="phase-block">
+                <div class="phase-head">
+                    <span class="phase-num">PHASE 01</span>
+                    <h2>Days 1-30 &middot; Freeze Salesforce, design the new spine</h2>
+                </div>
+                <p class="phase-job">One job: make every irreversible architecture decision before any spend or migration begins, and stop the bleeding of new investment into a stack that has to be removed.</p>
+
+                <div class="week-track">
+                    <h3>Week 1 <span class="tag">Authority, audit, alignment</span></h3>
+                    <ul>
+                        <li><strong>Day 1 all-hands directive:</strong> "Effective today, we are systematically removing Salesforce. No new Salesforce objects, automations, or integrations are being created. All new initiatives target HubSpot or platform-neutral components." Tone is decisive, not punitive. This is strategy, not blame.</li>
+                        <li><strong>Days 2-5, Salesforce audit.</strong> Inventory every standard and custom object, every workflow, every automation, every integration, every active user. Tag each artifact <em>Critical</em>, <em>Useful</em>, or <em>Junk</em>.</li>
+                        <li><strong>Days 5-7, stakeholder interviews.</strong> Sit with finance, supply chain, merchandising, store operations, and e-commerce. Document what they need, what they hate about Salesforce, and what data only lives in Salesforce today. Those are the migration risks.</li>
+                    </ul>
+                    <div class="deliv"><span class="l">Week 1</span>Salesforce system map, stakeholder requirements summary, board-ready "state of technology" slide.</div>
+                </div>
+
+                <div class="week-track">
+                    <h3>Week 2 <span class="tag">Lock technology decisions</span></h3>
+                    <ul>
+                        <li><strong>Days 8-10, lock the platform stack.</strong> CRM and revenue brain: <strong>HubSpot</strong>. E-commerce front end: <strong>Shopify or BigCommerce</strong>. POS: <strong>Lightspeed Retail</strong> (or equivalent cloud POS with a native or proven HubSpot connector). Data warehouse: <strong>Azure</strong>.</li>
+                        <li><strong>Days 10-12, draft and approve the one-page target architecture.</strong> HubSpot at the center; e-commerce, POS, OMS feeding into it; Azure receiving every transaction; Power BI dashboards and a decision-making AI layer on top.</li>
+                        <li><strong>Days 12-14, timeline and resourcing.</strong> 18-month roadmap with Phase 0 through Phase 3, named team requirements, $105-165M total investment envelope.</li>
+                    </ul>
+                    <div class="deliv"><span class="l">Week 2</span>Board-approved target architecture, technology selection document, 18-month roadmap, team and budget plan.</div>
+                </div>
+
+                <div class="week-track">
+                    <h3>Weeks 3-4 <span class="tag">Design and specification</span></h3>
+                    <ul>
+                        <li><strong>Days 15-21, HubSpot data model.</strong> Hubs in scope (Sales, Marketing, Service, Operations), deal pipelines by channel and region, lifecycle stages (tween, teen, young adult, parent; self-purchase, gifting, piercing), custom properties for segmentation and family-relationship modeling, permission model. <strong>Simplify, do not mirror Salesforce's complexity.</strong></li>
+                        <li><strong>Days 21-25, data mapping workbook.</strong> Field-by-field mapping from Salesforce to HubSpot. Explicit list of what will not be migrated. Migration order: companies, contacts, deals, tickets, activity history.</li>
+                        <li><strong>Days 25-28, dashboard specification.</strong> Minimum viable metrics: revenue, units, gross margin by channel, region, product category, segment, refreshed daily or near real-time. Store-manager view, merchant view, finance view. One page.</li>
+                    </ul>
+                    <div class="deliv"><span class="l">Day 30 board pack</span>Salesforce dependency map, target architecture, HubSpot design spec, data mapping workbook, dashboard requirements, 18-month roadmap, $105-165M investment envelope, named risks. <strong>Decisions locked. Phase 1 starts Day 31.</strong></div>
+                </div>
+            </div>
+
+            <div class="phase-block">
+                <div class="phase-head">
+                    <span class="phase-num">PHASE 02</span>
+                    <h2>Days 31-60 &middot; Stand up the spine, begin migration</h2>
+                </div>
+                <p class="phase-job">Phase 1 is execution. HubSpot moves into production. E-commerce flows in. POS flows in. Azure receives everything. The first dashboard goes live. Salesforce migration is piloted on a controlled slice. By Day 60, the new spine is real.</p>
+
+                <div class="week-track">
+                    <h3>Weeks 5-6 <span class="tag">HubSpot config + e-commerce integration</span></h3>
+                    <ul>
+                        <li><strong>Days 31-35, HubSpot production setup.</strong> Production environment, users and roles, pipelines, lifecycle stages, custom properties and objects. Validation gate: can a deal be created, moved through pipeline, and reported on cleanly?</li>
+                        <li><strong>Days 35-40, e-commerce integration.</strong> Choose connector (native HubSpot, Unific, or partner). Configure sync for customers, products, orders, abandoned carts. Validation: new online orders appear in HubSpot within 15 minutes; clean, no duplicates.</li>
+                    </ul>
+                </div>
+
+                <div class="proof-banner">
+                    <span class="ico">DAY 45 PROOF</span>
+                    <p><strong>Live e-commerce orders flowing into HubSpot.</strong> The CRM is no longer a sales-only tool. It is the revenue system.</p>
+                </div>
+
+                <div class="week-track">
+                    <h3>Weeks 7-8 <span class="tag">POS, warehouse, first dashboard</span></h3>
+                    <ul>
+                        <li><strong>Days 41-45, POS deployment.</strong> Lightspeed Retail (or equivalent) in pilot stores. Configure transaction sync: store, cashier, line items, customer, timestamp. In-store receipts in HubSpot within 15-30 minutes.</li>
+                        <li><strong>Days 45-50, Azure warehouse.</strong> Schema covering e-commerce and POS in one combined transaction table. Pipelines on hourly or 4-hour micro-batch. Every transaction in the warehouse within 4 hours.</li>
+                        <li><strong>Days 50-55, dashboard implementation.</strong> Power BI on the warehouse schema. Daily revenue, units, gross margin by channel, region, category. Store and merchant dashboards. Training to store ops, merchants, finance.</li>
+                    </ul>
+                </div>
+
+                <div class="proof-banner">
+                    <span class="ico">DAY 60 PROOF</span>
+                    <p><strong>The CEO opens the dashboard and sees live revenue, online plus in-store, by region and channel.</strong> No more reconciling spreadsheets across systems. Single accepted source of truth for performance reviews.</p>
+                </div>
+
+                <div class="week-track">
+                    <h3>Parallel track <span class="tag">Salesforce migration planning + pilot</span></h3>
+                    <ul>
+                        <li><strong>Days 31-40, data preparation.</strong> Export Salesforce data, identify quality issues (duplicates, inconsistent formats, orphan records), clean (standardize picklists, dedupe, fix emails), disable any Salesforce automations that modify records during export.</li>
+                        <li><strong>Days 41-50, pilot migration.</strong> One region (e.g., Midwest with 3-4 territories) or 5-10% of accounts. Migrate companies, then contacts, then deals into HubSpot. Reconcile. Capture and fix mapping bugs.</li>
+                        <li><strong>Days 50-60, full migration prep.</strong> Sign off the playbook with team leads. Phase the full migration. Secure leadership commitment that all new work goes into HubSpot starting Day 61.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="phase-block">
+                <div class="phase-head">
+                    <span class="phase-num">PHASE 03</span>
+                    <h2>Days 61-90 &middot; Cut over Salesforce, launch decision AI</h2>
+                </div>
+                <p class="phase-job">Two things in parallel: kill Salesforce, and prove decision-making AI works on a real category. Each is independently board-relevant; together they reframe what Claire's technology is.</p>
+
+                <div class="week-track">
+                    <h3>Weeks 9-10 <span class="tag">Salesforce cutover</span></h3>
+                    <ul>
+                        <li><strong>Days 61-65, full migration execution.</strong> Run the validated playbook: companies, contacts, deals, tickets in phased waves. Set Salesforce to read-only. <strong>No more changes in Salesforce, period.</strong></li>
+                        <li><strong>Days 65-70, cutover and stabilization.</strong> All new deals, contacts, activities go into HubSpot only. Train users on HubSpot workflows. Daily reconciliation. Fix operational breakdowns immediately.</li>
+                        <li><strong>Days 70-80, parallel run.</strong> Salesforce stays read-only for 30 days. All operational work in HubSpot. Reconciliation reports twice weekly.</li>
+                        <li><strong>Days 81-90, decommission planning.</strong> After 30 clean days, plan the Salesforce shutdown. Archive for compliance. Begin canceling licenses (recurring savings of $10-15M annually). Shut down Salesforce-to-ERP integrations.</li>
+                    </ul>
+                </div>
+
+                <div class="week-track">
+                    <h3>Weeks 10-12 <span class="tag">Decision-making AI pilot</span></h3>
+                    <p style="font-size: 10.5pt; margin-bottom: 8px;">Pilot deliberately narrow: <strong>earrings</strong> as the category (35%+ of jewelry revenue, high velocity, clear seasonality), <strong>Midwest</strong> as the region (200-300 stores, mixed urban/suburban/mall), <strong>teen self-purchase</strong> as the segment. Six-step loop: forecast, optimize, propose, human review, execute, learn.</p>
+                    <ul>
+                        <li><strong>Days 61-75, model development</strong> in parallel with Salesforce cutover. 24 months of earring transactions, current inventory, vendor lead times, MOQs, margin and seasonality data from Azure. Demand forecast model (time-series with promotional, price-elasticity, seasonality inputs). Optimization routine (linear programming over budget, safety stock, MOQs, DC capacity).</li>
+                        <li><strong>Days 76-85, deployment.</strong> Ranked, explained recommendations in the OMS UI. Each carries quantity, expected sell-through, overstock risk, margin impact, and rationale. Merchants see them daily.</li>
+                        <li><strong>Days 85-90, human-in-loop review.</strong> Merchants approve, modify, or reject. Every override carries a captured reason. Those reasons feed model retraining. Measurement: forecast accuracy (target <strong>below 15% error</strong> against 25-30% baseline), sell-through (+5-10%), overstock (-20%), margin (+1-2 points).</li>
+                    </ul>
+                </div>
+
+                <div class="proof-banner">
+                    <span class="ico">DAY 90 PROOF</span>
+                    <p><strong>Decision-making AI is generating weekly buying recommendations for earrings in the Midwest.</strong> Merchants are governing those recommendations. The system is learning from human decisions. <strong>Operational AI, not a chatbot.</strong></p>
+                </div>
+            </div>
+
+            <h2 class="section-h">Day 90 Board Proof Points</h2>
+            <p>The Day 90 board pack is short and concrete. Four claims, each with evidence.</p>
+
+            <div class="proof-grid">
+                <div class="proof-card">
+                    <h4>Salesforce is gone</h4>
+                    <p>HubSpot is the system of record for customers, deals, and revenue. Annual licensing run-rate reduced by <strong>$10-15M</strong>. Migration executed under a validated playbook with daily reconciliation; no operational breakdowns survived past 48 hours.</p>
+                </div>
+                <div class="proof-card">
+                    <h4>Omnichannel data is live</h4>
+                    <p>Every e-commerce and POS transaction lands in the Azure warehouse <strong>within four hours</strong> and surfaces in dashboards within 24. Finance, merchandising, and store operations all read from the same source. There is no longer a debate about what "revenue" means.</p>
+                </div>
+                <div class="proof-card">
+                    <h4>Decision-making AI is generating real buying decisions</h4>
+                    <p>For earrings in the Midwest, the system produces ranked, explained purchase order recommendations weekly. Merchants approve, modify, or reject with reasons captured. By Month 6, scales to necklaces and a second region. <strong>By Month 12, 60% of assortment.</strong></p>
+                </div>
+                <div class="proof-card">
+                    <h4>The 18-month plan is on track</h4>
+                    <p>Phase 0 complete. Phase 1 in execution. The path to <strong>25%+ e-commerce penetration, 300+ remodeled stores, EBITDA break-even</strong> by Month 18 is defended by operating evidence, not promises. <strong>$105-165M investment recovering against $500-800M annualized revenue at 60-70% probability.</strong></p>
+                </div>
+            </div>
+
+            <h2 class="section-h">Named Decisions Locked in 90 Days</h2>
+            <p>The 90 days are organized around a small number of irreversible decisions made early. Locking them is what allows everything downstream to move at the speed the plan requires.</p>
+            <ul>
+                <li><strong>CRM and revenue brain (Week 2):</strong> HubSpot, not Salesforce. TCO 50-60% lower at retail scale. Native integrations into chosen e-commerce and POS partners.</li>
+                <li><strong>E-commerce platform (Week 2):</strong> Shopify or BigCommerce. Both have proven HubSpot integrations and migrate faster than Salesforce Commerce Cloud allows.</li>
+                <li><strong>POS:</strong> Lightspeed Retail or equivalent cloud POS with a real HubSpot connector. Pilot stores by Day 60, rolling out from there.</li>
+                <li><strong>Data warehouse:</strong> Azure, consistent with existing cost-optimization work and current operating capability.</li>
+                <li><strong>Decision-making AI category and region:</strong> Earrings in the Midwest, teen self-purchase segment. Velocity, seasonality, and signal clarity make the pilot defensible.</li>
+            </ul>
+            <p>Each decision is a single sentence in the Day 30 board pack with reasoning documented and alternatives explicitly considered. <strong>The point of locking them early is to remove the litigation that otherwise consumes Phase 1.</strong></p>
+
+            <h2 class="section-h">Risk Register and Mitigation</h2>
+
+            <div class="risk-row">
+                <div class="num">RISK 01</div>
+                <div class="name">Data migration risk</div>
+                <div class="mitig">Salesforce data carries duplicates, inconsistent picklists, orphan records, automation-driven artifacts. <strong>Mitigation:</strong> Week 5-8 pilot migration on a controlled slice (one region or 5-10% of accounts) surfaces mapping bugs before the full cutover in Week 9. Reconciliation reports drive the playbook for the full migration.</div>
+            </div>
+            <div class="risk-row">
+                <div class="num">RISK 02</div>
+                <div class="name">Operational continuity during cutover</div>
+                <div class="mitig"><strong>Mitigation:</strong> Salesforce stays read-only for 30 days after Day 65. Reconciliation reports twice weekly. If anything breaks in HubSpot, the team can read prior state without rolling back. After 30 clean days, decommission proceeds.</div>
+            </div>
+            <div class="risk-row">
+                <div class="num">RISK 03</div>
+                <div class="name">Stakeholder resistance</div>
+                <div class="mitig">Particularly from teams that built workarounds inside Salesforce. <strong>Mitigation:</strong> Day 1 directive removes ambiguity about direction. Week 1 stakeholder interviews capture every dependency so the migration plan addresses them explicitly. Deepest dependencies become rebuild work in HubSpot, named and scoped.</div>
+            </div>
+            <div class="risk-row">
+                <div class="num">RISK 04</div>
+                <div class="name">Decision AI credibility risk</div>
+                <div class="mitig">If the pilot generates recommendations merchants override at high rates without good reasons, the model is no better than current process. <strong>Mitigation:</strong> Captured-reason override workflow. Every modification or rejection requires a documented reason. Reasons feed retraining. Override rate tracked weekly. <strong>High override rate is a model defect, not an AI failure.</strong></div>
+            </div>
+            <div class="risk-row">
+                <div class="num">RISK 05</div>
+                <div class="name">E-commerce replatform timeline</div>
+                <div class="mitig">Salesforce Commerce Cloud is rigid. <strong>Mitigation:</strong> Run e-commerce-to-HubSpot integration in Phase 1 against existing Commerce Cloud, then replatform the front end in Months 4-6. HubSpot has live e-commerce data by Day 45 regardless of where the storefront ultimately lives.</div>
+            </div>
+
+            <h2 class="section-h">Stakeholder Management Cadence</h2>
+            <div class="cadence-grid">
+                <div class="cadence">
+                    <div class="when">Daily</div>
+                    <div class="what">Standups with <strong>store operations and technology leads</strong> through Phase 1 to surface integration issues fast.</div>
+                </div>
+                <div class="cadence">
+                    <div class="when">Weekly</div>
+                    <div class="what">Executive review with <strong>CEO, CFO, EVP Operations, EVP Merchandising</strong>. Decisions made, decisions outstanding, risks open.</div>
+                </div>
+                <div class="cadence">
+                    <div class="when">Biweekly</div>
+                    <div class="what"><strong>Merchandising review</strong> on the AI pilot: how merchants use recommendations, what they override, whether reasons improve the model.</div>
+                </div>
+                <div class="cadence">
+                    <div class="when">Monthly</div>
+                    <div class="what"><strong>Board review</strong> hits major proof points. Day 30, 60, 90 board packs track dated milestones and financial-model variance.</div>
+                </div>
+            </div>
+
+            <h2 class="section-h">What Day 90 Sets Up</h2>
+            <p>After Day 90, Phase 1 continues for another three months. POS rolls to <strong>300+ stores</strong>. Decision-making AI extends to <strong>necklaces and a second region</strong>. The first 20-30 Gen Z store remodels go live in priority markets. The Generations program launches in 5-10 pilot stores, with the family-relationship CRM model captured and the first tea-house partnership signed. The Princesses brand expression, the first-piercing ritual, moves from pilot to standard. By Month 6 the e-commerce penetration target shifts from 12% to 15%, same-store sales decline narrows from -15% to -8%, and inventory turns improve 5%.</p>
+
+            <div class="closing">
+                <p>The 90 days are <strong>not the transformation</strong>. They are the proof that the transformation is real, repeatable, and on schedule. <strong>That proof is what unlocks the rest of the capital and the rest of the timeline.</strong></p>
+            </div>
+        </div>
+    </article>
+
+    <!-- ============ Strategic Intelligence Report ============ -->
+<article class="page">
+        <header class="page-header">
+            <div class="doc-tag">Strategic Intelligence &middot; CTO/CIO Candidate Submission</div>
+            <h1>Claire's Strategic Intelligence &amp; Transformation Roadmap</h1>
+            <div class="lede">A defined playbook with named platforms, sequenced milestones, quantified impact, and honest constraints. The strategy is the easy part. Execution is the test.</div>
+            <div class="meta-grid">
+                <div class="item"><div class="l">Prepared by</div><div class="v">P. R. Manjee</div></div>
+                <div class="item"><div class="l">Context</div><div class="v">Chapter 11 (Aug 2025), 1,326 stores</div></div>
+                <div class="item"><div class="l">Investment envelope</div><div class="v">$105-165M</div></div>
+                <div class="item"><div class="l">Recovery target</div><div class="v">$500-800M annualized</div></div>
+            </div>
+        </header>
+
+        <div class="stat-strip">
+            <div class="stat-cell"><div class="v">$580.7B</div><div class="l">Jewelry market 2033</div></div>
+            <div class="stat-cell"><div class="v">5-8%</div><div class="l">Global CAGR</div></div>
+            <div class="stat-cell"><div class="v">8.4%</div><div class="l">N. America CAGR</div></div>
+            <div class="stat-cell"><div class="v">23%</div><div class="l">Signet digital</div></div>
+            <div class="stat-cell"><div class="v">&lt;15%</div><div class="l">Claire's digital</div></div>
+            <div class="stat-cell"><div class="v">60-70%</div><div class="l">Recovery probability</div></div>
+        </div>
+
+        <div class="body-content">
+
+            <div class="exec-summary">
+                <div class="label">Executive Summary</div>
+                <p>Claire's filed its <strong>second Chapter 11 in seven years</strong> against a global jewelry market that grew from $365.9B in 2024 toward a projected $580.7B in 2033, with North America compounding at 8.4%. <strong>This is not a market failure; it is an execution failure with a 60-70% probability of disciplined recovery.</strong> The diagnosis is concrete: a fragmented technology stack that cannot support omnichannel, a store experience misaligned with Gen Z buying behavior, and capital allocation post-2018 that funded debt service instead of transformation. The fix is a $105-165M investment over 18 months that retires Salesforce in favor of a HubSpot-centered revenue spine, modernizes 300 stores, scales decision-making AI before generative chatbots, and unlocks $500-800M in annualized recovery against a 2-3 year payback.</p>
+            </div>
+
+            <h2><span class="roman">SECTION I</span>Market Position &amp; Competitive Context</h2>
+            <p>The specialty jewelry and accessories market is a growth market that Claire's is not capturing. Global jewelry sits at <strong>$365.9B in 2024</strong> and tracks toward $580.7B by 2033 at a 5-8% CAGR, with North America compounding faster at 8.4%. Tween and teen accessories, piercing services, and self-purchase gifting all remain culturally relevant. <strong>The category is not contracting; Claire's relevance inside it is.</strong></p>
+
+            <p>Claire's is the legacy mall-format leader in tween and teen jewelry plus piercing, with 1,326 US stores. Revenue is down 15-20% year over year in 2025. The company has not achieved 15% e-commerce penetration. The store fleet is concentrated in Class B and C malls that Gen Z visits at lower frequency than the customer cohort that built the brand in the 1990s and 2000s.</p>
+
+            <h3>Signet is the relevant competitor of record</h3>
+            <p>Signet runs a multi-banner portfolio (Kay, Zales, Jared, Banter by Piercing Pagoda, Blue Nile, Rocksblox), reports <strong>23% digital penetration</strong>, and posted <strong>+3% same-store growth</strong> into a consolidating market. Vault Rewards reached <strong>5.2M members</strong>. Signet acquired Blue Nile to absorb luxury direct-to-consumer operating capability and Rocksblox to absorb Gen Z rental and loyalty mechanics, then transferred those playbooks into core banners. <strong>That is what strategic acquisition looks like: capability transfer, not SKU expansion.</strong></p>
+
+            <table class="competitor-table">
+                <thead>
+                    <tr><th>Operator</th><th>Digital penetration</th><th>SSS</th><th>Loyalty</th><th>Strategic moves</th></tr>
+                </thead>
+                <tbody>
+                    <tr class="signet"><td>Signet</td><td class="num">23%</td><td class="num">+3%</td><td class="num">5.2M Vault Rewards</td><td>Blue Nile + Rocksblox capability transfer</td></tr>
+                    <tr class="claires"><td>Claire's</td><td class="num">&lt;15%</td><td class="num">-15-20%</td><td class="num">No measured program</td><td>Walmart wholesale (cannibalizing)</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Claire's loses share simultaneously across five fronts</h3>
+            <ul>
+                <li><strong>Signet</strong> captures roughly a quarter of the migration with modernized retail plus connected commerce.</li>
+                <li><strong>Etsy and digital-native brands</strong> (Pura Vida, subscription jewelry) take 25-30% of the loss with curation, authenticity, and recurring revenue.</li>
+                <li><strong>Depop and the secondhand category</strong> take 15-20% on values-aligned consumption.</li>
+                <li><strong>Ulta Beauty</strong> entered piercing at 1,500-plus locations with a beauty-plus-service combo and absorbs 10-15% of piercing-motivated visits.</li>
+                <li><strong>Independent piercers, tattoo parlors, and Amazon</strong> take the remainder on lifestyle authenticity and convenience.</li>
+            </ul>
+
+            <div class="callout">
+                <p><strong>The market structure tells us three things.</strong> First, the category supports growth; the question is who captures it. Second, the winning operating model is multi-format, omnichannel, data-driven, with strategic acquisition as a capability-transfer mechanism. Third, single-format mall chains running fragmented systems against Gen Z customers lose on every dimension at once. <strong>Claire's is not losing to one competitor; it is losing to the operating model.</strong></p>
+            </div>
+
+            <h2><span class="roman">SECTION II</span>Root Cause Analysis: What Went Wrong</h2>
+
+            <h3>A. Market and Competitive Gaps</h3>
+            <p>Claire's underexecuted against three customer cohorts that the market actively rewarded.</p>
+
+            <h4>Gen Z and Gen Alpha tween/teen self-purchasers</h4>
+            <p>These customers want curated, minimal, "quiet luxury" aesthetic, Instagrammable in-store moments, transparent pricing, and seamless mobile-first commerce. They get clutter, dated merchandising, inconsistent staff training, and a digital experience that does not know what is on the shelf in their nearest store. <strong>They migrate to Etsy, Depop, and digital-native brands.</strong></p>
+
+            <h4>The piercing-motivated customer</h4>
+            <p>Historically, piercing was Claire's defining differentiator and a recurring-visit driver. Service quality regressed (reported infections, marking errors, hygiene complaints) at the same moment Ulta scaled piercing into 1,500-plus beauty stores. <strong>Claire's owned this category and let it go.</strong></p>
+
+            <h4>The dormant former Claire's customer</h4>
+            <p>The customer who got her first piercing at Claire's in the 1990s or 2000s is now a Millennial or Gen X mother. She holds <strong>20-30 years of brand equity</strong> that the company does not measure, segment, or activate. Her daughter is the current target customer. Daughters internalize brand choices from mothers. <strong>Claire's is sitting on a multigenerational loyalty asset and treating it as a single-generation transactional brand.</strong></p>
+
+            <h3>B. Operational and Technology Execution Gaps</h3>
+            <div class="diagnosis-box">There is no single source of truth for customer, order, or inventory data. That one sentence is the operational diagnosis.</div>
+
+            <p>The technology stack is a Frankenstein. <strong>Salesforce CRM and Salesforce Commerce Cloud</strong> sit on top of fragmented store-grade POS systems that do not natively integrate with either. The custom in-store Salesforce app is an overlay, not an integration. Online inventory does not match store inventory in real time, which means BOPIS exists tactically but cannot be marketed as reliable, ship-from-store cannot scale, and unified pricing breaks at the register. The Salesforce footprint is expensive, overbuilt for retail, and structurally hard to wire to retail-grade POS. <strong>Total cost of ownership runs 50-60% above what HubSpot delivers for the same functional surface area in this category.</strong></p>
+
+            <p>Without a unified data layer, decision-making AI is impossible. Demand forecasting cannot run because the data is not clean or contiguous. Inventory optimization cannot run because store-by-store turn data is not real time. Allocation cannot be optimized because product attribute data is incomplete. The result is generic merchandising that is too slow against trend, overstocks the wrong SKUs, understocks the right ones, and burns margin on clearance.</p>
+
+            <p>Store operations execution gaps compound the technology gaps. Staff tablets do not show real-time inventory or customer history. Piercing appointments are walk-in, which produces wait-time variance and undermines service consistency. Visual merchandising defaults to quantity stacked on shelves rather than curation. <strong>None of this is a technology problem alone; it is a technology, store operations, and merchandising problem that share one root cause: no operational nervous system tying them together.</strong></p>
+
+            <h3>C. Strategic and Leadership Decisions That Created These Problems</h3>
+            <p>Three decisions made the company brittle.</p>
+
+            <h4>The 2007 Apollo leveraged buyout</h4>
+            <p>Loaded <strong>$2.5B of debt</strong> onto a $3.1B purchase, structurally locking the company into cash extraction rather than reinvestment.</p>
+
+            <h4>The 2018 Chapter 11</h4>
+            <p>Wiped $1.9B of debt, gave Claire's <strong>$575M in restructuring capital</strong>, and handed control to Elliott Management and Monarch Alternative Capital. <strong>PE-controlled management treated the next seven years as a cash preservation period rather than a transformation window.</strong> The market was growing. The window was open. None of the $575M was deployed against store modernization, digital-native acquisition, enterprise technology rebuild, or service expansion. By 2025 the company had accumulated <strong>$700M of new debt</strong>, achieved no operational breakthroughs, and filed again.</p>
+
+            <h4>Tactical, not strategic, digital strategy</h4>
+            <p>The company implemented BOPIS, joined Roblox with ShimmerVille, hired influencer ambassadors, and expanded into fragrance and beauty SKUs. <strong>None of those moves changed the operating model.</strong> Claire's never acquired a digital-native jewelry brand to import operating capability the way Signet imported Blue Nile and Rocksblox. It never redesigned the supply chain for trend velocity. It never built a unified omnichannel platform. The board accepted activity as evidence of transformation. It was not.</p>
+
+            <h2><span class="roman">SECTION III</span>Strategic Alternatives: What Could Have Been Different</h2>
+            <p>For each of the three structural failures, leadership had at least two credible alternative paths between 2018 and 2025.</p>
+
+            <h3>On capital allocation post-2018</h3>
+            <div class="path-grid">
+                <div class="path-card path-a">
+                    <div class="label">Path A &middot; What happened</div>
+                    <h5>Cash preservation and debt service</h5>
+                    <p>$575M deployed against debt and operations rather than transformation. Outcome: second Chapter 11 in 2025.</p>
+                </div>
+                <div class="path-card path-b">
+                    <div class="label">Path B &middot; Available alternative</div>
+                    <h5>Aggressive store modernization</h5>
+                    <p>$200-250M into Gen Z-aligned redesign of top 500 stores within 18 months. SSS lift of 3-5% at remodeled locations would have arrested the decline.</p>
+                </div>
+                <div class="path-card path-b">
+                    <div class="label">Path C &middot; Available alternative</div>
+                    <h5>Strategic acquisition of a digital-native brand</h5>
+                    <p>$150-200M to import direct-to-consumer operating capability. Mirrors Signet's Blue Nile move two years before Signet did it.</p>
+                </div>
+                <div class="path-card path-b">
+                    <div class="label">Path D &middot; Available alternative</div>
+                    <h5>Multi-channel piercing expansion</h5>
+                    <p>$100-150M into Ulta-style partnerships and standalone piercing studios. Would have captured the category before Ulta scaled into 1,500 locations.</p>
+                </div>
+            </div>
+            <p><strong>Any combination of B, C, and D would have plausibly avoided the second bankruptcy.</strong></p>
+
+            <h3>On technology architecture</h3>
+            <div class="path-grid">
+                <div class="path-card path-a">
+                    <div class="label">Path A &middot; What happened</div>
+                    <h5>Salesforce Commerce Cloud + custom in-store app on fragmented POS</h5>
+                    <p>Hard to wire, expensive to operate, no single source of truth. Outcome: omnichannel impossible.</p>
+                </div>
+                <div class="path-card path-b">
+                    <div class="label">Path B &middot; Disciplined choice</div>
+                    <h5>HubSpot revenue spine + Shopify/BigCommerce + Lightspeed Retail + Azure</h5>
+                    <p>50-60% TCO advantage frees $10-15M annually that funds the rest of the transformation.</p>
+                </div>
+            </div>
+
+            <h3>On brand and customer</h3>
+            <div class="path-grid">
+                <div class="path-card path-a">
+                    <div class="label">Path A &middot; What happened</div>
+                    <h5>Single-generation tween brand</h5>
+                    <p>Treating the original 1990s-2000s customer as lapsed instead of dormant. No family-relationship data model.</p>
+                </div>
+                <div class="path-card path-b">
+                    <div class="label">Path B &middot; Defensible alternative</div>
+                    <h5>Multigenerational ritual brand: Generations + Princesses</h5>
+                    <p>Mother-daughter-grandmother family clusters in CRM, monthly in-store ritual days, luxury-adjacent partnerships. Retains the dormant-equity asset and converts it into a structural moat.</p>
+                </div>
+            </div>
+
+            <h2><span class="roman">SECTION IV</span>Transformation Roadmap: What Happens Now</h2>
+
+            <h3>Three Integrated Pillars</h3>
+            <div class="pillar-grid">
+                <div class="pillar">
+                    <div class="num">PILLAR 01</div>
+                    <h5>HubSpot-centered Technology Spine</h5>
+                    <p>One source of truth for customer, order, and inventory. <strong>HubSpot</strong> as revenue brain, <strong>Shopify or BigCommerce</strong> on front end, <strong>Lightspeed Retail</strong> at the till, <strong>Azure</strong> warehouse, Power BI dashboards, decision-making AI on top.</p>
+                </div>
+                <div class="pillar">
+                    <div class="num">PILLAR 02</div>
+                    <h5>Generations + Princesses Brand &amp; Loyalty</h5>
+                    <p><strong>Generations</strong>: multigenerational ritual program with mother-daughter-grandmother family clusters and tea-house partnerships. <strong>Princesses</strong>: tween-led entry expression that turns "first piercing" into a defined ritual.</p>
+                </div>
+                <div class="pillar">
+                    <div class="num">PILLAR 03</div>
+                    <h5>Store Modernization with Real Omnichannel</h5>
+                    <p>300+ remodels by Month 18 in curated, minimal format. Ship-from-store, BOPIS optimization, unified returns. Walmart wholesale capped as tactical Princesses discovery channel, not strategy.</p>
+                </div>
+            </div>
+
+            <h3>Technology Modernization</h3>
+            <p>The objective is one source of truth for customer, order, and inventory data. The architecture replaces Salesforce with a HubSpot revenue spine. Shopify or BigCommerce sits on the e-commerce side. Lightspeed Retail (or equivalent cloud-native POS with a proven HubSpot connector) deploys across the fleet. Azure Data Warehouse ingests every transaction from both channels and feeds Power BI dashboards plus the decision-making AI layer.</p>
+
+            <p>POS modernization is phased, not big bang. <strong>Pilot 50 stores in months 1-3</strong> to validate the connector and field operations, then <strong>roll waves of roughly 200 stores per month from month 4 forward</strong>. Inventory reaches near real-time sync (15-minute SLA) by month 6. E-commerce replatforms in months 1-6 with a Gen Z-focused redesign, mobile-first checkout, AI-powered search, and a redesigned mobile app. Workforce tools ship to stores as staff tablets with real-time inventory, customer purchase history, and personalized recommendations.</p>
+
+            <h3>Omnichannel Strategy</h3>
+            <p>Connected commerce is the goal that justifies the technology spend. <strong>Ship-from-store activates by month 9</strong>, which converts every store into a fulfillment node and reduces shipping cost and time. BOPIS becomes reliable because the inventory is real. Buy-online-return-in-store is frictionless because the customer record is unified. Pricing is consistent across channels because there is one pricing engine. By month 12 the unified order management system optimizes routing across stores and DCs based on cost, distance, and inventory health. <strong>E-commerce penetration tracks from below 15% at baseline to 20% at month 12 and 25%+ at month 18. That alone is $300-500M of incremental annual revenue.</strong></p>
+
+            <h3>Supply Chain Visibility and Decision-Making AI</h3>
+            <p>The decision-making AI layer is the supply chain modernization. <strong>Sequence is non-negotiable: AI for operational decisions first, generative AI second.</strong> The pilot starts in month 4 with one category (earrings, 35% of jewelry revenue, highest velocity, clearest seasonality) in one region (Midwest, 200-300 stores) for one segment (teen self-purchase). The forecasting model targets sub-15% forecast error against the current 25-30%. Output flows to a propose-review-execute workflow: AI recommends purchase orders and allocations, merchants approve or override with reasons captured, decisions feed back into model retraining. Scale to 60% of SKUs by month 12 and full assortment plus allocation by month 18. <strong>Expected impact at scale: +5-10% sell-through, -20% overstock, +1-2 margin points, and a 10-15% reduction in inventory carrying cost.</strong></p>
+
+            <h3>Workforce Technology Enablement</h3>
+            <p>Pattern transfer from healthcare experience applies directly. At HIMSS, mobile-first tooling produced <strong>28% knowledge-worker capacity recovery</strong> for clinicians. The same pattern works for store associates: tablets that surface real-time inventory, customer history, recommendations, piercing appointment management, and aftercare workflows compress unproductive coordination time and lift conversion. Piercing services move from walk-in to scheduled appointments via app, reducing wait-time variance, improving safety, and capturing recurring-visit data into HubSpot.</p>
+
+            <h3>Organizational Structure and Governance</h3>
+            <p>Establish a Transformation Office reporting to the CEO with the CTO accountable for the integrated program. Embed dedicated workstreams for Platform, Omnichannel, Stores, Brand and Loyalty, and Decision AI, each with named leadership and weekly cadence. Stand up a monthly board review against pre-defined milestones; <strong>no surprise management</strong>. Hire to scale: 20-30 engineers in months 1-6, growing to 50-80 by month 18, plus product management, design, and 15-20 data and analytics roles. Restructure or replace teams holding workarounds and Salesforce dependencies; that is real cost and cannot be avoided.</p>
+
+            <h3>Capital Requirements and ROI</h3>
+            <table class="cap-table">
+                <thead>
+                    <tr><th>Investment line</th><th>Spend</th><th>Outcome</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Platform migration</td><td>$30-50M</td><td>Salesforce out, HubSpot in</td></tr>
+                    <tr><td>Store remodels (300 @ $50-80K)</td><td>$15-25M</td><td>Curated Gen Z format</td></tr>
+                    <tr><td>E-commerce replatform</td><td>$10-15M</td><td>Off Salesforce Commerce Cloud</td></tr>
+                    <tr><td>POS deployment</td><td>$10-15M</td><td>Lightspeed across fleet</td></tr>
+                    <tr><td>Data and analytics</td><td>$5-10M</td><td>Azure + Power BI</td></tr>
+                    <tr><td>Integration engineering</td><td>$10-15M</td><td>Connectors and pipelines</td></tr>
+                    <tr><td>Team and staffing</td><td>$20-30M</td><td>Engineers, PM, design, data</td></tr>
+                    <tr><td>Contingency</td><td>$5-10M</td><td>Risk reserve</td></tr>
+                    <tr class="total"><td>Total 18-month investment</td><td>$105-165M</td><td>Returns below</td></tr>
+                    <tr class="recovery"><td>E-commerce penetration impact (Month 18)</td><td>+$300-500M</td><td>25%+ digital share</td></tr>
+                    <tr class="recovery"><td>Same-store sales recovery</td><td>+$200-300M</td><td>-15% to +2-3%</td></tr>
+                    <tr class="recovery"><td>Cost takeout (Salesforce + inventory + AI margin)</td><td>+$30-65M annual</td><td>Recurring</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Payback period 2-3 years. EBITDA path moves from -$500M annual loss toward break-even or positive by month 18. Aggregate annualized recovery: $500-800M.</strong></p>
+
+            <h2><span class="roman">SECTION V</span>Critical Success Factors &amp; Risks</h2>
+
+            <h3>Five things must go right</h3>
+            <ul>
+                <li><strong>CEO and board commitment to the full 18-month arc</strong>, not quarterly second-guessing.</li>
+                <li><strong>CTO authority over P&amp;L</strong> for the transformation, not just IT.</li>
+                <li><strong>Disciplined sequencing:</strong> Salesforce frozen at day one, HubSpot live by day 60, Salesforce dead by day 90, AI pilot live by month 4.</li>
+                <li><strong>Honest milestone tracking;</strong> the 60-70% probability assumes pre-defined gates and the willingness to stop or replan when a gate fails.</li>
+                <li><strong>Holiday season protection:</strong> no major cutovers between October and January.</li>
+            </ul>
+
+            <h3>Five things could derail</h3>
+
+            <div class="risk-row">
+                <div class="num">RISK 01</div>
+                <div class="name">Organizational change resistance</div>
+                <div class="mitig">Particularly from teams holding Salesforce dependencies. <strong>Mitigation:</strong> transparent communication of economics (50-60% TCO reduction, retail-fit architecture) and disciplined org design naming restructuring required upfront. <strong>Pattern reference:</strong> the FVK Solutions 60-day ransomware recovery taught that resistance collapses once the new system demonstrably works under pressure.</div>
+            </div>
+            <div class="risk-row">
+                <div class="num">RISK 02</div>
+                <div class="name">Data migration complexity</div>
+                <div class="mitig">Salesforce customizations, picklist drift, automation entanglement, orphan integrations. <strong>Mitigation:</strong> pilot migration on one region in month 2, validate with reconciliation reports, finalize the playbook before full cutover. <strong>Pattern reference:</strong> the UChicago Medicine zero-downtime five-farm migration ("nuclear submarine") proves multi-system live migrations are achievable when architecture and rollback plan are designed first.</div>
+            </div>
+            <div class="risk-row">
+                <div class="num">RISK 03</div>
+                <div class="name">Holiday season execution risk</div>
+                <div class="mitig">Q4 carries 35%+ of annual revenue. <strong>Mitigation:</strong> any cutover that touches POS or e-commerce checkout is locked outside October-January. Run parallel systems through Q4 if necessary.</div>
+            </div>
+            <div class="risk-row">
+                <div class="num">RISK 04</div>
+                <div class="name">Capital discipline failure</div>
+                <div class="mitig">PE-style cost discipline can starve the transformation budget at month 9 if cash flow tightens. <strong>Mitigation:</strong> contractual commitment from the board to the $105-165M envelope at the start, with explicit gates rather than quarterly negotiation.</div>
+            </div>
+            <div class="risk-row">
+                <div class="num">RISK 05</div>
+                <div class="name">Market downturn</div>
+                <div class="mitig">A consumer pullback compresses Q4 and stretches the payback period. <strong>Mitigation:</strong> phasing prioritizes operating leverage (inventory turns, margin, working capital) before revenue dependence, so cost benefits accrue even in a softer demand environment.</div>
+            </div>
+
+            <div class="callout">
+                <p><strong>Constraints honesty:</strong> capital availability post-Chapter 11 is real, supplier confidence is fragile (estimated $500M+ in unpaid supplier debt at filing), and PE governance cycles have historically not tolerated 18-month operational arcs. <strong>The success probability is 60-70% precisely because these are real constraints, not because they are unsolvable.</strong></p>
+            </div>
+
+            <h2><span class="roman">SECTION VI</span>90-Day Priorities (If I Walked In Today)</h2>
+
+            <div class="day-row">
+                <div class="day-tag">Day 1</div>
+                <div class="day-body"><p><strong>Issue the freeze.</strong> All-hands message: no new objects, automations, or integrations on Salesforce starting today. Every new initiative targets HubSpot or platform-agnostic components. <strong>Reason:</strong> organizational signal matters. Without the freeze, parallel investment continues and the migration is sabotaged in slow motion before it starts.</p></div>
+            </div>
+            <div class="day-row">
+                <div class="day-tag">Days 1-7</div>
+                <div class="day-body"><p><strong>Audit and stakeholder mapping.</strong> Inventory Salesforce objects, fields, workflows, integrations. Tag Critical, Useful, Junk. Map data that lives only in Salesforce. Meet finance, supply chain, merchandising, store operations, IT vendor management. <strong>Reason:</strong> you cannot migrate what you do not understand, and you cannot align what you have not heard.</p></div>
+            </div>
+            <div class="day-row">
+                <div class="day-tag">Days 7-14</div>
+                <div class="day-body"><p><strong>Lock the target architecture.</strong> HubSpot as CRM and revenue brain. Shopify or BigCommerce as e-commerce front end. Lightspeed Retail (or proven equivalent) as POS. Azure as the data platform. One-page architecture document, signed by CEO and CFO. <strong>Reason:</strong> vendor decisions delayed past week two delay everything downstream.</p></div>
+            </div>
+            <div class="day-row">
+                <div class="day-tag">Days 14-30</div>
+                <div class="day-body"><p><strong>Design the spine.</strong> HubSpot data model (pipelines, lifecycle stages, custom properties, family-relationship objects for Generations). Salesforce-to-HubSpot data mapping workbook. Dashboard requirements document with daily refresh SLA. Resourcing plan for engineering, product, design, data. <strong>Reason:</strong> month 1 is design month; everything in months 2-3 depends on the quality of these artifacts.</p></div>
+            </div>
+            <div class="day-row">
+                <div class="day-tag">Days 31-45</div>
+                <div class="day-body"><p><strong>Stand up HubSpot and connect e-commerce.</strong> Configure HubSpot production. Implement Shopify or BigCommerce connector. First live e-commerce orders flow into HubSpot. <strong>Reason:</strong> a working spine with real data moves the conversation from theory to evidence within six weeks.</p></div>
+            </div>
+            <div class="day-row">
+                <div class="day-tag">Days 45-60</div>
+                <div class="day-body"><p><strong>Connect POS and deliver the first dashboard.</strong> Pilot Lightspeed Retail with HubSpot connector in 10-20 stores. Land all transactions into Azure. Ship the first unified revenue dashboard (channel, region, category, daily refresh). Declare it the single source for performance reviews. <strong>Reason:</strong> a single dashboard everyone reads breaks the spreadsheet culture and starts the data discipline.</p></div>
+            </div>
+            <div class="day-row">
+                <div class="day-tag">Days 60-75</div>
+                <div class="day-body"><p><strong>Pilot the Salesforce migration.</strong> Clean Salesforce data. Migrate one region. Validate record counts and associations. Finalize the migration playbook. <strong>Reason:</strong> prove the playbook on a controlled slice before the full cutover.</p></div>
+            </div>
+            <div class="day-row">
+                <div class="day-tag">Days 75-90</div>
+                <div class="day-body"><p><strong>Cut over and launch the Decision AI pilot.</strong> Execute full Salesforce migration in waves. Set Salesforce read-only. Launch the earrings-in-Midwest forecasting and inventory pilot with human-in-the-loop review. <strong>Reason:</strong> by day 90 the proof points are concrete: Salesforce dead, HubSpot live, dashboards running, AI generating buy recommendations. <strong>That is what funds the next 15 months of board conviction.</strong></p></div>
+            </div>
+
+            <div class="process-summary">
+                <h2><span class="roman">PROCESS</span>How This Analysis Was Built</h2>
+                <p>This analysis was built through structured Self-Refine over a competitive and operational diagnosis cycle.</p>
+
+                <h4>Reasoning path</h4>
+                <p><strong>Gather:</strong> assembled financial data (2007 LBO, 2018 Chapter 11, $575M restructuring capital, $700M new debt, 2025 second filing), market data (jewelry $365.9B-$580.7B, 5-8% CAGR, North America 8.4%), competitor data (Signet 23% digital penetration, +3% SSS, 5.2M Vault Rewards, Blue Nile and Rocksblox), Claire's operational data (1,326 US stores, sub-15% e-commerce, 15-20% YoY decline). <strong>Diagnose:</strong> separated structural market signals from company-specific execution gaps, then traced gaps to root causes across market, technology, and capital allocation. <strong>Analyze alternatives:</strong> identified two-three credible alternative paths for each structural failure between 2018 and 2025. <strong>Critique:</strong> tested every claim against operational feasibility and capital realism, removed generic retail-transformation language, replaced "improve omnichannel" with named platforms, sequencing, and dollar impact. <strong>Revise:</strong> tightened to interview-ready specificity. <strong>Deliver.</strong></p>
+
+                <h4>How critique shaped revisions</h4>
+                <p>First-draft analysis named Salesforce as the cost problem; revision named it as the architecture problem (the cost is symptom, the lack of single source of truth is cause). First-draft proposed AI as a parallel workstream; revision sequenced Decision AI before generative AI because operational impact runs through inventory and margin, not chatbots. First-draft treated the Generations loyalty concept as a marketing program; revision wired it into HubSpot family-cluster modeling, POS workflow tagging, and segment-targeting AI so it becomes measurable and defensible.</p>
+
+                <h4>Stated assumptions</h4>
+                <p>Claire's e-commerce penetration is below 15% based on industry inference; if higher, the gap-closure opportunity is smaller but the architecture argument is unchanged. Supplier confidence is fragile but recoverable with a credible operational narrative; the $500M+ unpaid supplier debt is treated as restructurable, not extinguishable. Holiday Q4 risk is mitigated by sequencing, not avoided. <strong>The 60-70% probability of success assumes board commitment to the full 18-month envelope and CTO P&amp;L authority; outside those conditions the probability drops materially.</strong></p>
+
+                <h4>Evidence supporting the position</h4>
+                <p>Market growth data is from Polaris Market Research and corroborating industry sources. Signet performance data is from FY2024 reporting and AIDI digital transformation analysis. Claire's-specific data is from WWD financial reporting, Modern Retail operational analysis, and Business of Fashion piercing market coverage. The candidate's pattern-transfer claims are anchored in independently quantified outcomes: <strong>$1.2M annual reduction at Kaufman Hall, 28% knowledge-worker capacity recovery at HIMSS, zero-downtime five-farm migration at UChicago Medicine, 60-day ransomware recovery at FVK Solutions, $322M aggregate IT savings across the career arc, and an 80% personal ROI rate against a roughly 80% industry transformation failure rate.</strong> These are the operational priors that calibrate the 60-70% probability and the $105-165M envelope.</p>
+            </div>
+
+            <div class="closing">
+                <p>This is <strong>not a vision document</strong>. It is a defined playbook with named platforms, sequenced milestones, quantified impact, and honest constraints. <strong>The strategy is the easy part. The execution is the test.</strong></p>
+            </div>
+        </div>
+    </article>
+
+    <!-- ============ Decision-Making AI Implementation Guide ============ -->
+<article class="page">
+        <header class="page-header">
+            <div class="doc-tag">Implementation Guide &middot; Decision-Making AI</div>
+            <h1>Claire's Decision-Making AI</h1>
+            <div class="lede">AI for buying and inventory decisions, not chatbots. Forecast, optimize, propose, human review, execute, learn.</div>
+            <div class="meta">
+                <span>For <b>CTO peers, EVP Merchandising, Data Leadership</b></span>
+                <span>By <b>P. R. Manjee, CTO/CIO Candidate</b></span>
+                <span>Pilot <b>Earrings, Midwest, Teen self-purchase</b></span>
+            </div>
+        </header>
+
+        <div class="body-content">
+
+            <div class="thesis">
+                <div class="label">The Strategic Thesis</div>
+                <p><strong>Most retailers waste cycles on customer-facing generative AI</strong> (chatbots, recommendation widgets) while ignoring the AI that directly impacts margin and cash: demand forecasting and inventory optimization.</p>
+                <p>For Claire's, decision-making AI is <strong>operational AI under merchant governance</strong>. The output is purchase orders and allocations. The discipline is sequence: AI for operational decisions first, generative AI second, and generative AI only after the data spine has earned the right to scale it.</p>
+            </div>
+
+            <div class="opportunity-box">
+                <strong>The Opportunity:</strong> If forecast error drops from 25-30% to below 15%, overstock falls 20%, sell-through lifts 5-10%, and margin lifts 1-2 points, the aggregate is <strong>$20-30M of annual margin and $30-50M of working-capital release</strong> in addition to the $10-15M of Salesforce decommission savings already in the model.
+            </div>
+
+            <h3>The Sequence</h3>
+            <ol>
+                <li><strong>Months 1-6:</strong> Demand forecasting + optimization for one category (earrings) and region (Midwest), teen self-purchase segment.</li>
+                <li><strong>Months 7-12:</strong> Scale to 60% of assortment with human-in-loop workflow. Necklaces and a second region by Month 6, all categories by Month 10.</li>
+                <li><strong>Months 13-18:</strong> 90% of core assortment under AI buying. Allocation moves from regional to store-level. Generative custom-product pilot launches against the same data spine.</li>
+            </ol>
+
+            <h2>Data Requirements</h2>
+
+            <h3>1. Transaction Data (HubSpot + Azure Warehouse)</h3>
+            <p><strong>Source:</strong> all e-commerce and POS orders, in one combined transaction table.</p>
+            <div class="data-field">
+                <strong>Required Fields</strong>
+                Date and time &middot; Product SKU and category &middot; Quantity sold &middot; Price &middot; Discount/promotion &middot; Customer segment &middot; Store ID &middot; Region
+            </div>
+            <ul>
+                <li><strong>Granularity:</strong> individual transaction level</li>
+                <li><strong>Lookback:</strong> 24+ months of history</li>
+                <li><strong>Freshness:</strong> daily updates, with a 4-hour pipeline target</li>
+            </ul>
+
+            <h3>2. Inventory Data (OMS / ERP)</h3>
+            <div class="data-field">
+                <strong>Required Fields</strong>
+                Current inventory levels by SKU and location &middot; Inventory age and turns &middot; Damaged/defective counts &middot; Return rates
+            </div>
+
+            <h3>3. Vendor and Supply Chain Data</h3>
+            <div class="data-field">
+                <strong>Required Fields</strong>
+                Lead time by vendor &middot; Minimum order quantities (MOQ) &middot; Cost per unit &middot; Vendor reliability &middot; Capacity constraints
+            </div>
+
+            <h3>4. Product Master Data</h3>
+            <div class="data-field">
+                <strong>Required Fields</strong>
+                SKU &middot; Product name &middot; Category &middot; Wholesale cost &middot; Retail price &middot; Gross margin % &middot; Trend / season classification
+            </div>
+
+            <h3>5. Marketing and Promotional Calendar</h3>
+            <div class="data-field">
+                <strong>Required Fields</strong>
+                Planned promotions by date / product / region &middot; Discount depth and duration &middot; Expected promotional lift &middot; External events
+            </div>
+
+            <h2>Segmentation Framework</h2>
+            <p>Demand and inventory decisions vary significantly by context. Models operate at the intersection of these dimensions:</p>
+
+            <div class="matrix-grid">
+                <div class="matrix-cell">
+                    <div class="label">Market Segment</div>
+                    <p>Tween, Teen, Young Adult, Parent &middot; Self-purchase, Gifting, Piercing</p>
+                </div>
+                <div class="matrix-cell">
+                    <div class="label">Product Category</div>
+                    <p>Earrings, Necklaces, Hair, Body Jewelry, Custom</p>
+                </div>
+                <div class="matrix-cell">
+                    <div class="label">Geography</div>
+                    <p>Region, Climate Band, Urban Tier</p>
+                </div>
+                <div class="matrix-cell">
+                    <div class="label">Channel</div>
+                    <p>E-commerce, In-Store, Concession, Wholesale (capped)</p>
+                </div>
+            </div>
+
+            <p><strong>Why it matters:</strong> Fast-moving earrings need different models than slow-moving necklaces. Back-to-school spikes differ by region. Piercing missions only happen in-store. Models must be segment-aware.</p>
+
+            <h2>The Decision Workflow: Six-Phase Loop</h2>
+
+            <div class="phase-block">
+                <h4><span class="phase-num">1</span>Forecast</h4>
+                <p><strong>What happens:</strong> for each (SKU &times; Segment &times; Region &times; Week), predict expected demand in units.</p>
+                <div class="example-box">
+                    <strong>Example forecast</strong>
+                    SKU-001 (Silver Hoop Earrings) &times; Teen &times; Midwest &times; Week of Aug 15<br>
+                    Historical demand: 120 units/week<br>
+                    Seasonality adjustment: +30% (back-to-school)<br>
+                    Trend: +10% YoY<br>
+                    Promotional adjustment: +15% lift<br>
+                    Forecast: <strong style="display: inline; color: var(--accent-deep);">162 units for the week</strong>
+                </div>
+                <p><strong>Inputs:</strong> 24+ months transaction history, product attributes and trend, promotional calendar, price elasticity model. <strong>Output:</strong> forecasted units by week for next 8-12 weeks with confidence intervals.</p>
+            </div>
+
+            <div class="phase-block">
+                <h4><span class="phase-num">2</span>Optimize</h4>
+                <p><strong>What happens:</strong> convert demand forecasts into inventory targets, PO quantities, and allocations. Linear programming over weekly budget, safety stock, lead times, vendor MOQs, DC capacity.</p>
+                <div class="example-box">
+                    <strong>Example optimization</strong>
+                    SKU-001 forecast: 162 units/week &times; 8 weeks<br>
+                    Vendor MOQ: 500 units &middot; Lead time: 4 weeks<br>
+                    Safety stock: 2 weeks (280 units) &middot; Current inventory: 500<br>
+                    <strong style="display: inline; color: var(--accent-deep);">Order 1,000 units in week 1</strong> (covers weeks 5-8 + safety)<br>
+                    Allocate 160 to Midwest, 80 to other regions
+                </div>
+            </div>
+
+            <div class="phase-block">
+                <h4><span class="phase-num">3</span>Propose</h4>
+                <p><strong>What happens:</strong> AI generates ranked recommendations grouped by vendor, with explanation. Each carries quantity, expected sell-through, overstock risk, margin impact, and rationale.</p>
+                <div class="example-box">
+                    <strong>Recommended POs &middot; Week of Aug 15</strong>
+                    Vendor: Global Jewelry Co.<br>
+                    Total spend: $8,500 (within budget)<br>
+                    1. SKU-001 (Silver Hoop Earrings) &middot; Quantity 1,000<br>
+                    &nbsp;&nbsp;Expected sell-through: 90% &middot; Margin impact: +$2,000<br>
+                    &nbsp;&nbsp;Rationale: back-to-school peak; trending up
+                </div>
+            </div>
+
+            <div class="phase-block">
+                <h4><span class="phase-num">4</span>Human Review and Override (the Gate)</h4>
+                <p><strong>What happens:</strong> merchants approve, modify, or reject in the OMS UI. Every modification or rejection requires a captured reason. Reasons feed model retraining.</p>
+                <p><strong>Why humans are essential:</strong> market knowledge, brand intent, strategic positioning, and constraint knowledge that the data does not capture. Decisions feed back into model training so the system learns the merchant's judgment, not just the data.</p>
+                <div class="example-box">
+                    <strong>Override example</strong>
+                    SKU-001 recommendation: 1,000 units<br>
+                    Modified to: 1,500 units<br>
+                    Reason: "Influencer collab week 5; expect 30%+ lift"<br>
+                    Expected margin: <strong style="display: inline; color: var(--accent-deep);">+$3,000 vs. +$2,000 recommended</strong>
+                </div>
+            </div>
+
+            <div class="phase-block">
+                <h4><span class="phase-num">5</span>Execute</h4>
+                <p><strong>What happens:</strong> approved POs transmit directly to vendors and DCs through the OMS API. <strong>No manual re-keying. That is a hard requirement.</strong></p>
+                <ul>
+                    <li>OMS converts approved recommendations into live POs</li>
+                    <li>Allocations sent to DCs and stores</li>
+                    <li>Status tracked through HubSpot workflows</li>
+                </ul>
+            </div>
+
+            <div class="phase-block">
+                <h4><span class="phase-num">6</span>Learn</h4>
+                <p><strong>What happens:</strong> as orders ship and inventory sells, the system measures performance versus forecast and adjusts.</p>
+                <div class="metric-box">
+                    <strong>Forecast accuracy:</strong> actual vs. forecasted demand &middot; target below 15% error<br>
+                    <strong>Sell-through rate:</strong> inventory sold vs. allocated &middot; target +5-10%<br>
+                    <strong>Inventory turns:</strong> velocity &middot; target +10-15%<br>
+                    <strong>Margin realization:</strong> actual vs. planned &middot; target within 1-2 points uplift
+                </div>
+                <h4>Feedback Loop</h4>
+                <ul>
+                    <li><strong>Weekly:</strong> compare actual vs. forecast; flag large variances</li>
+                    <li><strong>Monthly:</strong> aggregate performance by category, region, segment</li>
+                    <li><strong>Quarterly:</strong> retrain models with new data; adjust coefficients</li>
+                </ul>
+            </div>
+
+            <h2>Pilot Design: Earrings in the Midwest</h2>
+
+            <h3>Why this slice?</h3>
+            <ul>
+                <li><strong>Earrings:</strong> 35-40% of jewelry revenue, high velocity, clear seasonality, manageable SKU count.</li>
+                <li><strong>Midwest region:</strong> 200-300 stores, mix of urban / suburban / mall, moderate complexity.</li>
+                <li><strong>Teen self-purchase segment:</strong> highest volume, predictable patterns, clearest signals.</li>
+            </ul>
+
+            <h3>Pilot Objectives</h3>
+            <div class="metric-box">
+                <strong>Forecast error:</strong> below 15% (vs. 25-30% baseline)<br>
+                <strong>Sell-through:</strong> 90%+ (vs. ~85%)<br>
+                <strong>Overstock:</strong> -20% inventory required<br>
+                <strong>Margin uplift:</strong> +1-2 percentage points
+            </div>
+
+            <h3>Pilot Timeline (Months 1-6)</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-label">Months 1-2 &middot; Setup &amp; training data</div>
+                    <p>Extract 24 months of data, clean, calculate baseline metrics, train initial models. Wire OMS API for read-back.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-label">Month 3 &middot; Soft launch</div>
+                    <p>Generate recommendations for next four weeks; do not execute. Gather merchant feedback. Tune the explainability layer.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-label">Month 4 &middot; Live pilot</div>
+                    <p>Execute AI recommendations for real POs. Run parallel: AI vs. current process. Override rate tracked weekly.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-label">Months 5-6 &middot; Measure and adjust</div>
+                    <p>Analyze results. If pilot succeeds: plan rollout to necklaces and a second region. If it does not: debug, retrain, adjust override workflow.</p>
+                </div>
+            </div>
+
+            <h2>Scaling Plan (Months 7-18)</h2>
+            <p>If the pilot succeeds, the rollout is sequenced rather than parallel. Each expansion proves the model in a new dimension before adding the next.</p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-label">Months 7-9 &middot; Expand to necklaces (all regions)</div>
+                    <p>Retrain models for different seasonality and velocity. Similar accuracy and margin outcomes expected.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-label">Months 10-12 &middot; Expand to hair and remaining categories</div>
+                    <p>Models running on the majority of inventory. Decision AI becomes standard operating procedure for buyers, not a side experiment.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-label">Months 13-15 &middot; Add allocation optimization</div>
+                    <p>Not just "order X units" but "allocate X units to these specific stores." Real-time inventory across the 1,326-store fleet enables store-level optimization.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-label">Months 16-18 &middot; Generative custom product pilot</div>
+                    <p>AI identifies high-demand styles; constrained-design tools generate variations; 3D-printing supply chain produces made-to-order. Generative AI earns the right to ship now that the data spine and operational AI are proven.</p>
+                </div>
+            </div>
+
+            <h2>Technical Requirements</h2>
+
+            <h3>Data Infrastructure</h3>
+            <ul>
+                <li><strong>Warehouse:</strong> Azure Data Warehouse or Databricks</li>
+                <li><strong>ETL:</strong> Azure Data Factory or equivalent on a 4-hour micro-batch</li>
+                <li><strong>BI:</strong> Power BI</li>
+                <li><strong>Model serving:</strong> Azure ML, REST API for recommendations</li>
+            </ul>
+
+            <h3>Model Development</h3>
+            <ul>
+                <li><strong>Languages:</strong> Python (pandas, scikit-learn, Prophet)</li>
+                <li><strong>Demand forecasting:</strong> Prophet, ARIMA, or neural networks depending on category seasonality</li>
+                <li><strong>Optimization:</strong> PuLP or Gurobi for linear programming</li>
+                <li><strong>Explainability:</strong> SHAP for understanding model decisions</li>
+            </ul>
+
+            <h3>OMS Integration</h3>
+            <ul>
+                <li><strong>Requirement:</strong> OMS must have an API to consume recommendations.</li>
+                <li><strong>Flow:</strong> AI system &rarr; OMS API &rarr; Create PO (no manual re-keying).</li>
+                <li><strong>Feedback:</strong> OMS reports actual demand, receipts, and allocations back to the AI.</li>
+            </ul>
+
+            <h3>User Interface</h3>
+            <ul>
+                <li>Recommendation dashboard with rationale</li>
+                <li>Approval workflow (approve / modify / reject UI with captured reason)</li>
+                <li>Monitoring dashboard (forecast accuracy, margin, inventory turns, override rate)</li>
+                <li>Model explainability ("why this recommendation?")</li>
+            </ul>
+
+            <h2>Risk Mitigation</h2>
+
+            <div class="risk-box">
+                <strong>Risk 1 &middot; Data quality.</strong><br>
+                <strong>Problem:</strong> garbage in, garbage out. Salesforce data carries duplicates, inconsistent picklists, orphan records.<br>
+                <strong>Mitigation:</strong> data validation pipeline. Anomalies flagged. Reconcile with POS counts monthly. Pilot migration in Month 2 surfaces mapping bugs before full cutover.
+            </div>
+
+            <div class="risk-box">
+                <strong>Risk 2 &middot; Model drift.</strong><br>
+                <strong>Problem:</strong> model trained on past data; customer behavior changes (Gen Z trend velocity is faster than the model's retraining cadence).<br>
+                <strong>Mitigation:</strong> retrain monthly. Track forecast error week over week. If error exceeds 20%, investigate; model is treated as defective, not the AI as the failure.
+            </div>
+
+            <div class="risk-box">
+                <strong>Risk 3 &middot; Human overrides kill the model.</strong><br>
+                <strong>Problem:</strong> if merchants always override, the model never learns. The pilot becomes theater.<br>
+                <strong>Mitigation:</strong> track override rate; target below 20% steady-state. High rate signals missing inputs. Investigate and retrain rather than abandoning.
+            </div>
+
+            <div class="risk-box">
+                <strong>Risk 4 &middot; OMS cannot consume recommendations.</strong><br>
+                <strong>Problem:</strong> recommendations sit in dashboards while orders are still created manually. The AI never closes the loop.<br>
+                <strong>Mitigation:</strong> spec OMS integration during Phase 0. Build in parallel with HubSpot setup. Test with real POs in Month 5 of the pilot.
+            </div>
+
+            <h2>Success Looks Like</h2>
+
+            <div class="success-box">
+                <h4>Month 6 &middot; End of pilot</h4>
+                <ul>
+                    <li><span class="check">&check;</span> AI generating recommendations 5 days per week</li>
+                    <li><span class="check">&check;</span> Merchants approving roughly 80% of recommendations as-is</li>
+                    <li><span class="check">&check;</span> Forecast error below 15% (against the 25-30% baseline)</li>
+                    <li><span class="check">&check;</span> Overstock down 20%, sell-through up 5%</li>
+                    <li><span class="check">&check;</span> Margin per unit lifted +$0.75</li>
+                </ul>
+            </div>
+
+            <div class="success-box">
+                <h4>Month 12 &middot; End of Phase 2</h4>
+                <ul>
+                    <li><span class="check">&check;</span> AI driving decisions for 60% of assortment</li>
+                    <li><span class="check">&check;</span> Forecast error portfolio-wide trending to ~12%</li>
+                    <li><span class="check">&check;</span> Margin improvement: +1 to +1.5 points across portfolio</li>
+                    <li><span class="check">&check;</span> Inventory down 15-20%; working capital released</li>
+                </ul>
+            </div>
+
+            <div class="success-box">
+                <h4>Month 18 &middot; End of Phase 3</h4>
+                <ul>
+                    <li><span class="check">&check;</span> AI driving decisions for 90% of core assortment</li>
+                    <li><span class="check">&check;</span> Generative custom-piece pipeline launching</li>
+                    <li><span class="check">&check;</span> Forecast error: ~10% (best-in-class)</li>
+                    <li><span class="check">&check;</span> Margin improvement: +2 points across portfolio</li>
+                    <li><span class="check">&check;</span> Inventory turns up 15-20%</li>
+                </ul>
+            </div>
+
+            <div class="closing">
+                <p><strong>Decision-making AI is not chatbots or customer-facing creativity.</strong> It is making better inventory decisions faster, with less wasted cash and more margin.</p>
+                <p>For Claire's, this system is what converts the HubSpot revenue spine and the unified data layer into <strong>$20-30M of annual margin and $30-50M of working-capital release</strong>. It is the operational engine behind the 60-70% recovery probability and the EBITDA path from -$500M to break-even by Month 18.</p>
+            </div>
+        </div>
+    </article>
+
+</body>
+</html>
